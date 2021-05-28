@@ -1,0 +1,87 @@
+/* =============================================================================
+    ADMIN AUTH 
+============================================================================= */
+
+.admin-auth-html {
+    height: 100%;
+    min-height: 100%;
+}
+
+.admin-auth-body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bs-dark);
+    padding: var(--bs-space-5) var(--bs-space-3);
+}
+
+/* =============================================================================
+    ADMIN AUTH HEADER
+============================================================================= */
+
+.admin-auth-header {
+    margin-bottom: var(--bs-space-4);
+    display: flex;
+    align-items: center;
+}
+
+.admin-auth-header-icon i {
+    display: block;
+}
+
+.admin-auth-brand {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-auth-brand-img {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+}
+
+/* =============================================================================
+    ADMIN AUTH MAIN
+============================================================================= */
+
+.admin-auth-main-icon {
+    display: block;
+    font-size: 4em;
+    text-align: center;
+    color: var(--bs-primary);
+    margin-top: var(--bs-space-3);
+}
+
+.admin-auth-main {
+    background-color: var(--bs-light);
+    padding: var(--bs-space-4);
+    border-radius: .5rem;
+    width: 100%;
+}
+
+.admin-auth-main-form-content {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 340px;
+}
+
+@media (min-width: 576px) {
+    .admin-auth-main {
+        width: 500px;
+        min-width: 500px;
+        max-width: 500px;
+    }
+}
+
+/* =============================================================================
+    ADMIN AUTH FOOTER
+============================================================================= */
+
+.admin-auth-footer {
+    font-size: 0.9em;
+    margin-top: var(--bs-space-4);
+}

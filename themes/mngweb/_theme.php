@@ -34,46 +34,44 @@
                          class="web-navbar-brand-img">
                     
                 </a>
-                <button class="web-navbar-toggle" type="button" 
-                        data-navbar-toggle="open">
-                    <i class="web-navbar-toggle-ico"></i>
-                    <i class="web-navbar-toggle-ico"></i>
-                    <i class="web-navbar-toggle-ico"></i>
+                <button class="app-menu-toggle" data-menu-toggle="show">
+                    <i class="app-menu-toggle-ico"></i>
+                    <i class="app-menu-toggle-ico"></i>
+                    <i class="app-menu-toggle-ico"></i>
                 </button>
                 <div class="web-navbar-menu">
-                    <div class="web-navbar-menu-back" data-navbar-toggle="close"></div>
+                    <div class="web-navbar-menu-back" data-menu-toggle="hide"></div>
                     <div class="web-navbar-menu-content">
                         <div class="web-navbar-menu-content-close">
-                            <button class="web-navbar-toggle" type="button" 
-                                    data-navbar-toggle="close">
-                                <i class="web-navbar-toggle-ico up"></i>
-                                <i class="web-navbar-toggle-ico down"></i>
+                            <button class="app-menu-toggle" data-menu-toggle="hide">
+                                <i class="app-menu-toggle-ico up"></i>
+                                <i class="app-menu-toggle-ico down"></i>
                             </button>
                         </div>
                         <ul class="web-navbar-list web-navbar-menu-pages">
                             <li class="web-navbar-item">
-                                <a href="<?= url('/#home') ?>" data-navbar-toggle="close"
+                                <a href="<?= url('/#home') ?>" data-menu-toggle="hide"
                                    class="web-navbar-link link-pd active"
                                    data-section="home">
                                     Home
                                 </a>
                             </li>
                             <li class="web-navbar-item">
-                                <a href="<?= url('/#plataforma') ?>" data-navbar-toggle="close" 
+                                <a href="<?= url('/#plataforma') ?>" data-menu-toggle="hide" 
                                    class="web-navbar-link link-pd"
                                    data-section="plataforma">
                                     Plataforma
                                 </a>
                             </li>
                             <li class="web-navbar-item">
-                                <a href="<?= url('/#sobre') ?>" data-navbar-toggle="close" 
+                                <a href="<?= url('/#sobre') ?>" data-menu-toggle="hide" 
                                    class="web-navbar-link link-pd"
                                    data-section="sobre">
                                     Sobre
                                 </a>
                             </li>
                             <li class="web-navbar-item">
-                                <a href="<?= url('/#contato') ?>" data-navbar-toggle="close"
+                                <a href="<?= url('/#contato') ?>" data-menu-toggle="hide"
                                    class="web-navbar-link link-pd"
                                    data-section="contato">
                                     Contato
@@ -154,6 +152,7 @@
 
     <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>
+    <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="<?= shared('/scripts/script.js') ?>"></script>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_WEB) ?>"></script>

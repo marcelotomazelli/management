@@ -15,72 +15,88 @@
 </head>
 <body class="app-body <?= "app-{$content}" ?>" data-bs-no-jquery="">
     <header class="app-header">
-        <div class="container">
-            <nav class="app-navbar-container">
-                <a class="app-navbar-brand" href="<?= url() ?>">
-                    <img src="<?= shared('/imgs/brand-dark.png') ?>" 
-                         alt="Management" 
-                         title="Management"
-                         class="app-navbar-brand-img">
-                </a>
-                <button class="app-navbar-toggle" type="button" 
-                        data-navbar-toggle="toggle">
-                    <i class="app-navbar-toggle-ico up"></i>
-                    <i class="app-navbar-toggle-ico"></i>
-                    <i class="app-navbar-toggle-ico down"></i>
-                </button>
-                <div class="app-navbar-menu">
-                    <div class="app-navbar-toggle-close">
-                        <button class="app-navbar-toggle" type="button" 
-                                data-navbar-toggle="close">
-                            <i class="app-navbar-toggle-ico up"></i>
-                            <i class="app-navbar-toggle-ico"></i>
-                            <i class="app-navbar-toggle-ico down"></i>
-                        </button>
-                    </div>
-                    <div class="app-navbar-user">
-                        <div class="app-navbar-user-img">
-                            <img src="<?= shared('/imgs/user.png') ?>">
+        <div class="app-header-content">
+            <div class="container">
+                <nav class="app-navbar-container">
+                    <a class="app-navbar-brand" href="<?= url('/app') ?>">
+                        <img src="<?= shared('/imgs/brand.png') ?>" 
+                             alt="Management" 
+                             title="Management"
+                             class="app-navbar-brand-img d-block" height="26">
+                    </a>
+                    <div class="app-navbar-menu-container">
+                        <div class="app-navbar-buttons">
+                            <div id="app-dropdown-profile" class="app-navbar-buttons-item app-dropdown">
+                                <button class="app-navbar-buttons-item-button" data-mng-dropdown="app-dropdown-profile">
+                                    <img class="app-navbar-buttons-profile-img" src="<?= shared('/imgs/user.png') ?>" alt="<?= 'User' ?>" title="<?= 'User' ?>">
+                                    <!-- <span class="app-navbar-buttons-profile-name">Marcelo</span> -->
+                                </button>
+                                <div class="app-dropdown-window">
+                                    <div class="app-navbar-dropdown-content">
+                                        <div>
+                                            <div>
+                                                <img src="<?= shared('/imgs/user.png') ?>" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="app-dropdown-notifications" class="app-navbar-buttons-item app-dropdown">
+                                <button class="app-navbar-buttons-item-button" data-mng-dropdown="app-dropdown-notifications">
+                                    <i class="fas fa-bell"></i>
+                                </button>
+                                <div class="app-dropdown-window">
+                                    <div class="app-navbar-dropdown-content">
+                                        <?php for ($i = 0; $i < 30; $i++): ?>
+                                            <p>Lorem</p>
+                                        <?php endfor; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="app-navbar-buttons-item">
+                                <a href="<?= url('/app') ?>" class="app-navbar-buttons-item-button">
+                                    <i class="fas fa-question-circle"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="app-navbar-user-desc">
-                            <p class="app-navbar-user-name">Marcelo</p>
-                            <p class="app-navbar-user-tasks">Nada pendente</p>
+                        <div class="app-navbar-menu">
+                            <div class="app-navbar-menu-back"></div>
+                            <div class="app-navbar-menu-content">
+                                <div class="app-navbar-menu-toggle">
+                                    <button class="app-menu-toggle" data-menu-toggle="toggle">
+                                        <i class="app-menu-toggle-ico up"></i>
+                                        <i class="app-menu-toggle-ico"></i>
+                                        <i class="app-menu-toggle-ico down"></i>
+                                    </button>
+                                </div>
+                                <ul class="app-navbar-menu-list">
+                                    <?php
+                                    $appPages = [
+                                        'fas fa-calendar-alt',
+                                        'fas fa-stream',
+                                        'fab fa-buffer',
+                                        'fas fa-hourglass-half'
+                                    ];
+                                    foreach($appPages as $icon):
+                                    ?>
+                                        <li class="app-navbar-menu-item">
+                                            <a class="app-navbar-menu-link" href="<?= url('/ops') ?>">
+                                                <i class="<?= $icon ?>"></i>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="app-navbar-list-content">
-                        <ul class="app-navbar-list">
-                            <?php $selected = function ($item) use ($content) {
-                                return ($item == $content ? 'active' : '');
-                            } ?>
-
-                            <li class="app-navbar-item">
-                                <a class="app-navbar-link <?= $selected('dash') ?>" href="<?= url('/app/dash') ?>"><i class="fas fa-chart-pie"></i>Dash</a>
-                            </li>
-                            <li class="app-navbar-item">
-                                <a class="app-navbar-link <?= $selected('activities') ?>" href="<?= url('/app/atividades') ?>"><i class="fas fa-list-ul"></i>Atividades</a>
-                            </li>
-                            <li class="app-navbar-item">
-                                <a class="app-navbar-link <?= $selected('profile') ?>" href="<?= url('/app/perfil') ?>"><i class="fas fa-user"></i>Perfil</a>
-                            </li>
-                            <li class="app-navbar-item">
-                                <a class="app-navbar-link app-navbar-signout" href="<?= url('/app/sair') ?>"><i class="fas fa-sign-out-alt"></i>Sair</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <main class="<?= "app-main app-{$content}-main" ?>">
+    <main class="app-main <?= "app-{$content}-main" ?>">
         <?php require __DIR__ . "/{$content}.php" ?>
     </main>
-
-    <footer class="app-footer-rights">
-        <div class="container">
-            <p class="m-0 fw-light text-center app-footer-rights-p">Todos os direitos reservados à Management. Dev to <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
-        </div>
-    </footer>
 
     <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>

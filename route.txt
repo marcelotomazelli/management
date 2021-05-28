@@ -1,0 +1,20 @@
+BASE DIR
+C:\xampp\htdocs\management
+
+BASE URL
+http://localhost/management
+
+WEB
+/          -> home
+/ops       -> error
+/confirma  -> optin
+
+APP
+/entrar
+/cadastrar
+/recuperar
+/app
+
+ADMIN
+/admin/entrar
+/admin

@@ -25,7 +25,7 @@
 <body class="app-auth <?= "app-auth-{$content}" ?>">
     <main class="app-auth-main">
         <div class="app-auth-main-content h-100">
-            <? require __DIR__ . "/views/{$content}.php" ?>
+            <?php require __DIR__ . "/views/{$content}.php" ?>
         </div>
     </main>
     <div class="app-auth-footer">
@@ -71,6 +71,7 @@
 
     <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>
+    <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
     <script src="<?= shared('/scripts/script.js') ?>"></script>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_APP) ?>"></script>
 </body>

@@ -20,11 +20,11 @@ $routes['/recuperar'] = [CONF_VIEW_APP, '_auth', 'recover'];
 $routes['/app'] = [CONF_VIEW_APP, '_theme', 'profile'];
 $routes['/app/perfil'] = [CONF_VIEW_APP, '_theme', 'profile'];
 
-// ADMIN 
-/*
+// ADMIN AUTH
+$routes['/admin/entrar'] = [CONF_VIEW_ADMIN, '_auth', 'signin'];
+
+// ADMIN
 $routes['/admin'] = [CONF_VIEW_ADMIN, '_theme', 'dash'];
-$routes['/admin/dash'] = [CONF_VIEW_ADMIN, '_theme', 'dash'];
-*/
 
 $theme = (!empty($routes[$r]) ? $routes[$r][0] : null);
 $content = (!empty($routes[$r]) ? $routes[$r][2] : null);

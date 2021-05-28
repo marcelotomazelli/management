@@ -78,11 +78,11 @@ $(document).ready(function () {
         scrollMenuStyle();
     });
 
-    $('body:not(.web-home) [data-navbar-toggle]').click(toggleMenu);
+    $('body:not(.web-home) [data-menu-toggle]').click(toggleMenu);
 
-    $('body.web-home [data-navbar-toggle]:not([data-section])').click(toggleMenu);
-    $('body.web-home [data-section]:not([data-navbar-toggle])').click(sectionControl);
-    $('body.web-home [data-section][data-navbar-toggle]').click(function (e) {
+    $('body.web-home [data-menu-toggle]:not([data-section])').click(toggleMenu);
+    $('body.web-home [data-section]:not([data-menu-toggle])').click(sectionControl);
+    $('body.web-home [data-section][data-menu-toggle]').click(function (e) {
         e.preventDefault();
         toggleMenu(e, this);
         setTimeout(() => {

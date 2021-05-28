@@ -2,6 +2,23 @@
     APP AUTH 
 ============================================================================= */
 
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+.app-teste-completention {
+    
+}
+
+
 .app-auth-main-title {
     font-weight: 300;
 }

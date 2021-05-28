@@ -1,27 +1,19 @@
-/* =============================================================================
-    APP 
-============================================================================= */
-
-html {
-    height: 100%;
-    min-height: 100%;
-}
-
-body {
-    min-height: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
+:root {
+    --header-height: 60px;
+    --menu-close-width: 70px;
+    --menu-open-width: 300px;
 }
 
 /* =============================================================================
     APP HEADER
 ============================================================================= */
 
+.app-header {
+    background-color: var(--app-dark);
+}
+
 .app-navbar-container {
-    height: 60px;
-    min-height: 60px;
-    max-height: 60px;
+    height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,179 +25,84 @@ body {
 
 .app-navbar-brand-img {
     display: block;
+    height: 20px;
 }
 
-.app-navbar-toggle {
+.app-navbar-menu-container {
+    height: 100%;
+}
+
+.app-navbar-buttons {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 19px;
-    width: 26px;
-    padding: 0;
-    margin: 0;
-    font-size: 1.75rem;
-    position: relative;
-    background-color: transparent;
-    border: none;
-    transition: width .3s;
+    flex-direction: row-reverse;
+    align-items: center;
 }
 
-.app-navbar-toggle-ico {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: var(--bs-dark);
-    border-radius: 1rem;
-
-    position: relative;
-    top: 0;
-    transform: rotateZ(0deg);
-
-    transition-property: transform, top, opacity;
-    transition-duration: .3s;
-}
-
-/* =============================================================================
-    APP HEADER MENU
-============================================================================= */
-.app-header {
-    z-index: var(--app-zi-header);
-}
-
-.app-navbar-menu {
-    z-index: var(--app-zi-menu);
-    position: fixed;
-    top: 0;
+.app-navbar-buttons-item {
     height: 100%;
-    background-color: var(--app-dark);
-    display: grid;
-    grid-template-columns: 1fr;
 }
 
-.app-navbar-menu,
-.app-navbar-list-content,
-.app-navbar-list {
-    height: 100%;
-    min-height: 100%;
-    max-height: 100%;
-}
-
-.app-navbar-list-content {
+.app-navbar-dropdown-content {
+    max-height: 400px;
+    min-width: 300px;
     overflow-y: auto;
 }
 
-.app-navbar-toggle-close,
-.app-navbar-user {
-    background-color: rgba(0,0,0,0.3);
-}
-
-.app-navbar-toggle-close {
+.app-navbar-buttons-item-button {
+    cursor: pointer;
     display: flex;
-    justify-content: flex-end;
-    padding: var(--bs-space-3);
-    border-bottom: 1px solid rgba(250,250,250,0.05);
-}
-
-.app-navbar-user {
-    display: flex;
-    padding: var(--bs-space-4);
-}
-
-.app-navbar-user-img {
-    flex-shrink: 0;
-    border-radius: 100%;
-    border: 3px solid var(--bs-glass);
-    padding: 3px;
-}
-
-.app-navbar-user-img img {
-    display: block;
-    border-radius: 100%;
-    height: 90px;
-    user-select: none; 
-}
-
-.app-navbar-user-desc {
-    margin-left: var(--bs-space-3);
-    flex-grow: 2;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-}
-
-.app-navbar-user-name {
-    margin: 0;
-    font-size: 2em;
-    line-height: 1em;
-    color: var(--bs-light);
-    white-space: nowrap;
-}
-
-.app-navbar-user-tasks {
-    color: var(--bs-secondary);
-    font-weight: 300;
-    font-size: 0.9em;
-    margin: 0;
-    white-space: nowrap;
-}
-
-.app-navbar-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.app-navbar-list .app-navbar-item:last-child {
-    margin-top: auto;
-}
-
-.app-navbar-link {
-    padding: var(--bs-space-3) var(--bs-space-4);
-    display: flex;
     align-items: center;
+    border: none;
     background-color: transparent;
-    transition: background-color .3s;
-}
-
-.app-navbar-link.app-navbar-signout {
-    transition: background-color .3s, color .3s;
-}
-
-.app-navbar-link,
-.app-navbar-link:link,
-.app-navbar-link:visited,
-.app-navbar-link:active {
+    padding: 0 12px;
+    margin: 0;
+    height: 100%;
+    min-width: var(--header-height);
+    color: var(--bs-light);
+    text-wrap: nowrap;
     text-decoration: none;
-    color: var(--bs-light);
+    transition-property: background-color, color;
+    transition-duration: 0.3s;
 }
 
-.app-navbar-link i {
-    font-size: 1.2em;
-    width: 1.9em;
+.app-navbar-buttons-item:not(.show) .app-navbar-buttons-item-button:hover {
+    background-color: rgba(250,250,250,0.05);
 }
 
-.app-navbar-link.app-navbar-signout {
-    color: var(--bs-danger);
-    justify-content: center;
+.app-dropdown.show .app-navbar-buttons-item-button {
+    background-color: var(--app-gray);
 }
 
-.app-navbar-link.app-navbar-signout i {
-    width: 1.5em;
+.app-navbar-buttons-profile-img {
+    width: calc(var(--header-height) * 0.5);
+    height: calc(var(--header-height) * 0.5);
+    border-radius: 30rem;
 }
 
-.app-navbar-link:not(.active):hover {
-    background-color: rgba(250,250,250,0.1);
+.app-navbar-buttons-profile-name {
+    font-weight: 300;
+    margin-left: var(--bs-space-2);
 }
 
-.app-navbar-link.app-navbar-signout:hover {
-    color: var(--bs-light);
-    background-color: var(--bs-danger);
+.app-navbar-buttons-item-button *:not(.app-navbar-buttons-profile-name) {
+    font-size: calc(var(--header-height) * 0.36);
 }
 
-.app-navbar-link.active {
-    background-color: var(--bs-blue);
+.app-navbar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--menu-close-width);
+    background-color: var(--bs-primary);
+    transition-property: width;
+    transition-duration: 0.5s;
+}
+
+.menu-show .app-navbar-menu {
+    width: var(--menu-open-width);
 }
 
 @media (max-width: 576px) {
@@ -214,160 +111,31 @@ body {
     }
 }
 
-@media (min-width: 576px) {
-    .app-navbar-brand-img {
-        height: 20px;
-    }
+.app-navbar-menu-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--header-height);
+    width: 100%;
+    text-decoration: none;
+    color: var(--bs-light);
 }
 
-/* =============================================================================
-    APP HEADER MENU SHOW
-============================================================================= */
-
-@media (max-width: 992px) {
-    body.navbarmenu-show {
-        overflow-y: hidden;
-    }
-
-    .app-navbar-menu {
-        width: 100%;
-        max-width: 400px;
-        right: -100%;
-        grid-template-rows: auto auto 1fr;
-        transition-property: right;
-        transition-duration: .5s;
-    }
-
-    .navbarmenu-show .app-navbar-menu {
-        right: 0;
-    }
-
-    .app-navbar-toggle .app-navbar-toggle-ico {
-        transition-duration: 0s;
-        transition-delay: 0s;
-    }
-
-    .navbarmenu-show .app-navbar-toggle .app-navbar-toggle-ico {
-        transition-delay: .5s;
-    }
-
-    .app-navbar-toggle-close .app-navbar-toggle-ico {
-        transition-delay: .5s;
-    }
-
-    .navbarmenu-show .app-navbar-toggle-close .app-navbar-toggle-ico {
-        transition-duration: 0s;
-        transition-delay: 0s;
-    }
-
-    .app-navbar-toggle-close .app-navbar-toggle-ico {
-        background-color: var(--bs-light);
-    }
-
-    .app-navbar-user-img img {
-        height: 60px;
-    }
-
-    .app-navbar-user-name {
-        font-size: 1.5em;
-    }
-
-    .app-footer-rights-p {
-        font-size: 0.875em;
-    }
+.app-navbar-menu-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
 
-@media (min-width: 992px) {
-    .app-navbar-container {
-        flex-direction: row-reverse;
-    }
-
-    .app-navbar-menu {
-        width: 300px;
-        grid-template-rows: auto 1fr;
-    }
-
-    .app-navbar-user-name {
-        font-size: 2em;
-    }
-
-    .app-navbar-toggle-close {
-        display: none;
-    }
-
-    .app-header,
-    .app-main,
-    .app-footer-rights {
-        padding: 0 var(--bs-space-4);
-        transition-property: margin-left, padding;
-        transition-duration: .3s;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1200px) {
-    .app-navbar-menu {
-        left: -100%;
-        transition: left .5s;
-        transition-delay: 0.3s;
-    }
-
-    .navbarmenu-show .app-navbar-menu {
-        left: 0;
-        transition-delay: 0s;
-    }
-
-    .app-navbar-toggle,
-    .app-navbar-toggle-ico {
-        transition-delay: .7s;
-    }
-
-    .app-header,
-    .app-main,
-    .app-footer-rights {
-        margin-left: 0;
-        transition-delay: 0s;
-    }
-
-    .navbarmenu-show .app-header,
-    .navbarmenu-show .app-main,
-    .navbarmenu-show .app-footer-rights {
-        margin-left: 300px;
-        transition-delay: .5s;
-    }
-}
-
-@media (max-width: 1200px) {
-    .navbarmenu-show .app-navbar-toggle {
-        width: 28px;
-    }
-
-    .navbarmenu-show .app-navbar-toggle-ico {
-        opacity: 0;
-    }
-
-    .navbarmenu-show .app-navbar-toggle-ico.up {
-        opacity: 1;
-        top: 8px;
-        transform: rotateZ(45deg);
-    }
-
-    .navbarmenu-show .app-navbar-toggle-ico.down {
-        opacity: 1;
-        top: -8px;
-        transform: rotateZ(-45deg);
-    }
-}
-
-@media (min-width: 1200px) {
-    .app-navbar-menu {
-        left: 0;
-    }
-
-    .app-header,
-    .app-main,
-    .app-footer-rights {
-        margin-left: 300px;
-    }
+.app-navbar-menu-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--header-height);
+    width: 100%;
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--bs-light);
 }
 
 /* =============================================================================
@@ -395,6 +163,22 @@ body {
 
 .app-form div {
     transition: width 0.3s;
+}
+
+
+@media (min-width: 992px) {
+    .app-header-content,
+    .app-main {
+        margin-left: var(--menu-close-width);
+        transition-property: margin-left;
+        transition-duration: 0.5s;
+        transition-delay: 0.5s;
+    }
+
+    .menu-show .app-header-content,
+    .menu-show .app-main {
+        margin-left: var(--menu-open-width);
+    }
 }
 
 

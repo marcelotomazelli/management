@@ -27,6 +27,7 @@ define('CONF_PASSWORD_OPTION', ['cost' => 10]);
 define('CONF_VIEW_EXT', 'php');
 define('CONF_VIEW_WEB', 'mngweb');
 define('CONF_VIEW_APP', 'mngapp');
+define('CONF_VIEW_ADMIN', 'mngadmin');
 
 /**
  * SOCIAL

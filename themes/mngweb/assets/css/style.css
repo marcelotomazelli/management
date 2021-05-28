@@ -107,49 +107,6 @@ body:not(.web-home) .web-header,
     justify-content: flex-end;
 }
 
-.web-navbar-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    height: 19px;
-
-    padding: 0;
-    margin: 0;
-    font-size: 1.75rem;
-    background-color: transparent;
-    border: none;
-}
-
-.web-navbar-toggle[data-navbar-toggle="open"] {
-    width: 26px;
-}
-
-.web-navbar-toggle[data-navbar-toggle="close"] {
-    position: relative;
-    width: 28px;
-}
-
-.web-navbar-toggle-ico {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: var(--bs-light);
-    border-radius: 1rem;
-}
-
-.web-navbar-toggle-ico.up {
-    position: relative;
-    top: 8px;
-    transform: rotateZ(45deg);
-}
-
-.web-navbar-toggle-ico.down {
-    position: relative;
-    top: -8px;
-    transform: rotateZ(-45deg);
-}
-
 .web-header a {
     color: var(--bs-light);
 }
@@ -213,7 +170,7 @@ body:not(.web-home) .web-header,
     /*
         WEB NAVBAR MENU
      */
-    body.navbarmenu-show {
+    body.menu-show {
         overflow: hidden;
     }
 
@@ -232,7 +189,7 @@ body:not(.web-home) .web-header,
         transition-delay: 0.3s;
     }
 
-    .navbarmenu-show .web-navbar-menu {
+    .menu-show .web-navbar-menu {
         visibility: visible;
         left: 0;
 
@@ -249,7 +206,7 @@ body:not(.web-home) .web-header,
         transition: background-color 0.3s;
     }
 
-    .navbarmenu-show .web-navbar-menu-back {
+    .menu-show .web-navbar-menu-back {
         background-color: rgba(0,0,0,.5);
     }
 
@@ -266,7 +223,7 @@ body:not(.web-home) .web-header,
         transition-timing-function: ease-in-out;
     }
 
-    .navbarmenu-show .web-navbar-menu-content {
+    .menu-show .web-navbar-menu-content {
         box-shadow: -0.225rem 0 1rem rgba(0,0,0,.5);
         right: 0;
     }
@@ -308,8 +265,8 @@ body:not(.web-home) .web-header,
 }
 
 @media (min-width: 992px) {
-    .web-navbar-toggle,
-    .web-navbar-menu-content-close {
+    .web-navbar-menu-content-close,
+    .app-menu-toggle {
         display: none;
     }
 
