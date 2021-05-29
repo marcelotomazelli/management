@@ -23,11 +23,25 @@
                          title="Management"
                          class="admin-navbar-brand-img">
                 </a>
-                <button class="app-menu-toggle app-menu-toggle-dark" data-menu-toggle="toggle">
-                    <i class="app-menu-toggle-ico up"></i>
-                    <i class="app-menu-toggle-ico"></i>
-                    <i class="app-menu-toggle-ico down"></i>
-                </button>
+                <div class="app-navbar-buttons">
+                    <div class="app-navbar-buttons-item admin-navbar-toggle-toggle">
+                        <button class="app-menu-toggle app-menu-toggle-dark" data-menu-toggle="toggle">
+                            <i class="app-menu-toggle-ico up"></i>
+                            <i class="app-menu-toggle-ico"></i>
+                            <i class="app-menu-toggle-ico down"></i>
+                        </button>
+                    </div>
+                    <div id="app-dropdown-notifications" class="app-navbar-buttons-item app-dd">
+                        <button class="app-navbar-buttons-button"  data-app-dropdown="app-dropdown-notifications">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                        <div class="app-dd-window app-dd-pbe app-dd-lg-pbs app-dd-rb">
+                            <div class="text-light">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, perspiciatis iste.
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="admin-navbar-menu">
                     <div class="admin-navbar-toggle-close">
                         <button class="app-menu-toggle" data-menu-toggle="hide">

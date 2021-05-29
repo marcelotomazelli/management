@@ -59,7 +59,7 @@ function Dropdown(id) {
     }
 
     let dropdown = $(`#${id}`);
-    let button = $(`[data-mng-dropdown="${id}"]`);
+    let button = $(`[data-app-dropdown="${id}"]`);
 
     let showClass = 'show';
     let inside = false;

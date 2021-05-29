@@ -11,7 +11,7 @@ define('CONF_DB_NAME', 'management');
  * PROJECT URLs
  */
 define('CONF_URL_BASE', 'http://localhost/management');
-define('CONF_URL_IP', 'http://192.168.18.5/management');
+define('CONF_URL_IP', 'http://' . file_get_contents(__DIR__ . '/../../../ipv4.txt') . '/management');
 
 /**
  * PASSWORD

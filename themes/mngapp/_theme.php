@@ -26,12 +26,12 @@
                     </a>
                     <div class="app-navbar-menu-container">
                         <div class="app-navbar-buttons">
-                            <div id="app-dropdown-profile" class="app-navbar-buttons-item app-dropdown">
-                                <button class="app-navbar-buttons-item-button" data-mng-dropdown="app-dropdown-profile">
+                            <div id="app-dropdown-profile" class="app-navbar-buttons-item app-dd">
+                                <button class="app-navbar-buttons-item-button" data-app-dropdown="app-dropdown-profile">
                                     <img class="app-navbar-buttons-profile-img" src="<?= shared('/imgs/user.png') ?>" alt="<?= 'User' ?>" title="<?= 'User' ?>">
                                     <!-- <span class="app-navbar-buttons-profile-name">Marcelo</span> -->
                                 </button>
-                                <div class="app-dropdown-window">
+                                <div class="app-dd-window app-dd-pbe app-dd-lg-rb app-dd-lg-rts">
                                     <div class="app-navbar-dropdown-content">
                                         <div>
                                             <div>
@@ -41,11 +41,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="app-dropdown-notifications" class="app-navbar-buttons-item app-dropdown">
-                                <button class="app-navbar-buttons-item-button" data-mng-dropdown="app-dropdown-notifications">
+                            <div id="app-dropdown-notifications" class="app-navbar-buttons-item app-dd">
+                                <button class="app-navbar-buttons-item-button" data-app-dropdown="app-dropdown-notifications">
                                     <i class="fas fa-bell"></i>
                                 </button>
-                                <div class="app-dropdown-window">
+                                <div class="app-dd-window app-dd-pbe app-dd-rb app-dd-rts">
                                     <div class="app-navbar-dropdown-content">
                                         <?php for ($i = 0; $i < 30; $i++): ?>
                                             <p>Lorem</p>

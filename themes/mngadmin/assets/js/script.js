@@ -7,4 +7,6 @@ $(document).ready(function () {
 
     $('[data-menu-toggle]').click(toggleMenu);
     $('input[type="file"]').change(imageChange);
+
+    let notificationsDropdown = new Dropdown('app-dropdown-notifications');
 });
