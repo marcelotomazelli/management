@@ -1,10 +1,10 @@
 // CONST
 
-const bsMediaXs  = 0;
-const bsMediaSm  = 576;
-const bsMediaMd  = 768;
-const bsMediaLg  = 992;
-const bsMediaXl  = 1200;
+const bsMediaXs = 0;
+const bsMediaSm = 576;
+const bsMediaMd = 768;
+const bsMediaLg = 992;
+const bsMediaXl = 1200;
 const bsMediaXxl = 1400;
 
 // FINCTION
@@ -40,7 +40,7 @@ function imageChange() {
         let file = input[0].files.item(0);
 
         let reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             let img = $(`#${input.data('imgDemo')}`);
             img.attr('src', e.target.result);
         };
@@ -101,7 +101,7 @@ function Dropdown(id) {
 
     // EVENTS
 
-    button.focus(function() {
+    button.focus(function () {
         if (!dropdown.hasClass(showClass)) {
             show();
         } else if (!inside && dropdown.hasClass(showClass)) {
@@ -127,6 +127,10 @@ function Dropdown(id) {
                 hide();
             }, 200);
         }
+    });
+
+    $(window).resize(function () {
+        hide();
     });
 }
 

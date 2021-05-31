@@ -8886,11 +8886,23 @@ textarea.form-control-lg {
 .app-dd-window.app-dd-r {
   border-radius: 0.5rem;
 }
+.app-dd-window.app-dd-rts {
+  border-top-right-radius: 0;
+}
+.app-dd-window.app-dd-rte {
+  border-top-left-radius: 0;
+}
 .app-dd-window.app-dd-rt, .app-dd-window.app-dd-rts {
   border-top-left-radius: 0.5rem;
 }
 .app-dd-window.app-dd-rt, .app-dd-window.app-dd-rte {
   border-top-right-radius: 0.5rem;
+}
+.app-dd-window.app-dd-rbs {
+  border-bottom-right-radius: 0;
+}
+.app-dd-window.app-dd-rbe {
+  border-bottom-left-radius: 0;
 }
 .app-dd-window.app-dd-rb, .app-dd-window.app-dd-rbs {
   border-bottom-left-radius: 0.5rem;
@@ -8898,10 +8910,24 @@ textarea.form-control-lg {
 .app-dd-window.app-dd-rb, .app-dd-window.app-dd-rbe {
   border-bottom-right-radius: 0.5rem;
 }
+.app-dd-window.app-dd-rs {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+.app-dd-window.app-dd-re {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
 
 @media (min-width: 576px) {
   .app-dd-window.app-dd-sm-r {
     border-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-sm-rts {
+    border-top-right-radius: 0;
+  }
+  .app-dd-window.app-dd-sm-rte {
+    border-top-left-radius: 0;
   }
   .app-dd-window.app-dd-sm-rt, .app-dd-window.app-dd-sm-rts {
     border-top-left-radius: 0.5rem;
@@ -8909,10 +8935,24 @@ textarea.form-control-lg {
   .app-dd-window.app-dd-sm-rt, .app-dd-window.app-dd-sm-rte {
     border-top-right-radius: 0.5rem;
   }
+  .app-dd-window.app-dd-sm-rbs {
+    border-bottom-right-radius: 0;
+  }
+  .app-dd-window.app-dd-sm-rbe {
+    border-bottom-left-radius: 0;
+  }
   .app-dd-window.app-dd-sm-rb, .app-dd-window.app-dd-sm-rbs {
     border-bottom-left-radius: 0.5rem;
   }
   .app-dd-window.app-dd-sm-rb, .app-dd-window.app-dd-sm-rbe {
+    border-bottom-right-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-sm-rs {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-sm-re {
+    border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
 }
@@ -8920,11 +8960,23 @@ textarea.form-control-lg {
   .app-dd-window.app-dd-md-r {
     border-radius: 0.5rem;
   }
+  .app-dd-window.app-dd-md-rts {
+    border-top-right-radius: 0;
+  }
+  .app-dd-window.app-dd-md-rte {
+    border-top-left-radius: 0;
+  }
   .app-dd-window.app-dd-md-rt, .app-dd-window.app-dd-md-rts {
     border-top-left-radius: 0.5rem;
   }
   .app-dd-window.app-dd-md-rt, .app-dd-window.app-dd-md-rte {
     border-top-right-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-md-rbs {
+    border-bottom-right-radius: 0;
+  }
+  .app-dd-window.app-dd-md-rbe {
+    border-bottom-left-radius: 0;
   }
   .app-dd-window.app-dd-md-rb, .app-dd-window.app-dd-md-rbs {
     border-bottom-left-radius: 0.5rem;
@@ -8932,10 +8984,24 @@ textarea.form-control-lg {
   .app-dd-window.app-dd-md-rb, .app-dd-window.app-dd-md-rbe {
     border-bottom-right-radius: 0.5rem;
   }
+  .app-dd-window.app-dd-md-rs {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-md-re {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
 }
 @media (min-width: 992px) {
   .app-dd-window.app-dd-lg-r {
     border-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-lg-rts {
+    border-top-right-radius: 0;
+  }
+  .app-dd-window.app-dd-lg-rte {
+    border-top-left-radius: 0;
   }
   .app-dd-window.app-dd-lg-rt, .app-dd-window.app-dd-lg-rts {
     border-top-left-radius: 0.5rem;
@@ -8943,10 +9009,24 @@ textarea.form-control-lg {
   .app-dd-window.app-dd-lg-rt, .app-dd-window.app-dd-lg-rte {
     border-top-right-radius: 0.5rem;
   }
+  .app-dd-window.app-dd-lg-rbs {
+    border-bottom-right-radius: 0;
+  }
+  .app-dd-window.app-dd-lg-rbe {
+    border-bottom-left-radius: 0;
+  }
   .app-dd-window.app-dd-lg-rb, .app-dd-window.app-dd-lg-rbs {
     border-bottom-left-radius: 0.5rem;
   }
   .app-dd-window.app-dd-lg-rb, .app-dd-window.app-dd-lg-rbe {
+    border-bottom-right-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-lg-rs {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-lg-re {
+    border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
 }
@@ -8954,11 +9034,23 @@ textarea.form-control-lg {
   .app-dd-window.app-dd-xl-r {
     border-radius: 0.5rem;
   }
+  .app-dd-window.app-dd-xl-rts {
+    border-top-right-radius: 0;
+  }
+  .app-dd-window.app-dd-xl-rte {
+    border-top-left-radius: 0;
+  }
   .app-dd-window.app-dd-xl-rt, .app-dd-window.app-dd-xl-rts {
     border-top-left-radius: 0.5rem;
   }
   .app-dd-window.app-dd-xl-rt, .app-dd-window.app-dd-xl-rte {
     border-top-right-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-xl-rbs {
+    border-bottom-right-radius: 0;
+  }
+  .app-dd-window.app-dd-xl-rbe {
+    border-bottom-left-radius: 0;
   }
   .app-dd-window.app-dd-xl-rb, .app-dd-window.app-dd-xl-rbs {
     border-bottom-left-radius: 0.5rem;
@@ -8966,10 +9058,24 @@ textarea.form-control-lg {
   .app-dd-window.app-dd-xl-rb, .app-dd-window.app-dd-xl-rbe {
     border-bottom-right-radius: 0.5rem;
   }
+  .app-dd-window.app-dd-xl-rs {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-xl-re {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
 }
 @media (min-width: 1400px) {
   .app-dd-window.app-dd-xxl-r {
     border-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-xxl-rts {
+    border-top-right-radius: 0;
+  }
+  .app-dd-window.app-dd-xxl-rte {
+    border-top-left-radius: 0;
   }
   .app-dd-window.app-dd-xxl-rt, .app-dd-window.app-dd-xxl-rts {
     border-top-left-radius: 0.5rem;
@@ -8977,10 +9083,24 @@ textarea.form-control-lg {
   .app-dd-window.app-dd-xxl-rt, .app-dd-window.app-dd-xxl-rte {
     border-top-right-radius: 0.5rem;
   }
+  .app-dd-window.app-dd-xxl-rbs {
+    border-bottom-right-radius: 0;
+  }
+  .app-dd-window.app-dd-xxl-rbe {
+    border-bottom-left-radius: 0;
+  }
   .app-dd-window.app-dd-xxl-rb, .app-dd-window.app-dd-xxl-rbs {
     border-bottom-left-radius: 0.5rem;
   }
   .app-dd-window.app-dd-xxl-rb, .app-dd-window.app-dd-xxl-rbe {
+    border-bottom-right-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-xxl-rs {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .app-dd-window.app-dd-xxl-re {
+    border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
 }
@@ -8995,445 +9115,511 @@ textarea.form-control-lg {
 
 .app-dd.show .app-dd-window.app-dd-pt {
   top: unset;
-  right: unset;
   bottom: 100%;
   left: unset;
+  right: unset;
 }
+
 .app-dd.show .app-dd-window.app-dd-pts {
   top: unset;
-  right: unset;
   bottom: 100%;
   left: 0;
+  right: unset;
 }
+
 .app-dd.show .app-dd-window.app-dd-pte {
   top: unset;
-  right: 0;
   bottom: 100%;
   left: unset;
+  right: 0;
 }
+
 .app-dd.show .app-dd-window.app-dd-pb {
   top: 100%;
-  right: unset;
   bottom: unset;
   left: unset;
+  right: unset;
 }
+
 .app-dd.show .app-dd-window.app-dd-pbs {
   top: 100%;
-  right: unset;
   bottom: unset;
   left: 0;
+  right: unset;
 }
+
 .app-dd.show .app-dd-window.app-dd-pbe {
   top: 100%;
-  right: 0;
   bottom: unset;
   left: unset;
+  right: 0;
 }
+
 .app-dd.show .app-dd-window.app-dd-ps {
   top: unset;
-  right: 100%;
   bottom: unset;
   left: unset;
+  right: 100%;
 }
+
 .app-dd.show .app-dd-window.app-dd-pst {
   top: 0;
-  right: 100%;
   bottom: unset;
   left: unset;
+  right: 100%;
 }
+
 .app-dd.show .app-dd-window.app-dd-psb {
   top: unset;
-  right: 100%;
   bottom: 0;
   left: unset;
+  right: 100%;
 }
+
 .app-dd.show .app-dd-window.app-dd-pe {
   top: unset;
-  right: 0;
   bottom: unset;
   left: 100%;
+  right: unset;
 }
+
 .app-dd.show .app-dd-window.app-dd-pet {
   top: 0;
-  right: 100%;
   bottom: unset;
-  left: unset;
+  left: 100%;
+  right: unset;
 }
+
 .app-dd.show .app-dd-window.app-dd-peb {
   top: unset;
-  right: 100%;
   bottom: 0;
-  left: unset;
+  left: 100%;
+  right: unset;
 }
 
 @media (min-width: 576px) {
   .app-dd.show .app-dd-window.app-dd-sm-pt {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-pts {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-pte {
     top: unset;
-    right: 0;
     bottom: 100%;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-pb {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-pbs {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-pbe {
     top: 100%;
-    right: 0;
     bottom: unset;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-ps {
     top: unset;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-pst {
     top: 0;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-psb {
     top: unset;
-    right: 100%;
     bottom: 0;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-pe {
     top: unset;
-    right: 0;
     bottom: unset;
     left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-pet {
     top: 0;
-    right: 100%;
     bottom: unset;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-sm-peb {
     top: unset;
-    right: 100%;
     bottom: 0;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
 }
 @media (min-width: 768px) {
   .app-dd.show .app-dd-window.app-dd-md-pt {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-pts {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-pte {
     top: unset;
-    right: 0;
     bottom: 100%;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-pb {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-pbs {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-pbe {
     top: 100%;
-    right: 0;
     bottom: unset;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-ps {
     top: unset;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-pst {
     top: 0;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-psb {
     top: unset;
-    right: 100%;
     bottom: 0;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-pe {
     top: unset;
-    right: 0;
     bottom: unset;
     left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-pet {
     top: 0;
-    right: 100%;
     bottom: unset;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-md-peb {
     top: unset;
-    right: 100%;
     bottom: 0;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
 }
 @media (min-width: 992px) {
   .app-dd.show .app-dd-window.app-dd-lg-pt {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-pts {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-pte {
     top: unset;
-    right: 0;
     bottom: 100%;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-pb {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-pbs {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-pbe {
     top: 100%;
-    right: 0;
     bottom: unset;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-ps {
     top: unset;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-pst {
     top: 0;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-psb {
     top: unset;
-    right: 100%;
     bottom: 0;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-pe {
     top: unset;
-    right: 0;
     bottom: unset;
     left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-pet {
     top: 0;
-    right: 100%;
     bottom: unset;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-lg-peb {
     top: unset;
-    right: 100%;
     bottom: 0;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
 }
 @media (min-width: 1200px) {
   .app-dd.show .app-dd-window.app-dd-xl-pt {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-pts {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-pte {
     top: unset;
-    right: 0;
     bottom: 100%;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-pb {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-pbs {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-pbe {
     top: 100%;
-    right: 0;
     bottom: unset;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-ps {
     top: unset;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-pst {
     top: 0;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-psb {
     top: unset;
-    right: 100%;
     bottom: 0;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-pe {
     top: unset;
-    right: 0;
     bottom: unset;
     left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-pet {
     top: 0;
-    right: 100%;
     bottom: unset;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xl-peb {
     top: unset;
-    right: 100%;
     bottom: 0;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
 }
 @media (min-width: 1400px) {
   .app-dd.show .app-dd-window.app-dd-xxl-pt {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-pts {
     top: unset;
-    right: unset;
     bottom: 100%;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-pte {
     top: unset;
-    right: 0;
     bottom: 100%;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-pb {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: unset;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-pbs {
     top: 100%;
-    right: unset;
     bottom: unset;
     left: 0;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-pbe {
     top: 100%;
-    right: 0;
     bottom: unset;
     left: unset;
+    right: 0;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-ps {
     top: unset;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-pst {
     top: 0;
-    right: 100%;
     bottom: unset;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-psb {
     top: unset;
-    right: 100%;
     bottom: 0;
     left: unset;
+    right: 100%;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-pe {
     top: unset;
-    right: 0;
     bottom: unset;
     left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-pet {
     top: 0;
-    right: 100%;
     bottom: unset;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
+
   .app-dd.show .app-dd-window.app-dd-xxl-peb {
     top: unset;
-    right: 100%;
     bottom: 0;
-    left: unset;
+    left: 100%;
+    right: unset;
   }
 }
 .app-menu-toggle {

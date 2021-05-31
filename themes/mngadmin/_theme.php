@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Esta é a melhor ferramento para gerenciamentos de suas atividades diárias">
     <title>Management - Seu perfil</title>
-    <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">    
+    <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">
     <!-- SHARED Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="<?= shared('/styles/bootstrap.css') ?>">
@@ -18,9 +18,8 @@
         <div class="container">
             <nav class="admin-navbar-container">
                 <a class="admin-navbar-brand" href="<?= url() ?>">
-                    <img src="<?= shared('/imgs/brand-dark.png') ?>" 
-                         alt="Management" 
-                         title="Management"
+                    <img src="<?= shared('/imgs/brand-dark.png') ?>"
+                         alt="Management" title="Management"
                          class="admin-navbar-brand-img">
                 </a>
                 <div class="app-navbar-buttons">
