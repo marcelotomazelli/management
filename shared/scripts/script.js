@@ -51,7 +51,7 @@ function imageChange() {
 
 // CLASS
 
-function Dropdown(id) {
+function Dropdown(id, showClass = 'show') {
     // CONTRUCTOR
 
     if (typeof id != 'string') {
@@ -60,8 +60,8 @@ function Dropdown(id) {
 
     let dropdown = $(`#${id}`);
     let button = $(`[data-app-dropdown="${id}"]`);
+    let menu = $(`#${id}-menu`);
 
-    let showClass = 'show';
     let inside = false;
 
     let onshow = undefined;
@@ -69,19 +69,35 @@ function Dropdown(id) {
 
     // CONTROL FUNCTIONS
 
-    function show() {
-        dropdown.addClass(showClass);
+    function showing() {
+        return dropdown.hasClass(showClass);
+    }
 
-        if (onshow != undefined) {
-            onshow();
+    function hidden() {
+        return !dropdown.hasClass(showClass);
+    }
+
+    function focused() {
+        return button.is(':focus');
+    }
+
+    function show() {
+        if (hidden()) {
+            dropdown.addClass(showClass);
+
+            if (onshow != undefined) {
+                onshow();
+            }
         }
     }
 
     function hide() {
-        dropdown.removeClass(showClass);
+        if (showing()) {
+            dropdown.removeClass(showClass);
 
-        if (onhide != undefined) {
-            onhide();
+            if (onhide != undefined) {
+                onhide();
+            }
         }
     }
 
@@ -101,11 +117,11 @@ function Dropdown(id) {
 
     // EVENTS
 
-    button.focus(function () {
-        if (!dropdown.hasClass(showClass)) {
+    button.click(function () {
+        if (hidden()) {
             show();
-        } else if (!inside && dropdown.hasClass(showClass)) {
-            hide();
+        } else if (focused()) {
+            button.blur();
         }
     });
 
@@ -115,23 +131,19 @@ function Dropdown(id) {
         }
     });
 
-    dropdown.mouseover(function () {
+    menu.mouseover(function () {
         inside = true;
     });
 
-    dropdown.mouseleave(function () {
-        if (button.is(':focus')) {
-            inside = false;
-        } else {
-            setTimeout(() => {
-                hide();
-            }, 200);
+    menu.mouseleave(function () {
+        inside = false;
+
+        if (showing() && !focused()) {
+            button.focus();
         }
     });
 
-    $(window).resize(function () {
-        hide();
-    });
+    $(window).resize(() => { hide() });
 }
 
 // ASSETS

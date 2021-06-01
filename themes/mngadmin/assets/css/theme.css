@@ -4,15 +4,15 @@
 }
 
 /* =============================================================================
-    APP 
+    APP
 ============================================================================= */
 
-html {
+.admin-html {
     height: 100%;
     min-height: 100%;
 }
 
-body {
+.admin-body {
     min-height: 100%;
     display: grid;
     grid-template-columns: 1fr;
@@ -36,6 +36,8 @@ body {
     justify-content: space-between;
 }
 
+/* BRAND */
+
 .admin-navbar-brand {
     display: block;
 }
@@ -44,21 +46,30 @@ body {
     display: block;
 }
 
-.app-navbar-buttons {
+/* BUTTONS */
+
+.admin-navbar-buttons {
     display: flex;
     align-items: center;
     height: 100%;
 }
 
-.app-navbar-buttons-item {
+.admin-navbar-buttons-item {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.admin-navbar-buttons-item:not(.admin-navbar-toggle-toggle) {
     min-width: var(--header-height);
 }
 
-.app-navbar-buttons-button {
+.admin-navbar-buttons-item.admin-navbar-toggle-toggle {
+    width: 28px;
+}
+
+.admin-navbar-buttons-button {
     height: 100%;
     width: 100%;
     display: block;
@@ -69,23 +80,83 @@ body {
     border: 2px solid transparent;
 }
 
-.app-navbar-buttons-item.show .app-navbar-buttons-button {
-    border-bottom: 2px solid #000;
+.admin-navbar-buttons-button::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 2px;
+    width: 0;
+    height: 0;
+
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid var(--app-dark);
+
+    border-radius: 3px;
+
+    transform: rotateZ(180deg);
+    opacity: 0.5;
+
+    transition-property: transform, opacity;
+    transition-duration: var(--app-ts-fast);
+  }
+
+.admin-navbar-buttons-item.show .admin-navbar-buttons-button::after {
+    transform: rotateZ(0deg);
+    opacity: 1;
 }
 
 @media (max-width: 992px) {
-    .app-navbar-buttons {
+    .admin-navbar-buttons {
         flex-direction: row-reverse;
     }
 
-    .app-navbar-buttons > *:not(:last-child) {
-        margin-left: var(--bs-space-1);
+    .admin-navbar-buttons > .admin-navbar-buttons-item:first-child {
+        margin-left: var(--bs-space-3);
+    }
+
+    .admin-navbar-buttons > *:not(:last-child) {
+        margin-left: 0;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .app-navbar-buttons > *:not(:last-child) {
-        margin-right: var(--bs-space-1);
+    .admin-navbar-buttons > .admin-navbar-buttons-item:first-child {
+        margin-right: var(--bs-space-3);
+    }
+
+    .admin-navbar-buttons > *:not(:last-child) {
+        margin-right: 0;
+    }
+}
+
+/* =============================================================================
+    ADMIN DROP MENU
+============================================================================= */
+/* NOTIFICATION */
+
+.admin-drop-notification-empty {
+    margin: 0;
+    padding: var(--bs-space-2) 0;
+    color: var(--bs-secondary);
+    text-align: center;
+}
+
+.admin-navbar-dropdown-content {
+    overflow-y: auto;
+    max-height: 400px;
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+}
+
+@media (max-width: 576px) {
+    .admin-navbar-dropdown-content {
+        overflow-y: auto;
+        max-height: 400px;
+        width: 260px;
+        min-width: 260px;
+        max-width: 260px;
     }
 }
 
@@ -93,16 +164,17 @@ body {
     APP HEADER MENU
 ============================================================================= */
 
-.admin-navbar-menu {
+.admin-navbar-menu-container {
     z-index: var(--app-zi-menu);
-    position: fixed;
-    top: 0;
-    height: 100%;
-    background-color: var(--app-dark);
-    display: grid;
-    grid-template-columns: 1fr;
 }
 
+.admin-navbar-menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: var(--app-dark);
+}
+
+.admin-navbar-menu-container,
 .admin-navbar-menu,
 .admin-navbar-list-content,
 .admin-navbar-list {
@@ -111,20 +183,11 @@ body {
     max-height: 100%;
 }
 
-.admin-navbar-list-content {
-    overflow-y: auto;
-}
-
-.admin-navbar-toggle-close,
-.admin-navbar-user {
-    background-color: rgba(0,0,0,0.3);
-}
-
 .admin-navbar-toggle-close {
     display: flex;
     justify-content: flex-end;
     padding: var(--bs-space-3);
-    border-bottom: 1px solid rgba(250,250,250,.05);
+    background-color: rgba(0,0,0,0.3);
 }
 
 @media (min-width: 1200px) {
@@ -136,20 +199,20 @@ body {
 .admin-navbar-user {
     display: flex;
     padding: var(--bs-space-4);
+    background-color: rgba(250,250,250,0.03);
+    border-bottom: 1px solid rgba(250,250,250,0.01);
 }
 
 .admin-navbar-user-img {
     flex-shrink: 0;
     border-radius: 100%;
-    border: 3px solid var(--bs-glass);
-    padding: 3px;
 }
 
 .admin-navbar-user-img img {
     display: block;
     border-radius: 100%;
     height: 90px;
-    user-select: none; 
+    user-select: none;
 }
 
 .admin-navbar-user-desc {
@@ -176,6 +239,12 @@ body {
     white-space: nowrap;
 }
 
+/* LIST */
+
+.admin-navbar-list-content {
+    overflow-y: auto;
+}
+
 .admin-navbar-list {
     list-style-type: none;
     margin: 0;
@@ -193,11 +262,11 @@ body {
     display: flex;
     align-items: center;
     background-color: transparent;
-    transition: background-color .3s;
+    transition: background-color var(--app-ts-fast);
 }
 
 .admin-navbar-link.admin-navbar-signout {
-    transition: background-color .3s, color .3s;
+    transition: background-color var(--app-ts-fast), color var(--app-ts-fast);
 }
 
 .admin-navbar-link,
@@ -247,38 +316,7 @@ body {
     }
 }
 
-/* =============================================================================
-    APP HEADER MENU SHOW
-============================================================================= */
-
 @media (max-width: 992px) {
-    body.menu-show {
-        overflow-y: hidden;
-    }
-
-    .admin-navbar-menu {
-        width: 100%;
-        max-width: 400px;
-        right: -100%;
-        grid-template-rows: auto auto 1fr;
-        transition-property: right;
-        transition-duration: .5s;
-    }
-
-    .menu-show .admin-navbar-menu {
-        right: 0;
-    }
-
-    .app-menu-toggle[data-menu-toggle="toggle"],
-    .app-menu-toggle[data-menu-toggle="toggle"] .app-menu-toggle-ico {
-        transition: 0s;
-    }
-
-    .menu-show .app-menu-toggle[data-menu-toggle="toggle"],
-    .menu-show .app-menu-toggle[data-menu-toggle="toggle"] .app-menu-toggle-ico {
-        transition-delay: .5s;
-    }
-
     .admin-navbar-user-img img {
         height: 60px;
     }
@@ -287,8 +325,11 @@ body {
         font-size: 1.5em;
     }
 
-    .admin-footer-rights-p {
-        font-size: 0.875em;
+    .admin-navbar-menu {
+        width: 100%;
+        height: 100%;
+        max-width: 400px;
+        grid-template-rows: auto auto 1fr;
     }
 }
 
@@ -306,34 +347,103 @@ body {
         display: none;
     }
 
+    .admin-header, .admin-main, .admin-footer-rights {
+        padding: 0 var(--bs-space-4);
+    }
+}
+
+/* =============================================================================
+    APP HEADER MENU SHOW
+============================================================================= */
+
+@media (max-width: 992px) {
+    body.menu-show {
+        overflow-y: hidden;
+    }
+
+    .admin-navbar-menu-container {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        transition-delay: var(--app-ts-fast);
+    }
+
+    .menu-show .admin-navbar-menu-container {
+        right: 0;
+        transition-delay: 0s;
+    }
+
+    .admin-navbar-menu-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0);
+        transition: background-color var(--app-ts-fast);
+    }
+
+    .menu-show .admin-navbar-menu-back {
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    .admin-navbar-menu {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        transition-property: right;
+        transition-duration: var(--app-ts-fast);
+    }
+
+    .menu-show .admin-navbar-menu {
+        right: 0;
+    }
+
+    .app-menu-toggle[data-menu-toggle="toggle"],
+    .app-menu-toggle[data-menu-toggle="toggle"] .app-menu-toggle-ico {
+        transition: 0s;
+    }
+
+    .menu-show .app-menu-toggle[data-menu-toggle="toggle"],
+    .menu-show .app-menu-toggle[data-menu-toggle="toggle"] .app-menu-toggle-ico {
+        transition-delay: var(--app-ts-fast);
+    }
+}
+
+@media (min-width: 992px) {
+    .admin-navbar-menu-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+
     .admin-navbar-user-name {
         font-size: 2em;
     }
 
-    .admin-header,
-    .admin-main,
-    .admin-footer-rights {
-        padding: 0 var(--bs-space-4);
+    .admin-header, .admin-main, .admin-footer-rights {
         transition-property: margin-left, padding;
-        transition-duration: .3s;
+        transition-duration: var(--app-ts-fast);
     }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .admin-navbar-menu {
+    .admin-navbar-menu-container {
         left: -100%;
-        transition: left .5s;
-        transition-delay: 0.3s;
+        transition: left var(--app-ts-fast);
+        transition-delay: var(--app-ts-fast);
     }
 
-    .menu-show .admin-navbar-menu {
+    .menu-show .admin-navbar-menu-container {
         left: 0;
         transition-delay: 0s;
     }
 
     .app-menu-toggle[data-menu-toggle="toggle"],
     .app-menu-toggle[data-menu-toggle="toggle"] .app-menu-toggle-ico {
-        transition-delay: .8s;
+        transition-delay: calc(var(--app-ts-fast) * 2);
     }
 
     .admin-header,
@@ -347,16 +457,12 @@ body {
     .menu-show .admin-main,
     .menu-show .admin-footer-rights {
         margin-left: var(--menu-width);
-        transition-delay: .5s;
+        transition-delay: var(--app-ts-fast);
     }
 }
 
-@media (max-width: 1200px) {
-    
-}
-
 @media (min-width: 1200px) {
-    .admin-navbar-menu {
+    .admin-navbar-menu-container {
         left: 0;
     }
 
@@ -373,4 +479,14 @@ body {
 
 .admin-main {
     z-index: var(--app-zi-main);
+}
+
+/* =============================================================================
+    APP FOOTER
+============================================================================= */
+
+@media (max-width: 992px) {
+    .admin-footer-rights-p {
+        font-size: 0.875em;
+    }
 }

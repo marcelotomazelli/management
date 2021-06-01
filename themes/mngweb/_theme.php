@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="web-html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Esta é a melhor ferramento para gerenciamentos de suas atividades diárias">
     <title>Management - Gerencie suas atividades</title>
-    <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">    
+    <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">
     <!-- SHARED Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="<?= shared('/styles/bootstrap.css') ?>">
@@ -23,76 +23,78 @@
         </style>
     <?php endif; ?>
 </head>
-<body class="<?= "web-{$content}" ?>" data-bs-no-jquery="">
+<body class="web-body <?= "web-{$content}" ?>" data-bs-no-jquery="">
     <header class="web-header">
         <div class="container">
             <nav class="web-navbar-container">
                 <a class="web-navbar-brand" href="<?= url() ?>">
-                    <img src="<?= shared('/imgs/brand.png') ?>" 
-                         alt="Management" 
+                    <img src="<?= shared('/imgs/brand.png') ?>"
+                         alt="Management"
                          title="Management"
                          class="web-navbar-brand-img">
-                    
+
                 </a>
-                <button class="app-menu-toggle" data-menu-toggle="show">
+                <button class="app-menu-toggle web-navbar-toggle-show" data-menu-toggle="show">
                     <i class="app-menu-toggle-ico"></i>
                     <i class="app-menu-toggle-ico"></i>
                     <i class="app-menu-toggle-ico"></i>
                 </button>
-                <div class="web-navbar-menu">
+                <div class="web-navbar-menu-container">
                     <div class="web-navbar-menu-back" data-menu-toggle="hide"></div>
-                    <div class="web-navbar-menu-content">
-                        <div class="web-navbar-menu-content-close">
+                    <div class="web-navbar-menu">
+                        <div class="web-navbar-toggle-hide">
                             <button class="app-menu-toggle" data-menu-toggle="hide">
                                 <i class="app-menu-toggle-ico up"></i>
                                 <i class="app-menu-toggle-ico down"></i>
                             </button>
                         </div>
-                        <ul class="web-navbar-list web-navbar-menu-pages">
-                            <li class="web-navbar-item">
-                                <a href="<?= url('/#home') ?>" data-menu-toggle="hide"
-                                   class="web-navbar-link link-pd active"
-                                   data-section="home">
-                                    Home
-                                </a>
-                            </li>
-                            <li class="web-navbar-item">
-                                <a href="<?= url('/#plataforma') ?>" data-menu-toggle="hide" 
-                                   class="web-navbar-link link-pd"
-                                   data-section="plataforma">
-                                    Plataforma
-                                </a>
-                            </li>
-                            <li class="web-navbar-item">
-                                <a href="<?= url('/#sobre') ?>" data-menu-toggle="hide" 
-                                   class="web-navbar-link link-pd"
-                                   data-section="sobre">
-                                    Sobre
-                                </a>
-                            </li>
-                            <li class="web-navbar-item">
-                                <a href="<?= url('/#contato') ?>" data-menu-toggle="hide"
-                                   class="web-navbar-link link-pd"
-                                   data-section="contato">
-                                    Contato
-                                </a>
-                            </li>
-                        </ul>
-                        <?php if (false): ?>
-                            <ul class="web-navbar-list web-navbar-menu-user">
-                                <li class="web-navbar-item"><a class="web-navbar-link web-navbar-signin link-pd" href="<?= url('/entrar') ?>">Entrar</a></li>
-                                <li class="web-navbar-item"><a class="web-navbar-link web-navbar-register link-pd" href="<?= url('/cadastrar') ?>">Cadastro</a></li>
-                            </ul>
-                        <?php else: ?>
-                            <ul class="web-navbar-list web-navbar-menu-user">
+                        <div class="web-navbar-list-content">
+                            <ul class="web-navbar-list web-navbar-menu-pages">
                                 <li class="web-navbar-item">
-                                    <a href="<?= url('/app') ?>" class="web-navbar-logged">
-                                        <img src="<?= shared('/imgs/user.png') ?>" class="web-navbar-logged-image">
-                                        <span class="web-navbar-logged-name">Marcelo</span>
+                                    <a href="<?= url('/#home') ?>" data-menu-toggle="hide"
+                                    class="web-navbar-link link-pd active"
+                                    data-section="home">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="web-navbar-item">
+                                    <a href="<?= url('/#plataforma') ?>" data-menu-toggle="hide"
+                                    class="web-navbar-link link-pd"
+                                    data-section="plataforma">
+                                        Plataforma
+                                    </a>
+                                </li>
+                                <li class="web-navbar-item">
+                                    <a href="<?= url('/#sobre') ?>" data-menu-toggle="hide"
+                                    class="web-navbar-link link-pd"
+                                    data-section="sobre">
+                                        Sobre
+                                    </a>
+                                </li>
+                                <li class="web-navbar-item">
+                                    <a href="<?= url('/#contato') ?>" data-menu-toggle="hide"
+                                    class="web-navbar-link link-pd"
+                                    data-section="contato">
+                                        Contato
                                     </a>
                                 </li>
                             </ul>
-                        <?php endif; ?>
+                            <?php if (false): ?>
+                                <ul class="web-navbar-list web-navbar-menu-user">
+                                    <li class="web-navbar-item"><a class="web-navbar-link web-navbar-signin link-pd" href="<?= url('/entrar') ?>">Entrar</a></li>
+                                    <li class="web-navbar-item"><a class="web-navbar-link web-navbar-register link-pd" href="<?= url('/cadastrar') ?>">Cadastro</a></li>
+                                </ul>
+                            <?php else: ?>
+                                <ul class="web-navbar-list web-navbar-menu-user">
+                                    <li class="web-navbar-item">
+                                        <a href="<?= url('/app') ?>" class="web-navbar-logged">
+                                            <img src="<?= shared('/imgs/user.png') ?>" class="web-navbar-logged-image">
+                                            <span class="web-navbar-logged-name">Marcelo</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </nav>

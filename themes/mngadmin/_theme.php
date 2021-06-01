@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="admin-html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,60 +22,85 @@
                          alt="Management" title="Management"
                          class="admin-navbar-brand-img">
                 </a>
-                <div class="app-navbar-buttons">
-                    <div class="app-navbar-buttons-item admin-navbar-toggle-toggle">
+                <div class="admin-navbar-buttons">
+                    <div class="admin-navbar-buttons-item admin-navbar-toggle-toggle">
                         <button class="app-menu-toggle app-menu-toggle-dark" data-menu-toggle="toggle">
                             <i class="app-menu-toggle-ico up"></i>
                             <i class="app-menu-toggle-ico"></i>
                             <i class="app-menu-toggle-ico down"></i>
                         </button>
                     </div>
-                    <div id="app-dropdown-notifications" class="app-navbar-buttons-item app-dd">
-                        <button class="app-navbar-buttons-button"  data-app-dropdown="app-dropdown-notifications">
-                            <i class="fas fa-bell"></i>
+                    <div id="admin-dropdown-notifications" class="admin-navbar-buttons-item app-dd">
+                        <button class="admin-navbar-buttons-button" data-app-dropdown="admin-dropdown-notifications">
+                            <span>
+                                <i class="fas fa-bell"></i>
+                            </span>
                         </button>
-                        <div class="app-dd-window app-dd-pbe app-dd-lg-pbs app-dd-rb">
+                        <div id="admin-dropdown-notifications-menu"
+                             class="app-dd-window
+                                    app-dd-pbe app-dd-lg-pbs
+                                    app-dd-rb app-dd-rt">
                             <div class="text-light">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, perspiciatis iste.
+                                <div class="admin-navbar-dropdown-content">
+                                    <?php require __DIR__ . '/views/notifications.php'; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="admin-navbar-menu">
-                    <div class="admin-navbar-toggle-close">
-                        <button class="app-menu-toggle" data-menu-toggle="hide">
-                            <i class="app-menu-toggle-ico up"></i>
-                            <i class="app-menu-toggle-ico down"></i>
-                        </button>
-                    </div>
-                    <div class="admin-navbar-user">
-                        <div class="admin-navbar-user-img">
-                            <img src="<?= shared('/imgs/user.png') ?>">
+                <div class="admin-navbar-menu-container">
+                    <div class="admin-navbar-menu-back" data-menu-toggle="hide"></div>
+                    <div class="admin-navbar-menu">
+                        <div class="admin-navbar-toggle-close">
+                            <button class="app-menu-toggle" data-menu-toggle="hide">
+                                <i class="app-menu-toggle-ico up"></i>
+                                <i class="app-menu-toggle-ico down"></i>
+                            </button>
                         </div>
-                        <div class="admin-navbar-user-desc">
-                            <p class="admin-navbar-user-name">Marcelo</p>
-                            <p class="admin-navbar-user-tasks">Nada pendente</p>
+                        <div class="admin-navbar-user">
+                            <div class="admin-navbar-user-img">
+                                <img src="<?= shared('/imgs/user.png') ?>">
+                            </div>
+                            <div class="admin-navbar-user-desc">
+                                <p class="admin-navbar-user-name">Marcelo</p>
+                                <p class="admin-navbar-user-tasks">Nada pendente</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="admin-navbar-list-content">
-                        <ul class="admin-navbar-list">
-                            <?php $selected = function ($item) use ($content) {
-                                return ($item == $content ? 'active' : '');
-                            } ?>
-
-                            <li class="admin-navbar-item">
-                                <a class="admin-navbar-link <?= $selected('dash') ?>" href="<?= url('/admin/dash') ?>"><i class="fas fa-chart-pie"></i>Dashboard</a>
-                            </li>
-                            <li class="admin-navbar-item">
-                                <a class="admin-navbar-link <?= $selected('signatures') ?>" href="<?= url('/admin/assinaturas') ?>"><i class="fas fa-credit-card"></i>Assinaturas</a>
-                            </li>
-                            <li class="admin-navbar-item">
-                                <a class="admin-navbar-link <?= $selected('users') ?>" href="<?= url('/admin/usuarios') ?>"><i class="fas fa-users"></i>Usuários</a>
-                            </li>
-                            <li class="admin-navbar-item">
-                                <a class="admin-navbar-link admin-navbar-signout" href="<?= url('/admin/sair') ?>"><i class="fas fa-sign-out-alt"></i>Sair</a>
-                            </li>
-                        </ul>
+                        <div class="admin-navbar-list-content">
+                            <ul class="admin-navbar-list">
+                                <?php $selected = function ($item) use ($content) {
+                                    return ($item == $content ? 'active' : '');
+                                } ?>
+                                <li class="admin-navbar-item">
+                                    <a class="admin-navbar-link <?= $selected('dash') ?>"
+                                    href="<?= url('/admin/dash') ?>">
+                                        <i class="fas fa-chart-pie"></i>
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li class="admin-navbar-item">
+                                    <a class="admin-navbar-link <?= $selected('signatures') ?>"
+                                    href="<?= url('/admin/assinaturas') ?>">
+                                        <i class="fas fa-credit-card"></i>
+                                        Assinaturas
+                                    </a>
+                                </li>
+                                <li class="admin-navbar-item">
+                                    <a class="admin-navbar-link <?= $selected('users') ?>"
+                                    href="<?= url('/admin/usuarios') ?>">
+                                        <i class="fas fa-users"></i>
+                                        Usuários
+                                    </a>
+                                </li>
+                                <li class="admin-navbar-item">
+                                    <a class="admin-navbar-link admin-navbar-signout"
+                                    href="<?= url('/admin/sair') ?>">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Sair
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>

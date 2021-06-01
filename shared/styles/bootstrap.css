@@ -8807,6 +8807,8 @@ textarea.form-control-lg {
   --app-dark: rgba(26,26,26,1);
   --app-gray: rgba(50,50,50,1);
   --app-sky: #0a53be;
+  --app-ts-fast: 0.3s;
+  --app-ts-slow: 0.5s;
 }
 
 .alert::before {
@@ -8879,7 +8881,7 @@ textarea.form-control-lg {
   z-index: calc(var(--app-zi-header) - 1);
   visibility: hidden;
   position: fixed;
-  top: -600px;
+  bottom: 100%;
   opacity: 0;
 }
 
@@ -9110,7 +9112,7 @@ textarea.form-control-lg {
   position: absolute;
   opacity: 1;
   transition-property: visibility, opacity;
-  transition-duration: 0.3s;
+  transition-duration: var(--app-ts-fast);
 }
 
 .app-dd.show .app-dd-window.app-dd-pt {
@@ -9634,7 +9636,7 @@ textarea.form-control-lg {
   position: relative;
   background-color: transparent;
   border: none;
-  transition: width 0.3s;
+  transition: width var(--app-ts-fast);
 }
 
 .app-menu-toggle-ico {
@@ -9655,7 +9657,7 @@ textarea.form-control-lg {
 
 .app-menu-toggle[data-menu-toggle=toggle] .app-menu-toggle-ico {
   transition-property: transform, top, opacity;
-  transition-duration: 0.3s;
+  transition-duration: var(--app-ts-fast);
 }
 
 .app-menu-toggle[data-menu-toggle=hide],

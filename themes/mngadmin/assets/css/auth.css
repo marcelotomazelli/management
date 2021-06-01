@@ -1,5 +1,9 @@
+:root {
+    --form-width: 500px;
+}
+
 /* =============================================================================
-    ADMIN AUTH 
+    ADMIN AUTH
 ============================================================================= */
 
 .admin-auth-html {
@@ -27,10 +31,6 @@
     align-items: center;
 }
 
-.admin-auth-header-icon i {
-    display: block;
-}
-
 .admin-auth-brand {
     width: 100%;
     display: flex;
@@ -48,6 +48,13 @@
     ADMIN AUTH MAIN
 ============================================================================= */
 
+.admin-auth-main {
+    background-color: var(--bs-light);
+    padding: var(--bs-space-4);
+    border-radius: .5rem;
+    width: 100%;
+}
+
 .admin-auth-main-icon {
     display: block;
     font-size: 4em;
@@ -56,24 +63,16 @@
     margin-top: var(--bs-space-3);
 }
 
-.admin-auth-main {
-    background-color: var(--bs-light);
-    padding: var(--bs-space-4);
-    border-radius: .5rem;
-    width: 100%;
-}
-
 .admin-auth-main-form-content {
     margin: 0 auto;
     width: 100%;
-    max-width: 340px;
+    max-width: calc(var(--form-width) * 0.7);
 }
 
 @media (min-width: 576px) {
     .admin-auth-main {
-        width: 500px;
-        min-width: 500px;
-        max-width: 500px;
+        min-width: var(--form-width);
+        max-width: var(--form-width);
     }
 }
 

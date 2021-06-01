@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="app-html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,31 +36,50 @@
                                 <div id="app-dropdown-profile" class="app-navbar-buttons-item app-dd">
                                     <button class="app-navbar-buttons-item-button" data-app-dropdown="app-dropdown-profile">
                                         <img class="app-navbar-buttons-profile-img" src="<?= shared('/imgs/user.png') ?>" alt="<?= 'User' ?>" title="<?= 'User' ?>">
-                                        <!-- <span class="app-navbar-buttons-profile-name">Marcelo</span> -->
                                     </button>
-                                    <div class="app-dd-window
+                                    <div id="app-dropdown-profile-menu" class="app-dd-window
                                                 app-dd-pts app-dd-lg-pbe
-                                                app-dd-rt app-dd-lg-rb app-dd-lg-rts">
+                                                app-dd-lg-rb">
                                         <div class="app-navbar-dropdown-content">
-                                            <div>
-                                                <div>
-                                                    <img src="<?= shared('/imgs/user.png') ?>" alt="">
+                                            <div class="app-drop-profile-info">
+                                                <div class="app-drop-profile-img-container">
+                                                    <a href="<?= url('/app/perfil') ?>" class="app-drop-profile-img-link">
+                                                        <img src="<?= shared('/imgs/user.png') ?>" alt="Marcelo" title="Marcelo"
+                                                             class="app-drop-profile-img">
+                                                    </a>
+                                                </div>
+                                                <div class="app-drop-profile-name-container">
+                                                    <span href="<?= url('/app/perfil') ?>" class="app-drop-profile-name" title="Marcelo Tomazelli">Marcelo</span>
+                                                    <span class="app-drop-profile-email" title="marctomazelli@gmail.com">marctomazelli@gmail.com</span>
                                                 </div>
                                             </div>
+                                            <ul class="app-drop-profile-actions">
+                                                <li class="app-drop-profile-actions-item">
+                                                    <a class="app-drop-profile-action app-drop-profile-conf" href="<?= url('/app/perfil') ?>">
+                                                        <i class="fas fa-user-cog"></i>
+                                                        Perfil
+                                                    </a>
+                                                </li>
+                                                <li class="app-drop-profile-actions-item">
+                                                    <a class="app-drop-profile-action app-drop-profile-signout" href="<?= url('/app/sair') ?>">
+                                                        <i class="fas fa-sign-out-alt"></i>
+                                                        Sair
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="app-dropdown-notifications" class="app-navbar-buttons-item app-dd">
                                     <button class="app-navbar-buttons-item-button" data-app-dropdown="app-dropdown-notifications">
-                                        <i class="fas fa-bell"></i>
+                                        <span>
+                                            <i class="fas fa-bell"></i>
+                                        </span>
                                     </button>
-                                    <div class="app-dd-window
-                                                app-dd-pts app-dd-lg-pbe
-                                                app-dd-rt app-dd-lg-rb app-dd-lg-rts">
+                                    <div id="app-dropdown-notifications-menu" class="app-dd-window
+                                                app-dd-pts app-dd-lg-pbe app-dd-lg-rb">
                                         <div class="app-navbar-dropdown-content">
-                                            <?php for ($i = 0; $i < 20; $i++): ?>
-                                                <p>Lorem</p>
-                                            <?php endfor; ?>
+                                            <?php require __DIR__ . '/views/notifications.php'; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -80,8 +99,8 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="app-navbar-menu-content">
-                                    <ul class="app-navbar-menu-list">
+                                <div class="app-navbar-list-content">
+                                    <ul class="app-navbar-list">
                                         <?php
                                         $appPages = [
                                             'fas fa-calendar-alt'   => 'Cronograma',
@@ -91,12 +110,12 @@
                                         ];
                                         foreach($appPages as $icon => $pageName):
                                         ?>
-                                                <li class="app-navbar-menu-item <?= ($pageName == 'Atividades' ? 'active' : '') ?>">
-                                                    <a class="app-navbar-menu-link" href="<?= url('/ops') ?>">
-                                                        <i class="app-navbar-menu-link-icon <?= $icon ?>"></i>
-                                                        <span class="app-navbar-menu-link-name"><?= $pageName ?></span>
-                                                    </a>
-                                                </li>
+                                            <li class="app-navbar-item">
+                                                <a class="app-navbar-link" href="<?= url('/ops') ?>">
+                                                    <i class="app-navbar-link-icon <?= $icon ?>"></i>
+                                                    <span class="app-navbar-link-name"><?= $pageName ?></span>
+                                                </a>
+                                            </li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>

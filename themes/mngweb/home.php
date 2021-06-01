@@ -19,11 +19,11 @@
                     </p>
                 </div>
                 <div class="web-home-cta-illustration col-5 d-none d-lg-flex ai-center">
-                    <img class="img-fluid" 
+                    <img class="img-fluid"
                          src="<?= theme('/assets/img/home-cta-illustration.png', CONF_VIEW_WEB) ?>" alt="Gerencie suas atividades" title="Gerencie suas atividades"
                          data-aos="zoom-out-right" data-aos-delay="500">
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </article>
@@ -93,7 +93,7 @@
     <div class="container">
         <div class="web-home-section">
             <header>
-                <h1 class="display-5">O que é a G3-Tech</h1>
+                <h1 class="display-5">O que é a LOREM</h1>
             </header>
         </div>
     </div>
