@@ -5,13 +5,13 @@ $r = filter_input(INPUT_GET, 'route');
 require __DIR__ . '/source/Boot/Config.php';
 require __DIR__ . '/source/Boot/Helpers.php';
 
-// WEB 
+// WEB
 $routes[''] = [CONF_VIEW_WEB, '_theme', 'home'];
 $routes['/'] = [CONF_VIEW_WEB, '_theme', 'home'];
 $routes['/ops'] = [CONF_VIEW_WEB, '_theme', 'error'];
 $routes['/confirma'] = [CONF_VIEW_WEB, '_theme', 'optin'];
 
-// AUTH 
+// AUTH
 $routes['/entrar'] = [CONF_VIEW_APP, '_auth', 'signin'];
 $routes['/cadastrar'] = [CONF_VIEW_APP, '_auth', 'register'];
 $routes['/recuperar'] = [CONF_VIEW_APP, '_auth', 'recover'];
@@ -24,7 +24,7 @@ $routes['/app/perfil'] = [CONF_VIEW_APP, '_theme', 'profile'];
 $routes['/admin/entrar'] = [CONF_VIEW_ADMIN, '_auth', 'signin'];
 
 // ADMIN
-$routes['/admin'] = [CONF_VIEW_ADMIN, '_theme', 'dash'];
+$routes['/admin'] = [CONF_VIEW_ADMIN, '_theme', 'users'];
 
 $theme = (!empty($routes[$r]) ? $routes[$r][0] : null);
 $content = (!empty($routes[$r]) ? $routes[$r][2] : null);

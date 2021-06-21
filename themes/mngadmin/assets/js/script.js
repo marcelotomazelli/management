@@ -1,7 +1,7 @@
 $(document).ready(function () {
     alertBounce();
 
-    if (window.innerWidth >= bsMediaLg) {
+    if (window.innerWidth > bsMediaLg) {
         $('body').addClass('menu-show');
     }
 
