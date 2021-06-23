@@ -512,6 +512,10 @@
     user-select: none;
 }
 
+.admin-users-card-name {
+    font-size: 1.25em;
+}
+
 .admin-users-card-list {
     padding: 0;
     margin: 0;
@@ -533,7 +537,34 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 140px;
+}
+
+@media (max-width: 768px) {
+    .admin-users-card-email {
+        max-width: 300px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .admin-users-card-email {
+        max-width: 200px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .admin-users-card-email {
+        max-width: 140px;
+    }
+
+    .menu-show .admin-users-card-email {
+        max-width: 200px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .admin-users-card-email {
+        max-width: 200px;
+    }
 }
 
 .admin-users-card-button {

@@ -28,7 +28,7 @@
     </div>
 </article>
 
-<section class="bg-light" id="plataforma">
+<section class="bg-glass" id="plataforma">
     <div class="container">
         <div class="web-home-section">
             <header class="mb-5">
@@ -88,16 +88,6 @@
         </div>
     </div>
 </section>
-
-<article class="bg-glass" id="sobre">
-    <div class="container">
-        <div class="web-home-section">
-            <header>
-                <h1 class="display-5">O que é a LOREM</h1>
-            </header>
-        </div>
-    </div>
-</article>
 
 <article class="bg-light" id="contato">
     <div class="container">

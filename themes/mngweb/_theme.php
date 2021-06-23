@@ -65,13 +65,6 @@
                                     </a>
                                 </li>
                                 <li class="web-navbar-item">
-                                    <a href="<?= url('/#sobre') ?>" data-menu-toggle="hide"
-                                    class="web-navbar-link link-pd"
-                                    data-section="sobre">
-                                        Sobre
-                                    </a>
-                                </li>
-                                <li class="web-navbar-item">
                                     <a href="<?= url('/#contato') ?>" data-menu-toggle="hide"
                                     class="web-navbar-link link-pd"
                                     data-section="contato">
