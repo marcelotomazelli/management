@@ -1,30 +1,33 @@
 {
-  "name": "marcelotomazelli/management",
-  "description": "Management é uma aplicação simples para demonstração de CRUD com PHP, utlizando padrão de projeto através do MVC",
-  "minimum-stability": "stable",
-  "authors": [
-    {
-      "name": "Marcelo Tomazelli",
-      "email": "marctomazelli@gmail.com",
-      "homepage": "https://github.com/marcelotomazelli",
-      "role": "Developer"
-    }
-  ],
-  "config": {
-    "vendor-dir": "vendor"
-  },
-  "autoload": {
-    "psr-4": {
-      "Source\\": "source/"
+    "name": "marcelotomazelli/management",
+    "description": "Management é uma aplicação simples para demonstração de CRUD com PHP, utlizando padrão de projeto através do MVC",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Marcelo Tomazelli",
+            "email": "marctomazelli@gmail.com",
+            "homepage": "https://github.com/marcelotomazelli",
+            "role": "Developer"
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor"
     },
-    "files": [
-      "source/Boot/Config.php",
-      "source/Boot/Helpers.php"
-    ]
-  },
-  "require": {
-    "php": "^7.4",
-    "ext-pdo": "^7.4",
-    "nikic/fast-route": "^1.3"
-  }
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Boot/Config.php",
+            "source/Boot/Helpers.php"
+        ]
+    },
+    "require": {
+        "php": "^7.4",
+        "ext-pdo": "^7.4",
+        "league/route": "5.0.*",
+        "laminas/laminas-diactoros": "2.6.*",
+        "laminas/laminas-httphandlerrunner": "1.4.*",
+        "league/plates": "3.*"
+    }
 }

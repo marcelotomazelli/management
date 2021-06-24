@@ -499,5 +499,5 @@ body:not(.web-home) .web-header,
     font-size: 8.5em;
     font-weight: bold;
     color: var(--bs-blue);
-    line-height: 1em;
+    line-height: 1.4;
 }

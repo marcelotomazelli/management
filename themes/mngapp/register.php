@@ -1,3 +1,5 @@
+<?php $this->layout('_auth', ['content' => 'register']) ?>
+
 <article class="app-auth-main-form">
     <header class="mb-4">
         <h2 class="app-auth-main-title text-center text-lg-start">Cadastre-se em nossa plataforma</h2>

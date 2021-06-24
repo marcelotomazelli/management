@@ -1,37 +1,37 @@
 <?php
 
-$r = filter_input(INPUT_GET, 'route');
+declare(strict_types=1);
 
-require __DIR__ . '/source/Boot/Config.php';
-require __DIR__ . '/source/Boot/Helpers.php';
+require __DIR__ . '/vendor/autoload.php';
+
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
+$uri = '/management';
+$_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], (strlen($uri)));
+
+$request = \Laminas\Diactoros\ServerRequestFactory::fromGlobals(
+    $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+);
+
+$router = new League\Route\Router;
 
 // WEB
-$routes[''] = [CONF_VIEW_WEB, '_theme', 'home'];
-$routes['/'] = [CONF_VIEW_WEB, '_theme', 'home'];
-$routes['/ops'] = [CONF_VIEW_WEB, '_theme', 'error'];
-$routes['/confirma'] = [CONF_VIEW_WEB, '_theme', 'optin'];
+$router->get('/', 'Source\Controllers\Web::home');
+$router->get('/confirme', 'Source\Controllers\Web::confirm');
 
 // AUTH
-$routes['/entrar'] = [CONF_VIEW_APP, '_auth', 'signin'];
-$routes['/cadastrar'] = [CONF_VIEW_APP, '_auth', 'register'];
-$routes['/recuperar'] = [CONF_VIEW_APP, '_auth', 'recover'];
+$router->get('/entrar', 'Source\Controllers\App\Auth::signin');
+$router->get('/cadastrar', 'Source\Controllers\App\Auth::register');
+$router->get('/recuperar', 'Source\Controllers\App\Auth::recover');
 
-// APP
-$routes['/app'] = [CONF_VIEW_APP, '_theme', 'profile'];
-$routes['/app/perfil'] = [CONF_VIEW_APP, '_theme', 'profile'];
+// ERROR
+$router->get('/ops', 'Source\Controllers\Web::error');
+$router->get('/ops/{code}', 'Source\Controllers\Web::error');
 
-// ADMIN AUTH
-$routes['/admin/entrar'] = [CONF_VIEW_ADMIN, '_auth', 'signin'];
-
-// ADMIN
-$routes['/admin'] = [CONF_VIEW_ADMIN, '_theme', 'users'];
-
-$theme = (!empty($routes[$r]) ? $routes[$r][0] : null);
-$content = (!empty($routes[$r]) ? $routes[$r][2] : null);
-
-if (!$theme || !$content) {
+try {
+    $response = $router->dispatch($request);
+    (new \Laminas\HttpHandlerRunner\Emitter\SapiEmitter)->emit($response);
+} catch (\League\Route\Http\Exception\NotFoundException $e) {
     redirect('/ops');
-    die;
 }
-
-require __DIR__ . "/themes/{$theme}/{$routes[$r][1]}.php";

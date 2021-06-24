@@ -1,3 +1,5 @@
+<?php $this->layout('_auth', ['content' => 'signin']) ?>
+
 <article class="app-auth-main-form">
     <header class="mb-4">
         <h2 class="app-auth-main-title text-center text-lg-start">Acesse nossa plataforma</h2>

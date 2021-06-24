@@ -1,3 +1,5 @@
+<?php $this->layout('_auth', ['content' => 'recover']) ?>
+
 <article class="app-auth-main-form">
     <header class="mb-4">
         <h2 class="app-auth-main-title text-center text-lg-start">Recupere sua senha</h2>

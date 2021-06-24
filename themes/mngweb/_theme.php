@@ -14,14 +14,7 @@
     <link rel="stylesheet" href="<?= theme('/assets/css/style.css', CONF_VIEW_WEB) ?>">
 
     <!-- CUSTOM Styles -->
-    <?php if ($content == 'home'): ?>
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        <style type="text/css">
-            .web-home {
-                background-image: url('<?= theme('/assets/img/home-cta.png', CONF_VIEW_WEB) ?>');
-            }
-        </style>
-    <?php endif; ?>
+    <?= $this->section('styles'); ?>
 </head>
 <body class="web-body <?= "web-{$content}" ?>" data-bs-no-jquery="">
     <header class="web-header">
@@ -72,7 +65,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <?php if (false): ?>
+                            <?php if (true): ?>
                                 <ul class="web-navbar-list web-navbar-menu-user">
                                     <li class="web-navbar-item"><a class="web-navbar-link web-navbar-signin link-pd" href="<?= url('/entrar') ?>">Entrar</a></li>
                                     <li class="web-navbar-item"><a class="web-navbar-link web-navbar-register link-pd" href="<?= url('/cadastrar') ?>">Cadastro</a></li>
@@ -94,7 +87,7 @@
         </div>
     </header>
     <main class="<?= "web-main web-{$content}-main" ?>">
-        <?php require __DIR__ . "/{$content}.php" ?>
+        <?= $this->section('content'); ?>
     </main>
 
     <section class="web-footer">
@@ -152,15 +145,6 @@
     <script src="<?= shared('/scripts/script.js') ?>"></script>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_WEB) ?>"></script>
 
-    <? if ($content == 'home'): ?>
-        <script src="<?= shared('/scripts/aos.min.js') ?>"></script>
-        <script>
-            AOS.init({
-                easing: 'ease-out-back',
-                duration: 800,
-                once: true
-            });
-        </script>
-    <? endif; ?>
+    <?= $this->section('scripts'); ?>
 </body>
 </html>

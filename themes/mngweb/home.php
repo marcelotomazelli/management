@@ -1,3 +1,14 @@
+<?php $this->layout('_theme', ['content' => 'home']) ?>
+
+<?php $this->push('styles') ?>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style type="text/css">
+        .web-home {
+            background-image: url('<?= theme('/assets/img/home-cta.png', CONF_VIEW_WEB) ?>');
+        }
+    </style>
+<?php $this->end() ?>
+
 <article class="web-home-cta web-main-frist" id="home">
     <div class="container">
         <div class="web-home-cta-container">
@@ -133,3 +144,15 @@
         </div>
     </div>
 </article>
+
+<?php $this->unshift('scripts'); ?>
+    <script src="<?= shared('/scripts/aos.min.js') ?>"></script>
+    <script>
+        AOS.init({
+            easing: 'ease-out-back',
+            duration: 800,
+            once: true
+        });
+    </script>
+<?php $this->end(); ?>
+

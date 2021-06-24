@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Autenticação na plataforma Management">
     <title>Management - Autenticação</title>
-    <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">    
+    <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">
     <!-- SHARED Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="<?= shared('/styles/bootstrap.css') ?>">
@@ -25,7 +25,7 @@
 <body class="app-auth <?= "app-auth-{$content}" ?>">
     <main class="app-auth-main">
         <div class="app-auth-main-content h-100">
-            <?php require __DIR__ . "/views/{$content}.php" ?>
+            <?= $this->section('content') ?>
         </div>
     </main>
     <div class="app-auth-footer">
@@ -46,7 +46,7 @@
                         'signin' => ['Ainda não possui conta?', url('/cadastrar'), 'Cadastrar-se'],
                         'register' => ['Já está cadastrado?', url('/entrar'), 'Entrar'],
                         'recover' => ['Se lembrou de sua senha?', url('/entrar'), 'Entrar']
-                    ][$content]; ?>
+                    ][$content] ?>
 
                     <header>
                         <h3 class="app-auth-footer-ask h6"><?= $footerMain[0] ?></h3>
@@ -66,7 +66,7 @@
             <footer class="app-auth-footer-rights">
                 <p>Todos os diretos reservados à Management. Dev to <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
             </footer>
-        </div>      
+        </div>
     </div>
 
     <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
