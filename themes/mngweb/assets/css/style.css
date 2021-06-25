@@ -327,7 +327,7 @@ body:not(.web-home) .web-header,
     z-index: var(--app-zi-main);
 }
 
-.web-main-frist {
+.web-main-first {
     padding-top: var(--header-height);
 }
 

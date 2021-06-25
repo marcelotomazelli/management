@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Esta é a melhor ferramento para gerenciamentos de suas atividades diárias">
-    <title>Management - Seu perfil</title>
+    <meta name="description" content="<?= $head->desc ?>">
+    <title><?= $head->title ?></title>
     <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">
     <!-- SHARED Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
@@ -37,7 +37,7 @@
                                     <button class="app-navbar-buttons-item-button" data-app-dropdown="app-dropdown-profile">
                                         <img class="app-navbar-buttons-profile-img" src="<?= shared('/imgs/user.png') ?>" alt="<?= 'User' ?>" title="<?= 'User' ?>">
                                     </button>
-                                    <div id="app-dropdown-profile-menu" class="app-dd-window
+                                    <div id="app-dropdown-profile-menu" class="app-dd-menu
                                                 app-dd-pts app-dd-lg-pbe
                                                 app-dd-lg-rb">
                                         <div class="app-navbar-dropdown-content">
@@ -76,7 +76,7 @@
                                             <i class="fas fa-bell"></i>
                                         </span>
                                     </button>
-                                    <div id="app-dropdown-notifications-menu" class="app-dd-window
+                                    <div id="app-dropdown-notifications-menu" class="app-dd-menu
                                                 app-dd-pts app-dd-lg-pbe app-dd-lg-rb">
                                         <div class="app-navbar-dropdown-content">
                                             <?php require __DIR__ . '/views/notifications.php'; ?>
@@ -101,22 +101,30 @@
                                 </div>
                                 <div class="app-navbar-list-content">
                                     <ul class="app-navbar-list">
-                                        <?php
-                                        $appPages = [
-                                            'fas fa-calendar-alt'   => 'Cronograma',
-                                            'fas fa-stream'         => 'Atividades',
-                                            'fab fa-buffer'         => 'Projetos',
-                                            'fas fa-hourglass-half' => 'Urgentes'
-                                        ];
-                                        foreach($appPages as $icon => $pageName):
-                                        ?>
-                                            <li class="app-navbar-item">
-                                                <a class="app-navbar-link" href="<?= url('/ops') ?>">
-                                                    <i class="app-navbar-link-icon <?= $icon ?>"></i>
-                                                    <span class="app-navbar-link-name"><?= $pageName ?></span>
-                                                </a>
-                                            </li>
-                                        <?php endforeach; ?>
+                                        <li class="app-navbar-item">
+                                            <a class="app-navbar-link" href="<?= url('/ops') ?>">
+                                                <i class="app-navbar-link-icon fas fa-calendar-alt"></i>
+                                                <span class="app-navbar-link-name">Cronograma</span>
+                                            </a>
+                                        </li>
+                                        <li class="app-navbar-item">
+                                            <a class="app-navbar-link" href="<?= url('/ops') ?>">
+                                                <i class="app-navbar-link-icon fas fa-stream"></i>
+                                                <span class="app-navbar-link-name">Atividades</span>
+                                            </a>
+                                        </li>
+                                        <li class="app-navbar-item">
+                                            <a class="app-navbar-link" href="<?= url('/ops') ?>">
+                                                <i class="app-navbar-link-icon fab fa-buffer"></i>
+                                                <span class="app-navbar-link-name">Projetos</span>
+                                            </a>
+                                        </li>
+                                        <li class="app-navbar-item">
+                                            <a class="app-navbar-link" href="<?= url('/ops') ?>">
+                                                <i class="app-navbar-link-icon fas fa-hourglass-half"></i>
+                                                <span class="app-navbar-link-name">Urgentes</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -128,12 +136,13 @@
     </header>
 
     <main class="app-main <?= "app-{$content}-main" ?>">
-        <?php require __DIR__ . "/{$content}.php" ?>
+        <?= $this->section('content') ?>
     </main>
 
     <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>
+    <script src="<?= shared('/scripts/dropdown.min.js') ?>"></script>
     <script src="<?= shared('/scripts/script.js') ?>"></script>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_APP) ?>"></script>
 </body>

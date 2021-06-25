@@ -37,7 +37,7 @@
                             </span>
                         </button>
                         <div id="admin-dropdown-notifications-menu"
-                             class="app-dd-window
+                             class="app-dd-menu
                                     app-dd-pbe app-dd-lg-pbs
                                     app-dd-rb app-dd-rt">
                             <div class="text-light">

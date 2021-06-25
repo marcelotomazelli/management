@@ -1,6 +1,6 @@
-<?php $this->layout('_theme', ['content' => 'optin']) ?>
+<?php $this->layout('_theme', ['content' => 'optin', 'head' => $head]) ?>
 
-<article class="web-main-frist">
+<article class="web-main-first">
     <div class="container">
         <div class="py-5 py-lg-10">
             <p class="h1 text-center fw-normal mb-5"><?= $optin->title ?></p>

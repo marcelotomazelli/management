@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Esta é a melhor ferramento para gerenciamentos de suas atividades diárias">
-    <title>Management - Gerencie suas atividades</title>
+    <meta name="description" content="<?= $head->desc ?>">
+    <title><?= $head->title ?></title>
     <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">
     <!-- SHARED Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />

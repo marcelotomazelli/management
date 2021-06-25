@@ -1,6 +1,6 @@
-<?php $this->layout('_theme', ['content' => 'error']) ?>
+<?php $this->layout('_theme', ['content' => 'error', 'head' => $head]) ?>
 
-<article class="web-main-frist">
+<article class="web-main-first">
     <div class="container">
         <div class="py-5 py-lg-10">
             <div class="row">

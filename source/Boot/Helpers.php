@@ -7,8 +7,8 @@
  */
 
 /**
- * @param $include 
- * @param string $string 
+ * @param $include
+ * @param string $string
  * @return bool
  */
 function str_include($include, string $string): bool
@@ -104,8 +104,8 @@ function redirect(string $url): void
  */
 
 /**
- * @param string $pathFile 
- * @param string $theme 
+ * @param string $pathFile
+ * @param string $theme
  * @return string
  */
 function theme(string $pathFile, string $theme): string
@@ -118,7 +118,7 @@ function theme(string $pathFile, string $theme): string
 }
 
 /**
- * @param string $pathFile 
+ * @param string $pathFile
  * @return string
  */
 function shared(string $pathFile): string

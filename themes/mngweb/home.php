@@ -1,4 +1,4 @@
-<?php $this->layout('_theme', ['content' => 'home']) ?>
+<?php $this->layout('_theme', ['content' => 'home', 'head' => $head]) ?>
 
 <?php $this->push('styles') ?>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -9,7 +9,7 @@
     </style>
 <?php $this->end() ?>
 
-<article class="web-home-cta web-main-frist" id="home">
+<article class="web-home-cta web-main-first" id="home">
     <div class="container">
         <div class="web-home-cta-container">
             <div class="row d-flex ai-center">

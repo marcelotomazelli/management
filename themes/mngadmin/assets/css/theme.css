@@ -134,6 +134,12 @@
 /* =============================================================================
     ADMIN DROP MENU
 ============================================================================= */
+
+.app-dd-menu {
+    background-color: var(--app-gray);
+    padding: var(--bs-space-2);
+}
+
 /* NOTIFICATION */
 
 .admin-drop-notification-empty {

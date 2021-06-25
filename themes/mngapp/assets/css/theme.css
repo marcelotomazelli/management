@@ -60,6 +60,11 @@
     APP DROP MENUS
 ============================================================================= */
 
+.app-dd-menu {
+    background-color: var(--app-gray);
+    padding: var(--bs-space-2);
+}
+
 /* PROFILE */
 
 .app-drop-profile-info {
@@ -254,7 +259,7 @@
         border-radius: 30rem;
     }
 
-    .app-navbar-buttons .app-navbar-buttons-item.app-dd.show .app-dd-window {
+    .app-navbar-buttons .app-navbar-buttons-item.app-dd.show .app-dd-menu {
         width: 100%;
         max-width: var(--menu-sm-max-width);
         position: fixed;

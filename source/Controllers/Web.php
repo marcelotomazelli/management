@@ -23,7 +23,9 @@ class Web extends Controller
      */
     public function home(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->response('home');
+        return $this->viewResponse('home', [
+            'head' => $this->head()
+        ]);
     }
 
     /**
@@ -33,11 +35,12 @@ class Web extends Controller
     public function confirm(ServerRequestInterface $request): ResponseInterface
     {
         $optin = new \stdClass();
-        $optin->title = 'Enviamos um e-mail para "marctomazelli@gmail.com" para validar seu cadastro!';
+        $optin->title = 'Enviamos um e-mail para "marctomazelli@gmail.com" para confirmar seu cadastro!';
         $optin->image = theme('/assets/img/optin-confirm.png', CONF_VIEW_WEB);
         $optin->description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora debitis fugiat hic, ipsa eaque amet facilis nam blanditiis doloribus saepe pariatur odit dolor eum minima, eligendi est nemo voluptate tenetur?';
 
-        return $this->response('optin', [
+        return $this->viewResponse('optin', [
+            'head' => $this->head('Confirme seu cadastro'),
             'optin' => $optin
         ]);
     }
@@ -63,7 +66,8 @@ class Web extends Controller
                 $error->linkText = 'Continuar navegando';
         }
 
-        return $this->response('error', [
+        return $this->viewResponse('error', [
+            'head' => $this->head('Oops!'),
             'error' => $error
         ]);
     }

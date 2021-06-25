@@ -23,7 +23,22 @@ class Auth extends Controller
      */
     public function signin(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->response('signin');
+        $data = $request->getParsedBody();
+
+        if (!empty($data)) {
+            $message = new \Source\Support\Message();
+
+            $message->success('Verefique se informou o e-mail corretamente');
+
+            return $this->jsonResponse([
+                'debug' => $data,
+                'message' => $message->response()
+            ]);
+        }
+
+        return $this->viewResponse('signin', [
+            'head' => $this->head('Entrar', 'Acesse a plataforma')
+        ]);
     }
 
     /**
@@ -32,7 +47,9 @@ class Auth extends Controller
      */
     public function register(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->response('register');
+        return $this->viewResponse('register', [
+            'head' => $this->head('Cadastrar-se', 'Efetue o cadastro na plafaforma')
+        ]);
     }
 
     /**
@@ -41,6 +58,8 @@ class Auth extends Controller
      */
     public function recover(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->response('recover');
+        return $this->viewResponse('recover', [
+            'head' => $this->head('Recuperar senha', 'Recupere a senha')
+        ]);
     }
 }

@@ -1,21 +1,22 @@
-<?php $this->layout('_auth', ['content' => 'signin']) ?>
+<?php $this->layout('_auth', ['content' => 'signin', 'head' => $head]) ?>
 
 <article class="app-auth-main-form">
     <header class="mb-4">
         <h2 class="app-auth-main-title text-center text-lg-start">Acesse nossa plataforma</h2>
     </header>
-    <form action="#" method="POST" class="row gy-2">
+    <form action="<?= url('/signin') ?>" method="POST" class="row gy-2">
         <div class="col-12">
             <label for="email" class="form-label w-100">E-mail:</label>
-            <input type="email" name="email" class="form-control" id="email" placeholder="Informe seu e-mail">
+            <input type="email" name="email" class="form-control" id="email" placeholder="Informe seu e-mail" value="ola@mundo.com">
         </div>
         <div class="col-12">
             <div class="d-flex ai-baseline jc-between">
                 <label for="password" class="form-label w-100">Senha:</label>
                 <a class="app-auth-signin-recover small text-nowrap" href="<?= url('/recuperar') ?>">Esqueceu a senha?</a>
             </div>
-            <input type="password" name="password" class="form-control" id="password" placeholder="Informe sua senha">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Informe sua senha" value="0123456789">
         </div>
+        <div class="request-message col-12 m-0"></div>
         <div class="col-12 mt-3 d-flex ai-center jc-between">
             <button type="submit" class="btn btn-outline-primary">Entrar</button>
             <div class="form-check ms-3">

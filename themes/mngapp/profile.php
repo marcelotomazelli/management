@@ -1,3 +1,5 @@
+<?= $this->layout('_theme', ['content' => 'profile', 'head' => $head]) ?>
+
 <article class="py-5 py-lg-4">
     <div class="container">
         <header class="by-4">

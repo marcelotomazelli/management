@@ -14,6 +14,13 @@ define('CONF_URL_BASE', 'http://localhost/management');
 define('CONF_URL_IP', 'http://' . file_get_contents(__DIR__ . '/../../../ipv4.txt') . '/management');
 
 /**
+ * SITE
+ */
+define('CONF_SITE_NAME', 'Managemnent');
+define('CONF_SITE_TITLE', CONF_SITE_NAME . ' - Gerencie suas atividades');
+define('CONF_SITE_DESC', 'A ' . CONF_SITE_NAME . ' é a melhor plafaforma para gerenciar suas atividades');
+
+/**
  * PASSWORD
  */
 define('CONF_PASSWORD_MIN_LEN', 8);

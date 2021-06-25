@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Autenticação na plataforma Management">
-    <title>Management - Autenticação</title>
+    <meta name="description" content="<?= $head->desc ?>">
+    <title><?= $head->title ?></title>
     <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">
     <!-- SHARED Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
@@ -45,7 +45,7 @@
                     <?php $footerMain = [
                         'signin' => ['Ainda não possui conta?', url('/cadastrar'), 'Cadastrar-se'],
                         'register' => ['Já está cadastrado?', url('/entrar'), 'Entrar'],
-                        'recover' => ['Se lembrou de sua senha?', url('/entrar'), 'Entrar']
+                        'recover' => ['Lembrou sua senha?', url('/entrar'), 'Entrar']
                     ][$content] ?>
 
                     <header>
@@ -72,6 +72,7 @@
     <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
+    <script src="<?= shared('/scripts/dropdown.min.js') ?>"></script>
     <script src="<?= shared('/scripts/script.js') ?>"></script>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_APP) ?>"></script>
 </body>

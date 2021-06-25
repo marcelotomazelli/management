@@ -49,101 +49,62 @@ function imageChange() {
     }
 }
 
-// CLASS
+function requestMessage(message) {
+    // console.log(message);
+    let alertType = Array();
+    alertType['success'] = 'alert-danger';
+    alertType['info'] = 'alert-primary';
+    alertType['warning'] = 'alert-warning';
+    alertType['error'] = 'alert-error';
 
-function Dropdown(id, showClass = 'show') {
-    // CONTRUCTOR
+    let before = '';
+    let after = '';
 
-    if (typeof id != 'string') {
-        id = '';
+    if (message.before != undefined) {
+        before = `<strong>${message.before}</strong>`
     }
 
-    let dropdown = $(`#${id}`);
-    let button = $(`[data-app-dropdown="${id}"]`);
-    let menu = $(`#${id}-menu`);
-
-    let inside = false;
-
-    let onshow = undefined;
-    let onhide = undefined;
-
-    // CONTROL FUNCTIONS
-
-    function showing() {
-        return dropdown.hasClass(showClass);
+    if (message.after != undefined) {
+        after = `<strong>${message.after}</strong>`
     }
 
-    function hidden() {
-        return !dropdown.hasClass(showClass);
-    }
+    $('.request-message').html(`
+        <div class="alert ${alertType[message.type]} mt-3" role="alert">
+            ${before + message.text + after}
+        </div>
+    `);
 
-    function focused() {
-        return button.is(':focus');
-    }
+    alertBounce();
+}
 
-    function show() {
-        if (hidden()) {
-            dropdown.addClass(showClass);
+function formRequest(e) {
+    e.preventDefault();
+    let form = $(this);
 
-            if (onshow != undefined) {
-                onshow();
+    $.ajax({
+        url: form.attr('action'),
+        type: form.attr('method'),
+        data: form.serialize(),
+        success: function (data) {
+            // console.log(data);
+        },
+        complete: function (jqXHR, textStatus) {
+            let data = jqXHR.responseJSON;
+
+            if (data.message) {
+                requestMessage(data.message);
+            } else if (form.find('.request-message').html() != '') {
+                form.find('.request-message .alert').hide('fade', {
+                    duration: 300,
+                    complete: function () {
+                        $(this).remove();
+                    }
+                });
             }
-        }
-    }
-
-    function hide() {
-        if (showing()) {
-            dropdown.removeClass(showClass);
-
-            if (onhide != undefined) {
-                onhide();
-            }
-        }
-    }
-
-    // PUBLIC METHODS
-
-    this.setOnshow = (f) => {
-        if (onshow == undefined) {
-            onshow = f;
-        }
-    };
-
-    this.setOnhide = (f) => {
-        if (onhide == undefined) {
-            onhide = f;
-        }
-    };
-
-    // EVENTS
-
-    button.click(function () {
-        if (hidden()) {
-            show();
-        } else if (focused()) {
-            button.blur();
-        }
+        },
+        dataType: 'json'
     });
 
-    button.blur(function () {
-        if (!inside) {
-            hide();
-        }
-    });
-
-    menu.mouseover(function () {
-        inside = true;
-    });
-
-    menu.mouseleave(function () {
-        inside = false;
-
-        if (showing() && !focused()) {
-            button.focus();
-        }
-    });
-
-    $(window).resize(() => { hide() });
 }
 
 // ASSETS
