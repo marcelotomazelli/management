@@ -23,19 +23,6 @@ class Auth extends Controller
      */
     public function signin(ServerRequestInterface $request): ResponseInterface
     {
-        $data = $request->getParsedBody();
-
-        if (!empty($data)) {
-            $message = new \Source\Support\Message();
-
-            $message->success('Verefique se informou o e-mail corretamente');
-
-            return $this->jsonResponse([
-                'debug' => $data,
-                'message' => $message->response()
-            ]);
-        }
-
         return $this->viewResponse('signin', [
             'head' => $this->head('Entrar', 'Acesse a plataforma')
         ]);
@@ -47,6 +34,28 @@ class Auth extends Controller
      */
     public function register(ServerRequestInterface $request): ResponseInterface
     {
+
+        $data = $request->getParsedBody();
+
+        if (!empty($data)) {
+            $user = (new \Source\Models\User())
+                ->bootstrap(
+                    $data['first_name'],
+                    $data['last_name'],
+                    $data['email'],
+                    $data['password'],
+                    $data['password_re']
+                );
+
+            if (!$user->register()) {
+                return $this->jsonResponse($user->response());
+            }
+
+            sleep(3);
+
+            return $this->jsonResponse(['redirect' => url('/confirme')]);
+        }
+
         return $this->viewResponse('register', [
             'head' => $this->head('Cadastrar-se', 'Efetue o cadastro na plafaforma')
         ]);

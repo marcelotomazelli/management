@@ -49,62 +49,103 @@ function imageChange() {
     }
 }
 
-function requestMessage(message) {
-    // console.log(message);
-    let alertType = Array();
-    alertType['success'] = 'alert-danger';
-    alertType['info'] = 'alert-primary';
-    alertType['warning'] = 'alert-warning';
-    alertType['error'] = 'alert-error';
+function responseMessage(response, parent) {
+    if (response.message != undefined) {
+        let message = response.message;
 
-    let before = '';
-    let after = '';
+        let alertType = Array();
+        alertType['success'] = 'alert-success';
+        alertType['info'] = 'alert-primary';
+        alertType['warning'] = 'alert-warning';
+        alertType['error'] = 'alert-danger';
 
-    if (message.before != undefined) {
-        before = `<strong>${message.before}</strong>`
+        let before = '';
+        let after = '';
+
+        if (message.before != undefined) {
+            before = `<strong>${message.before}</strong>`
+        }
+
+        if (message.after != undefined) {
+            after = `<strong>${message.after}</strong>`
+        }
+
+        parent.find('.request-message').html(`
+            <div class="alert ${alertType[message.type]} mt-3" role="alert">
+                ${before + message.text + after}
+            </div>
+        `);
+
+        alertBounce();
+    } else if (parent.find('.request-message').html() != '') {
+        parent.find('.request-message .alert').hide('fade', {
+            duration: 300,
+            complete: function () {
+                $(this).remove();
+            }
+        });
     }
-
-    if (message.after != undefined) {
-        after = `<strong>${message.after}</strong>`
-    }
-
-    $('.request-message').html(`
-        <div class="alert ${alertType[message.type]} mt-3" role="alert">
-            ${before + message.text + after}
-        </div>
-    `);
-
-    alertBounce();
 }
 
-function formRequest(e) {
-    e.preventDefault();
-    let form = $(this);
+function responseInvalid(response, parent) {
+    if (response.invalid) {
+        response.invalid.forEach(function (inputName) {
+            let input = parent.find(`[name="${inputName}"]`);
+            input.addClass('is-invalid');
+            input.focus(() => { input.removeClass('is-invalid') });
+        });
+    }
+}
 
-    $.ajax({
-        url: form.attr('action'),
-        type: form.attr('method'),
-        data: form.serialize(),
-        success: function (data) {
-            // console.log(data);
-        },
-        complete: function (jqXHR, textStatus) {
-            let data = jqXHR.responseJSON;
+function formAjaxRequest(selector) {
+    let form = $(selector);
 
-            if (data.message) {
-                requestMessage(data.message);
-            } else if (form.find('.request-message').html() != '') {
-                form.find('.request-message .alert').hide('fade', {
-                    duration: 300,
-                    complete: function () {
-                        $(this).remove();
-                    }
-                });
-            }
-        },
-        dataType: 'json'
+    form.submit(function (e) {
+        e.preventDefault();
+        let loading = new Loading('.app-loading');
+
+
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: form.serialize(),
+            beforeSend: () => loading.show(),
+            success: function (response) {
+                if (response.reload) {
+                    location.reload();
+                    return;
+                }
+
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                    return;
+                }
+
+                loading.hide();
+
+                responseMessage(response, form);
+                responseInvalid(response, form);
+            },
+            dataType: 'json'
+        });
     });
+}
 
+function Loading(selector) {
+    let loading = $(selector);
+
+    console.log(loading)
+
+    function show() {
+        loading.addClass('show');
+    }
+
+    function hide() {
+        loading.removeClass('show');
+    }
+
+    this.show = () => show();
+    this.hide = () => hide();
 }
 
 // ASSETS

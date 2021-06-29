@@ -11,19 +11,17 @@ use Psr\Http\Message\ResponseInterface;
 
 abstract class Controller
 {
-    /**
-     * @var string
-     */
-    protected $templatesPath;
+    /** @var View */
+    protected $view;
 
     /**
      * Controller constructor.
      *
-     * @param string $templatesPath
+     * @param string $templatesFolder
      */
-    public function __construct(string $templatesPath)
+    public function __construct(string $templatesFolder)
     {
-        $this->templatesPath = $templatesPath;
+        $this->view = new View($templatesFolder);
     }
 
     /**
@@ -49,17 +47,22 @@ abstract class Controller
      */
     protected function viewResponse($template, array $data = array()): ResponseInterface
     {
-        $view = new View($this->templatesPath);
-
-        return $this->htmlResponse($view->render($template, $data));
+        return $this->htmlResponse($this->view->render($template, $data));
     }
 
+    /**
+     * @param string $html
+     * @return ResponseInterface
+     */
     protected function htmlResponse(string $html): ResponseInterface
     {
         return new HtmlResponse($html);
     }
 
-
+    /**
+     * @param array $data
+     * @return ResponseInterface
+     */
     protected function jsonResponse(array $data): ResponseInterface
     {
         return new JsonResponse($data);

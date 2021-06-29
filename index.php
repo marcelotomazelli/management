@@ -6,7 +6,6 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use League\Route\Strategy\ApplicationStrategy;
 
 $uri = '/management';
 $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], (strlen($uri)));
@@ -26,8 +25,8 @@ $router->get('/entrar', 'Source\Controllers\App\Auth::signin');
 $router->get('/cadastrar', 'Source\Controllers\App\Auth::register');
 $router->get('/recuperar', 'Source\Controllers\App\Auth::recover');
 
-$router->post('/signin', 'Source\Controllers\App\Auth::signin')
-       ->setStrategy(new ApplicationStrategy);
+// $router->post('/signin', 'Source\Controllers\App\Auth::signin');
+$router->post('/register', 'Source\Controllers\App\Auth::register');
 
 // APP
 $router->group('/app', function (\League\Route\RouteGroup $route) {

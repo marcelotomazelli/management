@@ -20,7 +20,7 @@
         <div class="col-12 mt-3 d-flex ai-center jc-between">
             <button type="submit" class="btn btn-outline-primary">Entrar</button>
             <div class="form-check ms-3">
-                <input class="form-check-input" type="checkbox" id="saveData">
+                <input class="form-check-input" type="checkbox" name="save" id="saveData">
                 <label class="form-check-label" for="saveData">
                     Lembra os dados?
                 </label>
