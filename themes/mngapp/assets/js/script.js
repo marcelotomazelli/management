@@ -1,5 +1,14 @@
 $(document).ready(function () {
-    alertBounce();
+
+    // INIT
+
+    let flashAlert = (new Alert('.flash-message')).bounce();
+
+    setTimeout(() => {
+        flashAlert.close();
+    }, 4200);
+
+    // RESOURCES
 
     let profileDropdown = new Dropdown('app-dropdown-profile', {
         buttonDataName: 'app-dropdown'
@@ -8,9 +17,11 @@ $(document).ready(function () {
         buttonDataName: 'app-dropdown'
     });
 
+    // EVENTS
+
     $('[data-menu-toggle]').click(toggleMenu);
 
     $('input[type="file"]').change(imageChange);
 
-    formAjaxRequest('.app-auth form');
+    $('.app-auth form').submit(formAjaxRequest);
 });

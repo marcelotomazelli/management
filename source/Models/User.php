@@ -42,7 +42,13 @@ class User extends Model
      */
     public function register(): bool
     {
-        if (empty($this->data)) {
+        if (empty($this->data) || !empty($this->id)) {
+            $this->message->before('Erro inesperado ocorreu. ')->error('Verifique os campos ou tente mais tarde');
+            return false;
+        }
+
+        if (!$this->required(['password_re'])) {
+            $this->message->before('Há campos obrigatórios não preenchidos. ')->warning('Preencha todos os campos corretamente');
             return false;
         }
 
@@ -63,5 +69,13 @@ class User extends Model
         ];
 
         return parent::save($failMessage);
+    }
+
+    /**
+     * @return string
+     */
+    public function fullName(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }

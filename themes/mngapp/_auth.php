@@ -24,6 +24,9 @@
 </head>
 <body class="app-auth <?= "app-auth-{$content}" ?>">
     <main class="app-auth-main">
+        <div class="flash-message">
+            <?= $this->insert('widgets::alert', flash_message()) ?>
+        </div>
         <div class="app-auth-main-content h-100">
             <?= $this->section('content') ?>
         </div>

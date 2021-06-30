@@ -46,6 +46,7 @@ abstract class Model
         $this->required = $required;
 
         $this->message = new Message();
+        $this->invalid = [];
     }
 
     /**
@@ -105,16 +106,16 @@ abstract class Model
 
 
     /**
-     * @param string $input
+     * @param string $field
      * @return Model|array
      */
-    public function invalid(string $input = null)
+    public function invalid(string $field = null)
     {
-        if (empty($input)) {
+        if (is_null($field)) {
             return $this->invalid;
         }
 
-        $this->invalid[] = $input;
+        $this->invalid['invalid'][] = $field;
         return $this;
     }
 
@@ -124,8 +125,8 @@ abstract class Model
     public function response(): array
     {
         return array_merge(
-            ['message' => $this->message->response()],
-            ['invalid' => $this->invalid]
+            $this->message->response(),
+            $this->invalid
         );
     }
 
@@ -344,16 +345,28 @@ abstract class Model
     }
 
     /**
-     * @return bool
+     * @param array $additional
+     * @return boolean
      */
-    protected function required(): bool
+    protected function required(array $additional = []): bool
     {
         $data = (array) $this->data();
-        foreach ($this->required as $field) {
+        $invalid = [];
+
+        foreach (array_merge($this->required, $additional) as $field) {
             if (empty($data[$field])) {
-                return false;
+                $invalid[] = $field;
             }
         }
+
+        if (!empty($invalid)) {
+            foreach ($invalid as $field) {
+                $this->invalid($field);
+            }
+
+            return false;
+        }
+
         return true;
     }
 }

@@ -7,13 +7,89 @@ const bsMediaLg = 992;
 const bsMediaXl = 1200;
 const bsMediaXxl = 1400;
 
-// FINCTION
+// CLASS
 
-function alertBounce() {
-    $('.alert').effect('bounce', {
-        duration: 700
-    });
+function Alert(containerSelector = '.request-message', parent = undefined) {
+    let that = this;
+
+    function container() {
+        let cont = $(containerSelector);
+
+        if (parent != undefined) {
+            cont = parent.find(containerSelector);
+        }
+
+        return cont;
+    }
+
+    function alert() {
+        return container().find('.alert');
+    }
+
+    this.build = function (message) {
+        let alertType = Array();
+        alertType['success'] = 'alert-success';
+        alertType['info'] = 'alert-primary';
+        alertType['warning'] = 'alert-warning';
+        alertType['error'] = 'alert-danger';
+
+        let before = '';
+        let after = '';
+
+        if (message.before != undefined) {
+            before = `<strong>${message.before}</strong>`;
+        }
+
+        if (message.after != undefined) {
+            after = `<strong>${message.after}</strong>`;
+        }
+
+        container().html(`
+            <div class="alert ${alertType[message.type]} mt-3" role="alert">
+                ${before + message.text + after}
+            </div>
+        `);
+
+        return that;
+    };
+
+    this.bounce = function () {
+        alert().effect('bounce', {
+            duration: 700
+        });
+
+        return that;
+    };
+
+    this.close = function (delay) {
+        alert().hide('fade', {
+            duration: 300,
+            complete: function () {
+                $(this).remove();
+            }
+        });
+
+        return that;
+    }
+
 }
+
+function Loading(selector) {
+    let loading = $(selector);
+
+    function show() {
+        loading.addClass('show');
+    }
+
+    function hide() {
+        loading.removeClass('show');
+    }
+
+    this.show = () => show();
+    this.hide = () => hide();
+}
+
+// FUNCTION
 
 function toggleMenu(e, el = undefined) {
     let type = $((el ? el : this)).data('menuToggle');
@@ -22,14 +98,20 @@ function toggleMenu(e, el = undefined) {
 
     if (type === 'show' && !body.hasClass(show)) {
         body.addClass(show);
-    } else if (type === 'hide' && body.hasClass(show)) {
+        return;
+    }
+    if (type === 'hide' && body.hasClass(show)) {
         body.removeClass(show);
-    } else if (type === 'toggle') {
+        return;
+    }
+
+    if (type === 'toggle') {
         if (!body.hasClass(show)) {
             body.addClass(show);
         } else {
             body.removeClass(show);
         }
+        return;
     }
 }
 
@@ -49,103 +131,47 @@ function imageChange() {
     }
 }
 
-function responseMessage(response, parent) {
-    if (response.message != undefined) {
-        let message = response.message;
+function formAjaxRequest(e) {
+    e.preventDefault();
+    let form = $(this);
+    let loading = new Loading('.app-loading');
+    let alert = new Alert('.form-message', form);
 
-        let alertType = Array();
-        alertType['success'] = 'alert-success';
-        alertType['info'] = 'alert-primary';
-        alertType['warning'] = 'alert-warning';
-        alertType['error'] = 'alert-danger';
-
-        let before = '';
-        let after = '';
-
-        if (message.before != undefined) {
-            before = `<strong>${message.before}</strong>`
-        }
-
-        if (message.after != undefined) {
-            after = `<strong>${message.after}</strong>`
-        }
-
-        parent.find('.request-message').html(`
-            <div class="alert ${alertType[message.type]} mt-3" role="alert">
-                ${before + message.text + after}
-            </div>
-        `);
-
-        alertBounce();
-    } else if (parent.find('.request-message').html() != '') {
-        parent.find('.request-message .alert').hide('fade', {
-            duration: 300,
-            complete: function () {
-                $(this).remove();
+    $.ajax({
+        url: form.attr('action'),
+        type: form.attr('method'),
+        data: form.serialize(),
+        beforeSend: () => {
+            alert.close()
+            loading.show()
+        },
+        success: function (response) {
+            if (response.reload) {
+                location.reload();
+                return;
             }
-        });
-    }
-}
 
-function responseInvalid(response, parent) {
-    if (response.invalid) {
-        response.invalid.forEach(function (inputName) {
-            let input = parent.find(`[name="${inputName}"]`);
-            input.addClass('is-invalid');
-            input.focus(() => { input.removeClass('is-invalid') });
-        });
-    }
-}
+            if (response.redirect) {
+                window.location.href = response.redirect;
+                return;
+            }
 
-function formAjaxRequest(selector) {
-    let form = $(selector);
+            loading.hide();
 
-    form.submit(function (e) {
-        e.preventDefault();
-        let loading = new Loading('.app-loading');
+            if (response.message) {
+                alert.build(response.message).bounce();
+            }
 
-
-        $.ajax({
-            url: form.attr('action'),
-            type: form.attr('method'),
-            data: form.serialize(),
-            beforeSend: () => loading.show(),
-            success: function (response) {
-                if (response.reload) {
-                    location.reload();
-                    return;
-                }
-
-                if (response.redirect) {
-                    window.location.href = response.redirect;
-                    return;
-                }
-
-                loading.hide();
-
-                responseMessage(response, form);
-                responseInvalid(response, form);
-            },
-            dataType: 'json'
-        });
+            if (response.invalid) {
+                response.invalid.forEach(function (inputName) {
+                    let input = form.find(`[name="${inputName}"]`);
+                    input.addClass('is-invalid');
+                    input.focus(() => { input.removeClass('is-invalid') });
+                });
+            }
+        },
+        dataType: 'json'
     });
-}
-
-function Loading(selector) {
-    let loading = $(selector);
-
-    console.log(loading)
-
-    function show() {
-        loading.addClass('show');
-    }
-
-    function hide() {
-        loading.removeClass('show');
-    }
-
-    this.show = () => show();
-    this.hide = () => hide();
 }
 
 // ASSETS

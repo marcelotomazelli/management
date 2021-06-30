@@ -8982,27 +8982,46 @@ textarea.form-control-lg {
   bottom: 1000%;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0);
   display: flex;
   align-items: center;
   justify-content: center;
   visibility: hidden;
-  transition-property: visibility, background-color;
-  transition-duration: 0.3s;
+  transition-property: visibility, left, bottom;
   transition-delay: 0.3s;
+}
+
+.app-loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s;
 }
 
 .app-loading.show {
   visibility: visible;
-  background-color: rgba(0, 0, 0, 0.6);
   left: 0%;
   bottom: 0%;
   transition-delay: 0s;
 }
 
+.show.app-loading::before {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .app-loading-content {
+  position: relative;
   display: flex;
   align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.app-loading.show .app-loading-content {
+  opacity: 1;
 }
 
 .app-loading-spinner {

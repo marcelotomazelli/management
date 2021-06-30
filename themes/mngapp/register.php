@@ -25,7 +25,7 @@
             <label for="passwordRe" class="form-label w-100">Confirme a senha:</label>
             <input type="password" name="password_re" class="form-control" id="passwordRe" placeholder="Informe novamente" value="12345678">
         </div>
-        <div class="request-message col-12 m-0"></div>
+        <div class="form-message col-12 m-0"></div>
         <div class="col-12 mt-3">
             <button type="submit" class="btn btn-outline-primary">Cadastrar</button>
         </div>

@@ -2,7 +2,8 @@
 
 namespace Source\Core;
 
-use Source\Support\View;
+use Source\Core\View;
+use Source\Support\Message;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
@@ -14,6 +15,9 @@ abstract class Controller
     /** @var View */
     protected $view;
 
+    /** @var Message */
+    protected $message;
+
     /**
      * Controller constructor.
      *
@@ -22,6 +26,7 @@ abstract class Controller
     public function __construct(string $templatesFolder)
     {
         $this->view = new View($templatesFolder);
+        $this->message = new Message();
     }
 
     /**

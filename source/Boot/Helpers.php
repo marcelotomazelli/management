@@ -167,15 +167,15 @@ function csrf_verify(string $token): bool
 }
 
 /**
- * @return string|null
+ * @return array
  */
-function flash_message(): ?string
+function flash_message(): array
 {
     $session = new \Source\Core\Session();
 
     if (!$session->has('flash')) {
-        return null;
+        return [];
     }
 
-    return $session->flash()->render();
+    return ['message' => (object) $session->flash()->response(false)];
 }

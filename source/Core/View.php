@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Support;
+namespace Source\Core;
 
 use League\Plates\Engine;
 

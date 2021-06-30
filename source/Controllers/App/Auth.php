@@ -34,7 +34,6 @@ class Auth extends Controller
      */
     public function register(ServerRequestInterface $request): ResponseInterface
     {
-
         $data = $request->getParsedBody();
 
         if (!empty($data)) {
@@ -51,8 +50,7 @@ class Auth extends Controller
                 return $this->jsonResponse($user->response());
             }
 
-            sleep(3);
-
+            $this->message->text($user->email)->flash();
             return $this->jsonResponse(['redirect' => url('/confirme')]);
         }
 

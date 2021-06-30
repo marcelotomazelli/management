@@ -79,12 +79,15 @@
         grid-area: m;
         background-color: var(--bs-light);
         padding: var(--bs-space-5);
+        display: flex;
+        flex-direction: column;
     }
 
     .app-auth-main-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        flex-grow: 1;
     }
 
     .app-auth-main-title {
