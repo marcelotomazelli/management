@@ -1,12 +1,23 @@
 $(document).ready(function () {
-    alertBounce();
+
+    // INIT
+
+    let flashAlert = (new Alert('.flash-message')).bounce();
+
+    setTimeout(() => {
+        flashAlert.close();
+    }, 4200);
 
     if (window.innerWidth > bsMediaLg) {
         $('body').addClass('menu-show');
     }
 
-    $('[data-menu-toggle]').click(toggleMenu);
-    $('input[type="file"]').change(imageChange);
+    // RESOURCES
 
     let notificationsDropdown = new Dropdown('admin-dropdown-notifications');
+
+    // EVENTS
+
+    $('[data-menu-toggle]').click(toggleMenu);
+    $('input[type="file"]').change(imageChange);
 });

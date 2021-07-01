@@ -4,7 +4,7 @@
     <header class="mb-4">
         <h2 class="app-auth-main-title text-center text-lg-start">Cadastre-se em nossa plataforma</h2>
     </header>
-    <form action="<?= url('/register') ?>" method="POST" class="row gy-2 gx-2">
+    <form action="<?= url('/register') ?>" method="POST" class="row gy-2 gx-2" novalidate>
         <div class="col-12">
             <label for="firstName" class="form-label w-100">Primeiro nome:</label>
             <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Informe seu primeiro nome" value="Marcelo">

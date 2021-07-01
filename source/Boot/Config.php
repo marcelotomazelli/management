@@ -23,10 +23,10 @@ define('CONF_SITE_DESC', 'A ' . CONF_SITE_NAME . ' é a melhor plafaforma para g
 /**
  * PASSWORD
  */
-define('CONF_PASSWORD_MIN_LEN', 8);
-define('CONF_PASSWORD_MAX_LEN', 40);
-define('CONF_PASSWORD_ALGO', PASSWORD_DEFAULT);
-define('CONF_PASSWORD_OPTION', ['cost' => 10]);
+define('CONF_PASSWD_MIN_LEN', 8);
+define('CONF_PASSWD_MAX_LEN', 40);
+define('CONF_PASSWD_ALGO', PASSWORD_DEFAULT);
+define('CONF_PASSWD_OPTION', ['cost' => 10]);
 
 /**
  * VIEW

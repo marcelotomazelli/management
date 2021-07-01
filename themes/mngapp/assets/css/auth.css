@@ -44,6 +44,10 @@
     APP AUTH MAIN
 ============================================================================= */
 
+.flash-message {
+    width: 100%;
+}
+
 .app-auth-main-title {
     font-weight: 300;
 }
@@ -65,12 +69,17 @@
         align-items: center;
     }
 
-    .app-auth-main-content {
+    .app-auth-main-content,
+    .flash-message {
         max-width: calc(520px - (var(--bs-space-5) * 2));
     }
 
     .app-auth-main-title {
         font-size: 3em;
+    }
+
+    .flash-message .alert {
+        margin: var(--bs-space-2) 0 var(--bs-space-4);
     }
 }
 

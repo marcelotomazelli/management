@@ -142,8 +142,10 @@ function formAjaxRequest(e) {
         type: form.attr('method'),
         data: form.serialize(),
         beforeSend: () => {
-            alert.close()
-            loading.show()
+            alert.close();
+            loading.show();
+
+            form.find('.is-invalid').removeClass('is-invalid');
         },
         success: function (response) {
             if (response.reload) {
@@ -169,6 +171,14 @@ function formAjaxRequest(e) {
                     input.focus(() => { input.removeClass('is-invalid') });
                 });
             }
+        },
+        error: () => {
+            loading.hide();
+            alert.build({
+                type: 'error',
+                before: 'Erro inesperado ocorreu. ',
+                text: 'Verifique os dados ou tente novamente mais tarde'
+            }).bounce();
         },
         dataType: 'json'
     });

@@ -61,11 +61,54 @@ class User extends Model
      */
     public function save(): bool
     {
-        unset($this->data->password_re);
+        if (!empty($this->first_name)) {
+            $this->first_name = filter_var($this->first_name, FILTER_SANITIZE_STRIPPED);
+        }
+
+        if (!empty($this->last_name)) {
+            $this->last_name = filter_var($this->last_name, FILTER_SANITIZE_STRIPPED);
+        }
+
+        if (!empty($this->email)) {
+            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+                $this->message->before('E-mail inválido. ')->warning('O e-mail informado é inválido');
+                $this->invalid('email');
+                return false;
+            }
+        }
+
+        if (!empty($this->password) && !empty($this->password_re)) {
+            if (!is_passwd($this->password)) {
+                $min = CONF_PASSWD_MIN_LEN;
+                $max = CONF_PASSWD_MAX_LEN;
+
+                $this->message->before('Senha inválida. ')->warning("A senha precisa ter entre {$min} e {$max} caracteres.");
+                $this->invalid('password');
+                return false;
+            }
+
+            if ($this->password != $this->password_re) {
+                $this->message->before('Senhas não correspondentes. ')->warning('As senhas informados são diferentes');
+                $this->invalid('password')->invalid('password_re');
+                return false;
+            }
+
+            unset($this->data->password_re);
+
+            $this->password = passwd($this->password);
+        }
+
+        if (!empty($this->password)) {
+            if (!is_passwd($this->password)) {
+                $this->message->before('Senha inválida. ')->warning("A senha informada não possui formato válido, tente outra.");
+                $this->invalid('password');
+                return false;
+            }
+        }
 
         $failMessage = [
             'insert' => 'Erro ao tentar cadastrá-lo como usuário',
-            'update' => 'Erro ao tentar atualizar seus dados usuário'
+            'update' => 'Erro ao tentar atualizar seus dados de usuário'
         ];
 
         return parent::save($failMessage);
@@ -77,5 +120,25 @@ class User extends Model
     public function fullName(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * @param string $password
+     * @return boolean
+     */
+    public function passwordRehash(string $password): bool
+    {
+        if (empty($this->password) || !empty(password_get_info($password)['algo'])) {
+            return true;
+        }
+
+        if (passwd_rehash($this->password)) {
+            $user = new User();
+            $user->id = $this->id;
+            $user->password = passwd($password);
+            $user->save();
+        }
+
+        return true;
     }
 }

@@ -1,5 +1,14 @@
 $(document).ready(function () {
-    alertBounce();
+
+    // INIT
+
+    let flashAlert = (new Alert('.flash-message')).bounce();
+
+    setTimeout(() => {
+        flashAlert.close();
+    }, 4200);
+
+    // FUNCTIONS
 
     let minScroll = 200;
     let anmDuration = 300;
@@ -28,7 +37,7 @@ $(document).ready(function () {
         sections.forEach(function (section) {
             if (scrollTop <= section.top && scrollBottom > section.bottom) {
                 changeTo = section.section;
-            } 
+            }
 
             if (!changeTo && scrollTop >= section.top && scrollTop < section.bottom) {
                 changeTo = section.section;
@@ -55,11 +64,13 @@ $(document).ready(function () {
     function sectionControl(e, el = undefined) {
         e.preventDefault();
         let section = $((!el ? this : el)).data('section');
-        
-        $('html, body').animate({scrollTop: $(`#${section}`).offset().top}, 400, 'swing', function () {
+
+        $('html, body').animate({ scrollTop: $(`#${section}`).offset().top }, 400, 'swing', function () {
             window.location.hash = `#${section}`;
         });
     };
+
+    // EVENTS
 
     setSections();
     scrollSection();
@@ -81,7 +92,9 @@ $(document).ready(function () {
     $('body:not(.web-home) [data-menu-toggle]').click(toggleMenu);
 
     $('body.web-home [data-menu-toggle]:not([data-section])').click(toggleMenu);
+
     $('body.web-home [data-section]:not([data-menu-toggle])').click(sectionControl);
+
     $('body.web-home [data-section][data-menu-toggle]').click(function (e) {
         e.preventDefault();
         toggleMenu(e, this);

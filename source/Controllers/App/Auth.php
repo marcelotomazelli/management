@@ -23,6 +23,9 @@ class Auth extends Controller
      */
     public function signin(ServerRequestInterface $request): ResponseInterface
     {
+        (new \Source\Support\Message())->warning('Cadastre-se')->flash();
+        redirect('/cadastrar');
+
         return $this->viewResponse('signin', [
             'head' => $this->head('Entrar', 'Acesse a plataforma')
         ]);
@@ -37,6 +40,13 @@ class Auth extends Controller
         $data = $request->getParsedBody();
 
         if (!empty($data)) {
+            $fields = ['first_name', 'last_name', 'email', 'password', 'password_re'];
+
+            if (!array_keys_is($fields, $data)) {
+                $this->message->before('Erro inesperado ocorreu. ')->error('Verifiques os dados ou tente novamente mais tarde');
+                return $this->jsonResponse($this->message->response());
+            }
+
             $user = (new \Source\Models\User())
                 ->bootstrap(
                     $data['first_name'],

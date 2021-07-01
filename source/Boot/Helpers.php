@@ -1,5 +1,49 @@
 <?php
 
+
+/**
+ * ####################
+ * ###   VALIDATE   ###
+ * ####################
+ */
+
+/**
+ * @param string $password
+ * @return bool
+ */
+function is_passwd(string $password): bool
+{
+    if (password_get_info($password)['algo']) {
+        return true;
+    }
+
+    $len = mb_strlen($password);
+    $min = CONF_PASSWD_MIN_LEN;
+    $max = CONF_PASSWD_MAX_LEN;
+
+    return ($len >= $min && $len <= $max);
+}
+
+/**
+ * @param array $keys
+ * @param array $array
+ * @return boolean
+ */
+function array_keys_exists(array $keys, array $array): bool
+{
+    return count(array_intersect(array_keys($array), $keys)) == count($keys);
+}
+
+/**
+ * @param array $keys
+ * @param array $array
+ * @return boolean
+ */
+function array_keys_is(array $keys, array $array): bool
+{
+    return array_keys($array) == $keys;
+}
+
 /**
  * ##################
  * ###   STRING   ###
@@ -28,19 +72,34 @@ function str_include($include, string $string): bool
 
 /**
  * @param string $password
- * @return bool
+ * @return string
  */
-function is_passwd(string $password): bool
+function passwd(string $password): string
 {
-    $len = mb_strlen($password);
-    $min = CONF_PASSWORD_MIN_LEN;
-    $max = CONF_PASSWORD_MAX_LEN;
-
-    if (password_get_info($password)['algo']) {
-        return true;
+    if (!empty(password_get_info($password)['algo'])) {
+        return $password;
     }
 
-    return ($len >= $min && $len <= $max);
+    return password_hash($password, CONF_PASSWD_ALGO, CONF_PASSWD_OPTION);
+}
+
+/**
+ * @param string $password
+ * @param string $hash
+ * @return bool
+ */
+function passwd_verify(string $password, string $hash): bool
+{
+    return password_verify($password, $hash);
+}
+
+/**
+ * @param string $hash
+ * @return bool
+ */
+function passwd_rehash(string $hash): bool
+{
+    return password_needs_rehash($hash, CONF_PASSWD_ALGO, CONF_PASSWD_OPTION);
 }
 
 /**
