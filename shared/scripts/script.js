@@ -9,21 +9,24 @@ const bsMediaXxl = 1400;
 
 // CLASS
 
-function Alert(containerSelector = '.request-message', parent = undefined) {
+function Alert(containerSelector = '.form-message', parent = undefined) {
     let that = this;
+    let closeTimeout;
+
+    if (alert().length != 0) {
+        alertClick();
+    }
 
     function container() {
-        let cont = $(containerSelector);
-
-        if (parent != undefined) {
-            cont = parent.find(containerSelector);
-        }
-
-        return cont;
+        return (parent ? parent.find(containerSelector) : $(containerSelector));
     }
 
     function alert() {
         return container().find('.alert');
+    }
+
+    function alertClick() {
+        alert().click(() => { that.close() });
     }
 
     this.build = function (message) {
@@ -33,22 +36,17 @@ function Alert(containerSelector = '.request-message', parent = undefined) {
         alertType['warning'] = 'alert-warning';
         alertType['error'] = 'alert-danger';
 
-        let before = '';
-        let after = '';
-
-        if (message.before != undefined) {
-            before = `<strong>${message.before}</strong>`;
-        }
-
-        if (message.after != undefined) {
-            after = `<strong>${message.after}</strong>`;
-        }
+        alertType = (alertType[message.type] ? alertType[message.type] : alertType['info']);
+        let before = (message.before ? `<strong>${message.before}</strong>` : '');
+        let after = (message.after ? `<strong>${message.after}</strong>` : '');
 
         container().html(`
-            <div class="alert ${alertType[message.type]} mt-3" role="alert">
+            <div class="alert ${alertType} mt-3" role="alert">
                 ${before + message.text + after}
             </div>
         `);
+
+        alertClick();
 
         return that;
     };
@@ -62,12 +60,16 @@ function Alert(containerSelector = '.request-message', parent = undefined) {
     };
 
     this.close = function (delay) {
-        alert().hide('fade', {
-            duration: 300,
-            complete: function () {
-                $(this).remove();
-            }
-        });
+        clearTimeout(closeTimeout);
+
+        closeTimeout = setTimeout(() => {
+            alert().hide('fade', {
+                duration: 300,
+                complete: function () {
+                    $(this).remove();
+                }
+            });
+        }, delay * 1000);
 
         return that;
     }

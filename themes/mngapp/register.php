@@ -4,26 +4,40 @@
     <header class="mb-4">
         <h2 class="app-auth-main-title text-center text-lg-start">Cadastre-se em nossa plataforma</h2>
     </header>
-    <form action="<?= url('/register') ?>" method="POST" class="row gy-2 gx-2" novalidate>
+    <form action="<?= url('/register') ?>" method="POST" class="row gy-2 gx-2">
         <div class="col-12">
             <label for="firstName" class="form-label w-100">Primeiro nome:</label>
-            <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Informe seu primeiro nome" value="Marcelo">
+            <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Informe seu primeiro nome"
+                   minlength="<?= $userRules->first_name_min_len ?>"
+                   maxlength="<?= $userRules->first_name_max_len ?>"
+            >
         </div>
         <div class="col-12">
             <label for="lastName" class="form-label w-100">Último nome:</label>
-            <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Informe seu último nome" value="Tomazelli">
+            <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Informe seu último nome"
+                   minlength="<?= $userRules->last_name_min_len ?>"
+                   maxlength="<?= $userRules->last_name_max_len ?>"
+            >
         </div>
         <div class="col-12">
             <label for="email" class="form-label w-100">E-mail:</label>
-            <input type="email" name="email" class="form-control" id="email" placeholder="Informe seu e-mail" value="marcelotomazelli<?= rand(1,300) ?>@email.com">
+            <input type="email" name="email" class="form-control" id="email" placeholder="Informe seu e-mail"
+                   maxlength="<?= $userRules->email_max_len ?>"
+            >
         </div>
         <div class="col-md-6">
             <label for="password" class="form-label w-100">Senha:</label>
-            <input type="password" name="password" class="form-control" id="password" placeholder="Informe uma senha" value="12345678">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Informe uma senha"
+                   minlength="<?= $userRules->password_min_len ?>"
+                   maxlength="<?= $userRules->password_max_len ?>"
+            >
         </div>
         <div class="col-md-6">
             <label for="passwordRe" class="form-label w-100">Confirme a senha:</label>
-            <input type="password" name="password_re" class="form-control" id="passwordRe" placeholder="Informe novamente" value="12345678">
+            <input type="password" name="password_re" class="form-control" id="passwordRe" placeholder="Informe novamente"
+                   minlength="<?= $userRules->password_min_len ?>"
+                   maxlength="<?= $userRules->password_max_len ?>"
+            >
         </div>
         <div class="form-message col-12 m-0"></div>
         <div class="col-12 mt-3">

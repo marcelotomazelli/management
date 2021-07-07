@@ -65,10 +65,10 @@ abstract class Controller
     }
 
     /**
-     * @param array $data
+     * @param array|object $data
      * @return ResponseInterface
      */
-    protected function jsonResponse(array $data): ResponseInterface
+    protected function jsonResponse($data): ResponseInterface
     {
         return new JsonResponse($data);
     }

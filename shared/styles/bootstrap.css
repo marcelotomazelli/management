@@ -8901,6 +8901,11 @@ textarea.form-control-lg {
   content: "";
 }
 
+.form-message .alert,
+.flash-message .alert {
+  cursor: pointer;
+}
+
 textarea.form-control {
   border-radius: 0.75rem;
 }

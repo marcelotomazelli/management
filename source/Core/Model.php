@@ -369,5 +369,25 @@ abstract class Model
 
         return true;
     }
+
+    /**
+     * @return \stdClass
+     */
+    public function rules(): \stdClass
+    {
+        $constants = (new \ReflectionClass(static::class))->getConstants();
+        $rules = new \stdClass();
+
+        foreach ($constants as $name => $value) {
+            if (!str_include('RULE_', $name)) {
+                continue;
+            }
+
+            $name = strtolower(str_replace('RULE_', '', $name));
+            $rules->$name = $value;
+        }
+
+        return $rules;
+    }
 }
 

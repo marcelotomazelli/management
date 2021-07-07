@@ -2,11 +2,9 @@ $(document).ready(function () {
 
     // INIT
 
-    let flashAlert = (new Alert('.flash-message')).bounce();
-
-    setTimeout(() => {
-        flashAlert.close();
-    }, 4200);
+    let flashAlert = (new Alert('.flash-message'))
+        .bounce()
+        .close(6);
 
     if (window.innerWidth > bsMediaLg) {
         $('body').addClass('menu-show');

@@ -6,6 +6,16 @@ use Source\Core\Model;
 
 class User extends Model
 {
+    const RULE_FIRST_NAME_MIN_LEN = 3;
+    const RULE_FIRST_NAME_MAX_LEN = 50;
+    const RULE_LAST_NAME_MIN_LEN = 3;
+    const RULE_LAST_NAME_MAX_LEN = 50;
+    const RULE_EMAIL_MAX_LEN = 255;
+    const RULE_PASSWORD_MIN_LEN = CONF_PASSWD_MIN_LEN;
+    const RULE_PASSWORD_MAX_LEN = CONF_PASSWD_MAX_LEN;
+    const RULE_BIRTHDATE_MIN_AGE = 16;
+    const RULE_DOCUMENT_LEN = 11;
+
     public function __construct()
     {
         parent::__construct('users', [], ['first_name', 'last_name', 'email', 'password']);
@@ -61,16 +71,38 @@ class User extends Model
      */
     public function save(): bool
     {
+        $rules = $this->rules();
+
         if (!empty($this->first_name)) {
+            $firstNameLen = strlen($this->first_name);
+
+            if ($firstNameLen < $rules->first_name_min_len || $firstNameLen > $rules->first_name_max_len) {
+                $this->message
+                    ->before('Primeiro nome inválido. ')
+                    ->warning("O primeiro nome deve ter entre {$rules->first_name_min_len} e {$rules->first_name_max_len} caracteres");
+                $this->invalid('first_name');
+                return false;
+            }
+
             $this->first_name = filter_var($this->first_name, FILTER_SANITIZE_STRIPPED);
         }
 
         if (!empty($this->last_name)) {
+            $lastNameLen = strlen($this->last_name);
+
+            if ($lastNameLen < $rules->last_name_min_len || $lastNameLen > $rules->last_name_max_len) {
+                $this->message
+                    ->before('Último nome inválido. ')
+                    ->warning("O último nome deve ter entre {$rules->last_name_min_len} e {$rules->last_name_max_len} caracteres");
+                $this->invalid('last_name');
+                return false;
+            }
+
             $this->last_name = filter_var($this->last_name, FILTER_SANITIZE_STRIPPED);
         }
 
         if (!empty($this->email)) {
-            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL) || strlen($this->email) > $rules->email_max_len) {
                 $this->message->before('E-mail inválido. ')->warning('O e-mail informado é inválido');
                 $this->invalid('email');
                 return false;
@@ -79,8 +111,8 @@ class User extends Model
 
         if (!empty($this->password) && !empty($this->password_re)) {
             if (!is_passwd($this->password)) {
-                $min = CONF_PASSWD_MIN_LEN;
-                $max = CONF_PASSWD_MAX_LEN;
+                $min = $rules->password_min_len;
+                $max = $rules->password_max_len;
 
                 $this->message->before('Senha inválida. ')->warning("A senha precisa ter entre {$min} e {$max} caracteres.");
                 $this->invalid('password');
@@ -128,11 +160,19 @@ class User extends Model
      */
     public function passwordRehash(string $password): bool
     {
-        if (empty($this->password) || !empty(password_get_info($password)['algo'])) {
+        if (empty($this->password) || empty(password_get_info($this->password)['algo'])) {
             return true;
         }
 
-        if (passwd_rehash($this->password)) {
+        if (!passwd_rehash($this->password)) {
+            return true;
+        }
+
+        if (!empty(password_get_info($password)['algo'])) {
+            return true;
+        }
+
+        if (passwd_verify($password, $this->password)) {
             $user = new User();
             $user->id = $this->id;
             $user->password = passwd($password);

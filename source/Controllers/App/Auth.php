@@ -7,6 +7,8 @@ use Source\Core\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+use Source\Models\User;
+
 class Auth extends Controller
 {
     /**
@@ -47,7 +49,7 @@ class Auth extends Controller
                 return $this->jsonResponse($this->message->response());
             }
 
-            $user = (new \Source\Models\User())
+            $user = (new User())
                 ->bootstrap(
                     $data['first_name'],
                     $data['last_name'],
@@ -65,7 +67,8 @@ class Auth extends Controller
         }
 
         return $this->viewResponse('register', [
-            'head' => $this->head('Cadastrar-se', 'Efetue o cadastro na plafaforma')
+            'head' => $this->head('Cadastrar-se', 'Efetue o cadastro na plafaforma'),
+            'userRules' => (new User())->rules()
         ]);
     }
 
