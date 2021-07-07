@@ -16,6 +16,9 @@ class User extends Model
     const RULE_BIRTHDATE_MIN_AGE = 16;
     const RULE_DOCUMENT_LEN = 11;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         parent::__construct('users', [], ['first_name', 'last_name', 'email', 'password']);
@@ -44,6 +47,16 @@ class User extends Model
         $this->password_re = $passwordRe;
 
         return $this;
+    }
+
+    /**
+     * @param string $email
+     * @param string $columns
+     * @return User|null
+     */
+    public function findByEmail(string $email, string $columns = '*'): ?User
+    {
+        return $this->find('email = :email', "email={$email}", $columns)->findFetch();
     }
 
     /**
@@ -152,6 +165,22 @@ class User extends Model
     public function fullName(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * @return string
+     */
+    public function cutFirstName(): string
+    {
+        return str_limit_chars($this->first_name, 12, '');
+    }
+
+    /**
+     * @return string
+     */
+    public function cutLastName(): string
+    {
+        return str_limit_chars($this->last_name, 12, '');
     }
 
     /**

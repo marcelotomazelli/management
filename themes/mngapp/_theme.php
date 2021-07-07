@@ -1,3 +1,4 @@
+<?php $user = \Source\Models\Auth::user() ?>
 <!DOCTYPE html>
 <html lang="pt-br" class="app-html">
 <head>
@@ -44,13 +45,13 @@
                                             <div class="app-drop-profile-info">
                                                 <div class="app-drop-profile-img-container">
                                                     <a href="<?= url('/app/perfil') ?>" class="app-drop-profile-img-link">
-                                                        <img src="<?= shared('/imgs/user.png') ?>" alt="Marcelo" title="Marcelo"
+                                                        <img src="<?= shared('/imgs/user.png') ?>" alt="<?= $user->cutFirstName() ?>" title="<?= $user->cutFirstName() ?>"
                                                              class="app-drop-profile-img">
                                                     </a>
                                                 </div>
                                                 <div class="app-drop-profile-name-container">
-                                                    <span href="<?= url('/app/perfil') ?>" class="app-drop-profile-name" title="Marcelo Tomazelli">Marcelo</span>
-                                                    <span class="app-drop-profile-email" title="marctomazelli@gmail.com">marctomazelli@gmail.com</span>
+                                                    <span href="<?= url('/app/perfil') ?>" class="app-drop-profile-name" title="<?= $user->fullName() ?>"><?= $user->cutFirstName() ?></span>
+                                                    <span class="app-drop-profile-email" title="<?= $user->email ?>"><?= $user->email ?></span>
                                                 </div>
                                             </div>
                                             <ul class="app-drop-profile-actions">

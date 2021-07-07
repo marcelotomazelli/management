@@ -1,3 +1,4 @@
+<?php $user = \Source\Models\Auth::user() ?>
 <!DOCTYPE html>
 <html lang="pt-br" class="web-html">
 <head>
@@ -65,7 +66,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <?php if (true): ?>
+                            <?php if (empty($user)): ?>
                                 <ul class="web-navbar-list web-navbar-menu-user">
                                     <li class="web-navbar-item"><a class="web-navbar-link web-navbar-signin link-pd" href="<?= url('/entrar') ?>">Entrar</a></li>
                                     <li class="web-navbar-item"><a class="web-navbar-link web-navbar-register link-pd" href="<?= url('/cadastrar') ?>">Cadastro</a></li>
@@ -75,7 +76,7 @@
                                     <li class="web-navbar-item">
                                         <a href="<?= url('/app') ?>" class="web-navbar-logged">
                                             <img src="<?= shared('/imgs/user.png') ?>" class="web-navbar-logged-image">
-                                            <span class="web-navbar-logged-name">Marcelo</span>
+                                            <span class="web-navbar-logged-name"><?= $user->cutFirstName() ?></span>
                                         </a>
                                     </li>
                                 </ul>

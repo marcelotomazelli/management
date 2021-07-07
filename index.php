@@ -21,17 +21,19 @@ $router->get('/', 'Source\Controllers\Web::home');
 $router->get('/confirme', 'Source\Controllers\Web::confirm');
 
 // AUTH
-$router->get('/entrar', 'Source\Controllers\App\Auth::signin');
-$router->get('/cadastrar', 'Source\Controllers\App\Auth::register');
-$router->get('/recuperar', 'Source\Controllers\App\Auth::recover');
+$router->get('/entrar', 'Source\Controllers\App\Authentication::signin');
+$router->get('/cadastrar', 'Source\Controllers\App\Authentication::register');
+$router->get('/recuperar', 'Source\Controllers\App\Authentication::recover');
 
-// $router->post('/signin', 'Source\Controllers\App\Auth::signin');
-$router->post('/register', 'Source\Controllers\App\Auth::register');
+$router->post('/register', 'Source\Controllers\App\Authentication::register');
+$router->post('/signin', 'Source\Controllers\App\Authentication::signin');
+$router->post('/recover', 'Source\Controllers\App\Authentication::recover');
 
 // APP
 $router->group('/app', function (\League\Route\RouteGroup $route) {
     $route->get('/', 'Source\Controllers\App::profile');
     $route->get('/perfil', 'Source\Controllers\App::profile');
+    $route->get('/sair', 'Source\Controllers\App::signout');
 });
 
 // ERROR

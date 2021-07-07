@@ -73,4 +73,25 @@ abstract class Controller
         return new JsonResponse($data);
     }
 
+    /**
+     * @param string $before
+     * @param string $text
+     * @param string $after
+     * @return ResponseInterface
+     */
+    protected function errorResponse(string $before = null, string $text = null, string $after = null): ResponseInterface
+    {
+        $before = empty($before) ? 'Erro inesperado ocorreu. ' : $before;
+        $text = empty($text) ? 'Verifiques os dados ou tente novamente mais tarde' : $text;
+
+        $this->message
+            ->before($before)
+            ->error($text);
+
+        if (!empty($after)) {
+            $this->message->after($after);
+        }
+
+        return $this->jsonResponse($this->message->response());
+    }
 }
