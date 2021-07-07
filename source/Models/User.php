@@ -79,10 +79,37 @@ class User extends Model
     }
 
     /**
+     * @param array $edit
+     * @return boolean
+     */
+    public function edit(array $edit): bool
+    {
+        if (empty($this->id)) {
+            $this->message->before('Erro inesperado ocorreu. ')->error('Verifique os dados ou tente novamente mais tarde');
+            return false;
+        }
+
+        $id = $this->id;
+
+        $this->data = new \stdClass();
+        $this->id = $id;
+
+        $editable = ['first_name', 'last_name', 'password', 'password_re', 'birthdate', 'document'];
+
+        foreach ($editable as $name) {
+            if (!empty($edit[$name])) {
+                $this->$name = $edit[$name];
+            }
+        }
+
+        return $this->save();
+    }
+
+    /**
      * @param array $data
      * @return bool
      */
-    public function save(): bool
+    protected function save(): bool
     {
         $rules = $this->rules();
 
@@ -118,6 +145,42 @@ class User extends Model
             if (!filter_var($this->email, FILTER_VALIDATE_EMAIL) || strlen($this->email) > $rules->email_max_len) {
                 $this->message->before('E-mail inválido. ')->warning('O e-mail informado é inválido');
                 $this->invalid('email');
+                return false;
+            }
+        }
+
+        if (!empty($this->birthdate)) {
+            $date = \DateTime::createFromFormat('d/m/Y', $this->birthdate);
+
+            if (!$date) {
+                $this->message->before('Data de nascimento inválida. ')->warning('A data de nascimento não possui formato válido');
+                $this->invalid('birthdate');
+                return false;
+            }
+
+            $date = $date->format('Y-m-d');
+
+            if ($date > date('Y-m-d', strtotime("-{$rules->birthdate_min_age}years"))) {
+                $this->message->before('Idade inválida. ')->warning("A idade minima é {$rules->birthdate_min_age} anos");
+                $this->invalid('birthdate');
+                return false;
+            }
+
+            if ($date < date('Y-m-d', strtotime('-120years'))) {
+                $this->message->before('Idade inválida. ')->warning("A idade informada ultrapassa 120 anos de idade, confira se digitou corretamente");
+                $this->invalid('birthdate');
+                return false;
+            }
+
+            $this->birthdate = $date;
+        }
+
+        if (!empty($this->document)) {
+            $this->document = preg_replace('/\D/', '', $this->document);
+
+            if (strlen($this->document) != $rules->document_len) {
+                $this->message->before('Documento inválido. ')->warning('O documento informado não é válido');
+                $this->invalid('document');
                 return false;
             }
         }
@@ -202,10 +265,10 @@ class User extends Model
         }
 
         if (passwd_verify($password, $this->password)) {
-            $user = new User();
-            $user->id = $this->id;
-            $user->password = passwd($password);
-            $user->save();
+            $this->edit([
+                'password' => $password,
+                'password_re' => $password
+            ]);
         }
 
         return true;

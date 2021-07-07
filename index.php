@@ -34,6 +34,9 @@ $router->group('/app', function (\League\Route\RouteGroup $route) {
     $route->get('/', 'Source\Controllers\App::profile');
     $route->get('/perfil', 'Source\Controllers\App::profile');
     $route->get('/sair', 'Source\Controllers\App::signout');
+
+    $route->post('/profile', 'Source\Controllers\App::profile');
+
 });
 
 // ERROR

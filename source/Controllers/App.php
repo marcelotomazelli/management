@@ -38,6 +38,20 @@ class App extends Controller
      */
     public function profile(ServerRequestInterface $request): ResponseInterface
     {
+        $data = $request->getParsedBody();
+
+        if (!empty($data)) {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+            $user = Auth::user();
+
+            if (!$user->edit($data)) {
+                return $this->jsonResponse($user->response());
+            }
+
+            $this->message->before('Usuário atualizado com sucesso. ')->success('Dados do usuário foram atualizados com sucesso')->flash();
+            return $this->jsonResponse(['reload' => true]);
+        }
+
         return $this->viewResponse('profile', [
             'head' => $this->head('Seu perfil'),
             'userRules' => (new User())->rules(),

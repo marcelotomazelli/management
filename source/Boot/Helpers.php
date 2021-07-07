@@ -179,6 +179,26 @@ function redirect(string $url): void
 }
 
 /**
+ * ################
+ * ###   DATE   ###
+ * ################
+ */
+
+/**
+ * @param string $date
+ * @param string $format
+ * @return string
+ */
+function date_fmt(
+    ?string $date = 'now',
+    string $toFormat = 'd/m/Y'
+): string
+{
+    $date = (!empty($date) ? $date : 'now');
+    return (new DateTime($date))->format($toFormat);
+}
+
+/**
  * ##################
  * ###   ASSETS   ###
  * ##################

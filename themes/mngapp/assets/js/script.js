@@ -21,5 +21,5 @@ $(document).ready(function () {
 
     $('input[type="file"]').change(imageChange);
 
-    $('.app-auth form').submit(formAjaxRequest);
+    $('form').submit(formAjaxRequest);
 });

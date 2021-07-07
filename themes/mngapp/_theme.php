@@ -136,7 +136,11 @@
         </div>
     </header>
 
-    <main class="app-main <?= "app-{$content}-main" ?>">
+    <main class="app-main <?= "app-{$content}-main" ?> py-5 py-lg-4">
+        <div class="flash-message">
+            <?= $this->insert('widgets::alert', flash_message()) ?>
+        </div>
+
         <?= $this->section('content') ?>
     </main>
 
