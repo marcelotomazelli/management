@@ -144,6 +144,8 @@
         <?= $this->section('content') ?>
     </main>
 
+    <?= $this->insert('widgets::loading') ?>
+
     <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
     <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>

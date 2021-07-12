@@ -102,6 +102,10 @@
     .app-auth-main-title {
         font-size: 2.5em;
     }
+
+    .form-message .alert {
+        margin-top: var(--bs-space-3);
+    }
 }
 
 /* =============================================================================

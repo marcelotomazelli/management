@@ -573,12 +573,30 @@
     z-index: var(--app-zi-main);
 }
 
+.flash-message,
+.form-message {
+    z-index: var(--app-zi-message);
+    position: fixed;
+    top: 70px;
+    right: 0px;
+    width: 100%;
+    max-width: calc(340px + (30px * 2));
+    padding: 0 30px;
+    margin: 0;
+}
+
+.flash-message .alert,
+.form-message .alert {
+    margin: 0;
+    font-size: 0.9em;
+}
+
 
 /* =============================================================================
     APP FORM
 ============================================================================= */
 
-.app-form div {
+.app-form div:not(.form-message) {
     transition: width var(--app-ts-fast);
 }
 
@@ -587,6 +605,7 @@
 ============================================================================= */
 
 .app-profile-image {
+    z-index: -1;
     display: inline-block;
     width: 160px;
     height: 160px;

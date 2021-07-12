@@ -11,64 +11,110 @@ const bsMediaXxl = 1400;
 
 function Alert(containerSelector = '.form-message', parent = undefined) {
     let that = this;
-    let closeTimeout;
+    let container = (parent ? parent.find(containerSelector) : $(containerSelector));
+    let buildTimeout, closeTimeout;
+
+    let options = {
+        openEffect: 'bounce',
+        closeEffect: 'fade',
+        closeDelay: 0
+    };
+
+    let types = Array();
+    types['success'] = 'alert-success';
+    types['info'] = 'alert-primary';
+    types['warning'] = 'alert-warning';
+    types['error'] = 'alert-danger';
+
+    let effects = Array();
+    effects['bounce'] = ['effect', { duration: 700 }];
+    effects['fade'] = ['toggle', { duration: 200 }];
+    effects['drop-right'] = ['toggle', {
+        duration: 120,
+        direction: 'right'
+    }];
 
     if (alert().length != 0) {
-        alertClick();
-    }
-
-    function container() {
-        return (parent ? parent.find(containerSelector) : $(containerSelector));
+        alertConfig();
     }
 
     function alert() {
-        return container().find('.alert');
+        return container.find('.alert');
     }
 
-    function alertClick() {
-        alert().click(() => { that.close() });
+    function alertConfig() {
+        alert().click(() => { that.close(0) });
+    }
+
+    this.options = function (conf = {}) {
+        if (conf.openEffect) {
+            options.openEffect = (effects[conf.openEffect] ? conf.openEffect : options.openEffect);
+        }
+
+        if (conf.closeEffect) {
+            options.closeEffect = (effects[conf.closeEffect] ? conf.closeEffect : options.closeEffect);
+        }
+
+        options.closeDelay = (conf.closeDelay ? conf.closeDelay : options.closeDelay);
+
+        return that;
     }
 
     this.build = function (message) {
-        let alertType = Array();
-        alertType['success'] = 'alert-success';
-        alertType['info'] = 'alert-primary';
-        alertType['warning'] = 'alert-warning';
-        alertType['error'] = 'alert-danger';
+        type = (types[message.type] ? types[message.type] : types['info']);
 
-        alertType = (alertType[message.type] ? alertType[message.type] : alertType['info']);
         let before = (message.before ? `<strong>${message.before}</strong>` : '');
         let after = (message.after ? `<strong>${message.after}</strong>` : '');
 
-        container().html(`
-            <div class="alert ${alertType} mt-3" role="alert">
+        container.html(`
+            <div class="alert ${type}" role="alert">
                 ${before + message.text + after}
             </div>
         `);
 
-        alertClick();
+        alertConfig();
 
         return that;
     };
 
-    this.bounce = function () {
-        alert().effect('bounce', {
-            duration: 700
-        });
+    this.open = function () {
+        let effectName = options.openEffect;
+        let effectType = effects[effectName][0];
+        let effectOptions = effects[effectName][1];
+        effectOptions.complete = undefined;
+
+        if (effectName.includes('-')) {
+            effectName = effectName.substring(0, effectName.indexOf('-'));
+        }
+
+        if (effectType == 'effect') {
+            alert().effect(effectName, effectOptions);
+        } else if (effectType == 'toggle') {
+            alert().hide(0, function () {
+                $(this).show(effectName, effectOptions);
+            });
+        }
 
         return that;
-    };
+    }
 
-    this.close = function (delay) {
+    this.close = function (delay = undefined) {
         clearTimeout(closeTimeout);
 
+        let effectName = options.closeEffect;
+        let effectOptions = effects[effectName][1];
+        effectOptions.complete = function () {
+            $(this).remove()
+        };
+
+        if (effectName.includes('-')) {
+            effectName = effectName.substring(0, effectName.indexOf('-'));
+        }
+
+        delay = (delay == undefined ? options.closeDelay : delay);
+
         closeTimeout = setTimeout(() => {
-            alert().hide('fade', {
-                duration: 300,
-                complete: function () {
-                    $(this).remove();
-                }
-            });
+            alert().hide(effectName, effectOptions);
         }, delay * 1000);
 
         return that;
@@ -133,18 +179,35 @@ function imageChange() {
     }
 }
 
-function formAjaxRequest(e) {
+function formAjaxRequest(e, options = {}) {
     e.preventDefault();
-    let form = $(this);
+    let form = $(e.currentTarget);
     let loading = new Loading('.app-loading');
-    let alert = new Alert('.form-message', form);
+
+    let alertFuncs = (new Alert('.form-message', form)).options(options.alert);
+
+
+    options.alertOpen = (options.alertOpen != undefined ? options.alertOpen : true);
+    options.alertClose = (options.alertClose != undefined ? options.alertClose : false);
+
+    let alert = function (message) {
+        alertFuncs.build(message).open();
+
+        if (options.alertOpen) {
+            alertFuncs;
+        }
+
+        if (options.alertClose) {
+            alertFuncs.close();
+        }
+    }
 
     $.ajax({
         url: form.attr('action'),
         type: form.attr('method'),
         data: form.serialize(),
         beforeSend: () => {
-            alert.close();
+            alertFuncs.close(0);
             loading.show();
 
             form.find('.is-invalid').removeClass('is-invalid');
@@ -163,7 +226,7 @@ function formAjaxRequest(e) {
             loading.hide();
 
             if (response.message) {
-                alert.build(response.message).bounce();
+                alert(response.message);
             }
 
             if (response.invalid) {
@@ -176,11 +239,11 @@ function formAjaxRequest(e) {
         },
         error: () => {
             loading.hide();
-            alert.build({
+            alert({
                 type: 'error',
                 before: 'Erro inesperado ocorreu. ',
                 text: 'Verifique os dados ou tente novamente mais tarde'
-            }).bounce();
+            });
         },
         dataType: 'json'
     });

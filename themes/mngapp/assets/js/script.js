@@ -3,8 +3,12 @@ $(document).ready(function () {
     // INIT
 
     let flashAlert = (new Alert('.flash-message'))
-        .bounce()
-        .close(6);
+        .options({
+            closeEffect: 'drop-right',
+            closeDelay: 6
+        })
+        .open()
+        .close();
 
     // RESOURCES
 
@@ -21,5 +25,17 @@ $(document).ready(function () {
 
     $('input[type="file"]').change(imageChange);
 
-    $('form').submit(formAjaxRequest);
+    $('.app-auth form').submit(formAjaxRequest);
+
+    $('.app-body form').submit(function (e) {
+        formAjaxRequest(e, {
+            alertOpen: true,
+            alertClose: true,
+            alert: {
+                openEffect: 'drop-right',
+                closeEffect: 'drop-right',
+                closeDelay: 6
+            }
+        });
+    });
 });
