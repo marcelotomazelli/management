@@ -24,7 +24,7 @@
 </head>
 <body class="app-auth <?= "app-auth-{$content}" ?>">
     <main class="app-auth-main">
-        <div class="flash-message">
+        <div class="message flash-message">
             <?= $this->insert('widgets::alert', flash_message()) ?>
         </div>
         <div class="app-auth-main-content h-100">
@@ -74,11 +74,7 @@
 
     <?= $this->insert('widgets::loading') ?>
 
-    <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/dropdown.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/script.js') ?>"></script>
+    <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'script']) ?>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_APP) ?>"></script>
 </body>
 </html>

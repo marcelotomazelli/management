@@ -2,10 +2,6 @@ $(document).ready(function () {
 
     // INIT
 
-    let flashAlert = (new Alert('.flash-message'))
-        .bounce()
-        .close(6);
-
     // FUNCTIONS
 
     let minScroll = 200;

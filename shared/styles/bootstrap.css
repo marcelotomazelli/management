@@ -8851,6 +8851,7 @@ textarea.form-control-lg {
   --app-zi-loading: 810;
   --app-zi-menu: 800;
   --app-zi-header: 790;
+  --app-zi-message: 780;
   --app-zi-main: 0;
   --app-dark: rgba(26,26,26,1);
   --app-gray: rgba(50,50,50,1);
@@ -8901,8 +8902,11 @@ textarea.form-control-lg {
   content: "";
 }
 
-.form-message .alert,
-.flash-message .alert {
+.message {
+  width: 100%;
+}
+
+.message .alert {
   cursor: pointer;
 }
 

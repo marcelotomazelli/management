@@ -39,7 +39,9 @@
                    maxlength="<?= $userRules->password_max_len ?>"
             >
         </div>
-        <div class="form-message col-12 m-0"></div>
+        <div class="col-12 m-0">
+            <div class="message form-message"></div>
+        </div>
         <div class="col-12 mt-3">
             <button type="submit" class="btn btn-outline-primary">Cadastrar</button>
         </div>

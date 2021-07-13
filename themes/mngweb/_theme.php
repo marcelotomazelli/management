@@ -26,7 +26,6 @@
                          alt="Management"
                          title="Management"
                          class="web-navbar-brand-img">
-
                 </a>
                 <button class="app-menu-toggle web-navbar-toggle-show" data-menu-toggle="show">
                     <i class="app-menu-toggle-ico"></i>
@@ -139,11 +138,7 @@
         </div>
     </footer>
 
-    <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script src="<?= shared('/scripts/script.js') ?>"></script>
+    <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'script']) ?>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_WEB) ?>"></script>
 
     <?= $this->section('scripts'); ?>

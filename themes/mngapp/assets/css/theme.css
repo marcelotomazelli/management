@@ -573,20 +573,29 @@
     z-index: var(--app-zi-main);
 }
 
-.flash-message,
-.form-message {
+.message {
     z-index: var(--app-zi-message);
     position: fixed;
     top: 70px;
-    right: 0px;
+    right: calc(-1 * (340px + (30px * 2)));
     width: 100%;
     max-width: calc(340px + (30px * 2));
     padding: 0 30px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition-property: visibility, opacity, right;
+    transition-duration: .3s;
 }
 
-.flash-message .alert,
-.form-message .alert {
+.message.show {
+    visibility: visible;
+    opacity: 1;
+    right: 0%;
+    transition-duration: .3s;
+}
+
+.message .alert {
     margin: 0;
     font-size: 0.9em;
 }

@@ -44,8 +44,18 @@
     APP AUTH MAIN
 ============================================================================= */
 
-.flash-message {
+.message {
     width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition-property: visibility, opacity;
+    transition-duration: .3s;
+}
+
+.message.show {
+    visibility: visible;
+    opacity: 1;
+    transition-duration: 0s;
 }
 
 .app-auth-main-title {

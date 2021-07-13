@@ -111,10 +111,7 @@
         <?php require __DIR__ . "/{$content}.php" ?>
     </main>
 
-    <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/script.js') ?>"></script>
+    <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'dropdown', 'script']); ?>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_ADMIN) ?>"></script>
 </body>
 </html>

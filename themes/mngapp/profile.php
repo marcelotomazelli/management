@@ -42,7 +42,7 @@
                             <label for="document" class="form-label w-100">CPF:</label>
                             <input type="text" name="document" class="form-control mask-cpf" id="document" placeholder="000.000.000-00" value="<?= (!empty($user->document) ? $user->document : '') ?>">
                         </div>
-                        <div class="form-message"></div>
+                        <div class="message form-message"></div>
                         <div class="col-12 mt-3 text-center">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-user-edit me-2"></i>Atualizar</button>
                         </div>

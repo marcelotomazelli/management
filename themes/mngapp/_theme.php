@@ -137,7 +137,7 @@
     </header>
 
     <main class="app-main <?= "app-{$content}-main" ?> py-5 py-lg-4">
-        <div class="flash-message">
+        <div class="message flash-message">
             <?= $this->insert('widgets::alert', flash_message()) ?>
         </div>
 
@@ -146,11 +146,7 @@
 
     <?= $this->insert('widgets::loading') ?>
 
-    <script src="<?= shared('/scripts/jquery.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/jquery-mask.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/jquery-ui.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/dropdown.min.js') ?>"></script>
-    <script src="<?= shared('/scripts/script.js') ?>"></script>
+    <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'dropdown', 'script']) ?>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_APP) ?>"></script>
 </body>
 </html>
