@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Models;
+namespace Source\Models\App;
 
 use Source\Core\Model;
 use Source\Core\Session;

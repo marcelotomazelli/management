@@ -1,3 +1,5 @@
+<?php $this->layout('_theme', ['content' => 'users']) ?>
+
 <section>
     <div class="container">
         <div class="row d-flex ai-center mt-4">
@@ -28,7 +30,7 @@
             </div>
         </div>
         <div class="row g-3 mt-2">
-            <?php for ($i = 0; $i < 10; $i++): ?>
+            <?php foreach ($users as $user): ?>
                 <article class="col-12 col-md-6 ms-col-lg-6 col-lg-4 ms-col-xl-6 col-xl-6 ms-col-xxl-4 col-xxl-4">
                     <div class="bg-white rounded-2 p-2 d-flex flex-row admin-users-card">
                         <div class="d-flex ai-center me-2">
@@ -36,11 +38,11 @@
                         </div>
                         <div class="flex-grow-1">
                             <header>
-                                <h2 class="m-0 p-0 admin-users-card-name">Marcelo Tomazelli<?= $i ?></h2>
+                                <h2 class="m-0 p-0 admin-users-card-name"><?= "{$user->cutFirstName()} {$user->cutLastName()}" ?></h2>
                             </header>
                             <ul class="admin-users-card-list">
-                                <li class="admin-users-card-info admin-users-card-email"><i class="fas fa-envelope"></i>marctomazelli@gmail.com</li>
-                                <li class="admin-users-card-info"><i class="fas fa-calendar-alt"></i>0<?= rand(1,9) ?>/20<?= rand(19,21) ?></li>
+                                <li class="admin-users-card-info admin-users-card-email"><i class="fas fa-envelope"></i><?= $user->email ?></li>
+                                <li class="admin-users-card-info"><i class="fas fa-calendar-alt"></i><?= date_fmt($user->created_at, 'm/Y') ?></li>
                             </ul>
                         </div>
                         <div class="d-flex flex-column jc-around admin-users-card-buttons">
@@ -49,7 +51,7 @@
                         </div>
                     </div>
                 </article>
-            <?php endfor; ?>
+            <?php endforeach ?>
         </div>
     </div>
 </section>

@@ -1,4 +1,4 @@
-<?= $this->layout('_theme', ['content' => 'profile', 'head' => $head]) ?>
+<?= $this->layout('_theme', ['content' => 'profile']) ?>
 
 <article>
     <div class="container">

@@ -21,21 +21,34 @@ $router->get('/', 'Source\Controllers\Web::home');
 $router->get('/confirme', 'Source\Controllers\Web::confirm');
 
 // AUTH
-$router->get('/entrar', 'Source\Controllers\App\Authentication::signin');
-$router->get('/cadastrar', 'Source\Controllers\App\Authentication::register');
-$router->get('/recuperar', 'Source\Controllers\App\Authentication::recover');
+$router->get('/entrar', 'Source\Controllers\App\Account::signin');
+$router->get('/cadastrar', 'Source\Controllers\App\Account::register');
+$router->get('/recuperar', 'Source\Controllers\App\Account::recover');
 
-$router->post('/register', 'Source\Controllers\App\Authentication::register');
-$router->post('/signin', 'Source\Controllers\App\Authentication::signin');
-$router->post('/recover', 'Source\Controllers\App\Authentication::recover');
+$router->post('/register', 'Source\Controllers\App\Account::register');
+$router->post('/signin', 'Source\Controllers\App\Account::signin');
+$router->post('/recover', 'Source\Controllers\App\Account::recover');
 
 // APP
 $router->group('/app', function (\League\Route\RouteGroup $route) {
     $route->get('/', 'Source\Controllers\App::profile');
     $route->get('/perfil', 'Source\Controllers\App::profile');
-    $route->get('/sair', 'Source\Controllers\App::signout');
 
     $route->post('/profile', 'Source\Controllers\App::profile');
+
+    $route->get('/sair', 'Source\Controllers\App::signout');
+});
+
+// ADM
+$router->group('/adm', function (\League\Route\RouteGroup $route) {
+    $route->get('/entrar', 'Source\Controllers\Adm\Account::signin');
+
+    $route->post('/signin', 'Source\Controllers\Adm\Account::signin');
+
+    $route->get('/', 'Source\Controllers\Adm::users');
+    $route->get('/usuarios', 'Source\Controllers\Adm::users');
+
+    $route->get('/sair', 'Source\Controllers\Adm::signout');
 });
 
 // ERROR

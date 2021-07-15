@@ -8,18 +8,18 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 use Source\Models\User;
-use Source\Models\Auth;
+use Source\Models\App\Auth;
 
-class Authentication extends Controller
+class Account extends Controller
 {
     /**
-     * Auth constructor.
+     * App Account constructor.
      */
     public function __construct()
     {
         parent::__construct(__DIR__ . '/../../../themes/' . CONF_VIEW_APP . '/');
 
-        if (!empty(Auth::user())) {
+        if (Auth::user()) {
             redirect('/app');
         }
     }
@@ -58,8 +58,8 @@ class Authentication extends Controller
             return $this->jsonResponse(['redirect' => url('/confirme')]);
         }
 
+        $this->head('Cadastrar-se', 'Efetue o cadastro na plafaforma');
         return $this->viewResponse('register', [
-            'head' => $this->head('Cadastrar-se', 'Efetue o cadastro na plafaforma'),
             'userRules' => (new User())->rules()
         ]);
     }
@@ -92,8 +92,8 @@ class Authentication extends Controller
             return $this->jsonResponse(['redirect' => url('/app')]);
         }
 
+        $this->head('Entrar', 'Acesse a plataforma');
         return $this->viewResponse('signin', [
-            'head' => $this->head('Entrar', 'Acesse a plataforma'),
             'data' => [
                 'email' => (!empty($cookies['authEmail']) ? $cookies['authEmail'] : null)
             ]
@@ -112,8 +112,7 @@ class Authentication extends Controller
             return $this->errorResponse();
         }
 
-        return $this->viewResponse('recover', [
-            'head' => $this->head('Recuperar senha', 'Recupere a senha')
-        ]);
+        $this->head('Recuperar senha', 'Recupere a senha');
+        return $this->viewResponse('recover');
     }
 }

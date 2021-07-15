@@ -40,6 +40,8 @@ abstract class Controller
         $head->title = (!empty($title) ? CONF_SITE_NAME . ' - ' . $title : CONF_SITE_TITLE);
         $head->desc = (!empty($desc) ? $desc : CONF_SITE_DESC);
 
+        $this->view->engine()->addData(['head' => $head]);
+
         return $head;
     }
 

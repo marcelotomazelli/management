@@ -1,4 +1,4 @@
-<?php $this->layout('_theme', ['content' => 'error', 'head' => $head]) ?>
+<?php $this->layout('_theme', ['content' => 'error']) ?>
 
 <article class="web-main-first">
     <div class="container">

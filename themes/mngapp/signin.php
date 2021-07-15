@@ -1,4 +1,4 @@
-<?php $this->layout('_auth', ['content' => 'signin', 'head' => $head]) ?>
+<?php $this->layout('_auth', ['content' => 'signin']) ?>
 
 <article class="app-auth-main-form">
     <header class="mb-4">

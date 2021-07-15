@@ -1,4 +1,4 @@
-<?php $this->layout('_auth', ['content' => 'recover', 'head' => $head]) ?>
+<?php $this->layout('_auth', ['content' => 'recover']) ?>
 
 <article class="app-auth-main-form">
     <header class="mb-4">

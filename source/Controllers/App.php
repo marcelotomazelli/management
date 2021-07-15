@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 use Source\Models\User;
-use Source\Models\Auth;
+use Source\Models\App\Auth;
 
 class App extends Controller
 {
@@ -30,6 +30,8 @@ class App extends Controller
             $this->message->before('Efetue o acesso. ')->warning('É preciso acessar sua conta para entrar no aplicativo')->flash();
             redirect('/entrar');
         }
+
+        $this->view->engine()->addData(['user' => clone $this->user]);
     }
 
     /**
@@ -52,8 +54,8 @@ class App extends Controller
             return $this->jsonResponse(['reload' => true]);
         }
 
+        $this->head('Seu perfil');
         return $this->viewResponse('profile', [
-            'head' => $this->head('Seu perfil'),
             'userRules' => (new User())->rules(),
             'user' => $this->user
         ]);
@@ -65,7 +67,7 @@ class App extends Controller
      */
     public function signout(ServerRequestInterface $request): ResponseInterface
     {
-        (new Auth())->signout();
+        Auth::signout();
         redirect('/');
         return $this->htmlResponse('');
     }

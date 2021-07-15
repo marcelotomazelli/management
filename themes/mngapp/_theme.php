@@ -1,4 +1,3 @@
-<?php $user = \Source\Models\Auth::user() ?>
 <!DOCTYPE html>
 <html lang="pt-br" class="app-html">
 <head>

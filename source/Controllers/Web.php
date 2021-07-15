@@ -7,6 +7,8 @@ use Source\Core\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+use Source\Models\App\Auth;
+
 class Web extends Controller
 {
     /**
@@ -15,6 +17,8 @@ class Web extends Controller
     public function __construct()
     {
         parent::__construct(__DIR__ . '/../../themes/' . CONF_VIEW_WEB . '/');
+
+        $this->view->engine()->addData(['user' => Auth::user()]);
     }
 
     /**
@@ -23,9 +27,8 @@ class Web extends Controller
      */
     public function home(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->viewResponse('home', [
-            'head' => $this->head()
-        ]);
+        $this->head();
+        return $this->viewResponse('home');
     }
 
     /**
@@ -45,8 +48,8 @@ class Web extends Controller
         $optin->image = theme('/assets/img/optin-confirm.png', CONF_VIEW_WEB);
         $optin->description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora debitis fugiat hic, ipsa eaque amet facilis nam blanditiis doloribus saepe pariatur odit dolor eum minima, eligendi est nemo voluptate tenetur?';
 
+        $this->head('Confirme seu cadastro');
         return $this->viewResponse('optin', [
-            'head' => $this->head('Confirme seu cadastro'),
             'optin' => $optin
         ]);
     }
@@ -72,8 +75,8 @@ class Web extends Controller
                 $error->linkText = 'Continuar navegando';
         }
 
+        $this->head('Oops!');
         return $this->viewResponse('error', [
-            'head' => $this->head('Oops!'),
             'error' => $error
         ]);
     }

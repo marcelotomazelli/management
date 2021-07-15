@@ -1,4 +1,4 @@
-<?php $this->layout('_theme', ['content' => 'optin', 'head' => $head]) ?>
+<?php $this->layout('_theme', ['content' => 'optin']) ?>
 
 <article class="web-main-first">
     <div class="container">

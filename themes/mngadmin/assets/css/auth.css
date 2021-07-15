@@ -21,6 +21,22 @@
     padding: var(--bs-space-5) var(--bs-space-3);
 }
 
+.admin-auth-body .message {
+    margin: 0 auto;
+    width: 100%;
+    max-width: calc(var(--form-width) * 0.7);
+    visibility: hidden;
+    opacity: 0;
+    transition-property: visibility, opacity;
+    transition-duration: .3s;
+}
+
+.admin-auth-body .message.show {
+    visibility: visible;
+    opacity: 1;
+    transition-duration: 0s;
+}
+
 /* =============================================================================
     ADMIN AUTH HEADER
 ============================================================================= */

@@ -573,7 +573,7 @@
     z-index: var(--app-zi-main);
 }
 
-.message {
+.app-body .message {
     z-index: var(--app-zi-message);
     position: fixed;
     top: 70px;
@@ -588,14 +588,14 @@
     transition-duration: .3s;
 }
 
-.message.show {
+.app-body .message.show {
     visibility: visible;
     opacity: 1;
     right: 0%;
     transition-duration: .3s;
 }
 
-.message .alert {
+.app-body .message .alert {
     margin: 0;
     font-size: 0.9em;
 }
@@ -614,7 +614,7 @@
 ============================================================================= */
 
 .app-profile-image {
-    z-index: -1;
+    z-index: 0;
     display: inline-block;
     width: 160px;
     height: 160px;
