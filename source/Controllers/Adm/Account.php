@@ -34,7 +34,7 @@ class Account extends Controller
 
         if (!empty($data)) {
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-            $fields = ['nickname', 'password'];
+            $fields = ['email', 'password'];
 
             if (!array_keys_is($fields, $data)) {
                 return $this->errorResponse();
@@ -42,11 +42,11 @@ class Account extends Controller
 
             $auth = new Auth();
 
-            if (!$auth->signin($data['nickname'], $data['password'])) {
+            if (!$auth->signin($data['email'], $data['password'])) {
                 return $this->jsonResponse($auth->response());
             }
 
-            $this->message->success("Bem vindo(a) de volta ")->after(Auth::admin()->nickname)->flash();
+            $this->message->success("Bem vindo(a) de volta ")->flash();
             return $this->jsonResponse(['redirect' => url('/adm')]);
         }
 

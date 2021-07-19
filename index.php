@@ -48,6 +48,8 @@ $router->group('/adm', function (\League\Route\RouteGroup $route) {
     $route->get('/', 'Source\Controllers\Adm::users');
     $route->get('/usuarios', 'Source\Controllers\Adm::users');
 
+    $route->post('/user/{id}', 'Source\Controllers\Adm::user');
+
     $route->get('/sair', 'Source\Controllers\Adm::signout');
 });
 

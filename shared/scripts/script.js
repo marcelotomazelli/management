@@ -9,25 +9,21 @@ const bsMediaXxl = 1400;
 
 // CLASSES
 
-function Form(formSelector, loading, options = {}) {
+function AjaxRequest(elements) {
 
     // CONSTRUCTOR
 
-    let form = $(formSelector);
-    let alert;
-
-    if (typeof options.message == 'object') {
-        alert = options.message;
-    } else {
-        alert = new Alert('.form-message', form, options.alert);
-    }
+    let that = this;
+    let loading = elements.loading;
+    let alert = elements.alert;
+    let parent = elements.parent;
 
     // FUNCTIONS
 
     function beforeSend() {
         loading.show();
         alert.close(0);
-        form.find('.is-invalid').removeClass('is-invalid');
+        parent.find('.is-invalid').removeClass('is-invalid');
     }
 
     function success(response) {
@@ -49,7 +45,7 @@ function Form(formSelector, loading, options = {}) {
 
         if (response.invalid) {
             response.invalid.forEach(function (inputName) {
-                let input = form.find(`[name="${inputName}"]`);
+                let input = parent.find(`[name="${inputName}"]`);
                 input.addClass('is-invalid');
                 input.focus(() => { input.removeClass('is-invalid') });
             });
@@ -65,18 +61,76 @@ function Form(formSelector, loading, options = {}) {
         });
     }
 
-    // EVENTS
+    // METHODS
 
-    form.submit(function (e) {
-        e.preventDefault();
+    this.submit = function (params) {
         $.ajax({
-            url: form.attr('action'),
-            type: form.attr('method'),
-            data: form.serialize(),
+            url: params.url,
+            type: params.type,
+            data: params.data,
             beforeSend,
             success,
             error,
             dataType: 'json'
+        });
+    }
+}
+
+function Form(formSelector, loading, options = {}) {
+
+    // CONSTRUCTOR
+
+    let form = $(formSelector);
+    let alert;
+
+    if (typeof options.message == 'object') {
+        alert = options.message;
+    } else {
+        alert = new Alert('.form-message', form, options.alert);
+    }
+
+    let request = new AjaxRequest({
+        parent: form,
+        alert,
+        loading
+    });
+
+    // EVENTS
+
+    form.submit(function (e) {
+        e.preventDefault();
+        request.submit({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: form.serialize()
+        });
+    });
+}
+
+function Action(actionSelector, alert, loading, options = {}) {
+
+    // CONSTRUCTOR
+
+    let that = this;
+    let action = $(actionSelector);
+    let request = new AjaxRequest({
+        parent: action,
+        alert,
+        loading
+    });
+
+    options.actionEvent = (options.actionEvent != undefined ? options.actionEvent : 'click');
+
+    // EVENTS
+
+    action.on(options.actionEvent, function (e) {
+        e.preventDefault();
+        let current = $(e.currentTarget);
+
+        request.submit({
+            url: current.data('actionRequest'),
+            type: current.data('actionMethod') != undefined ? current.data('actionMethod') : 'POST',
+            data: current.data()
         });
     });
 }

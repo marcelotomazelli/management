@@ -62,7 +62,7 @@
                                 <img src="<?= shared('/imgs/user.png') ?>">
                             </div>
                             <div class="admin-navbar-user-desc">
-                                <p class="admin-navbar-user-name"><?= $admin->nickname ?></p>
+                                <p class="admin-navbar-user-name"><?= $admin->cutFirstName() ?></p>
                                 <p class="admin-navbar-user-tasks">Nada pendente</p>
                             </div>
                         </div>

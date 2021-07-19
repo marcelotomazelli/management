@@ -6,6 +6,7 @@ use Source\Core\Model;
 use Source\Core\Session;
 
 use Source\Models\User;
+use Source\Models\Admin;
 
 class Auth extends Model
 {

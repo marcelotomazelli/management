@@ -7,8 +7,8 @@
         </header>
         <form action="<?= url('/adm/signin') ?>" method="POST" class="row gy-2">
             <div class="col-12 mt-0">
-                <label for="nickname" class="form-label w-100">Nome de usuário:</label>
-                <input type="nickname" name="nickname" class="form-control" id="nickname" placeholder="Informe o nome de usuário" required>
+                <label for="email" class="form-label w-100">E-mail:</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Informe seu e-mail" required>
             </div>
             <div class="col-12">
                 <label for="password" class="form-label w-100">Senha:</label>

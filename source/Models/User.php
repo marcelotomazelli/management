@@ -235,7 +235,7 @@ class User extends Model
      */
     public function cutFirstName(): string
     {
-        return str_limit_chars($this->first_name, 12, '');
+        return str_limit_chars($this->first_name, 10, '');
     }
 
     /**
@@ -243,7 +243,7 @@ class User extends Model
      */
     public function cutLastName(): string
     {
-        return str_limit_chars($this->last_name, 12, '');
+        return str_limit_chars($this->last_name, 10, '');
     }
 
     /**

@@ -5,6 +5,7 @@ namespace Source\Models\Admin;
 use Source\Core\Model;
 use Source\Core\Session;
 use Source\Models\Admin;
+use Source\Models\TestUser;
 
 class Auth extends Model
 {
@@ -29,23 +30,35 @@ class Auth extends Model
     }
 
     /**
-     * @param string $nickname
+     * @param string $email
      * @param string $password
      * @return boolean
      */
-    public function signin(string $nickname, string $password): bool
+    public function signin(string $email, string $password): bool
     {
-        $admin = (new Admin())->findByNickname($nickname, 'id, password');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->message->before('E-mail inválido. ')->warning('O e-mail informado é inválido');
+            $this->invalid('email');
+            return false;
+        }
+
+        $admin = (new Admin())->findByEmail($email, 'id, password');
 
         if (!$admin) {
-            $this->message->before('Apelido inválido. ')->error('Apelido informado não está cadastrado');
-            $this->invalid('nickname');
+            $this->message->before('E-mail inválido. ')->error('E-mail informado não está cadastrado');
+            $this->invalid('email');
             return false;
         }
 
         if (!passwd_verify($password, $admin->password)) {
             $this->message->before('Senha inválida. ')->error('A senha informada está incorreta');
             $this->invalid('password');
+            return false;
+        }
+
+        $testUser = new TestUser();
+        if (!$testUser->normalize((new Admin())->findById($admin->id))) {
+            $this->message = $testUser->message();
             return false;
         }
 

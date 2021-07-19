@@ -34,6 +34,8 @@ $(document).ready(function () {
 
         let notificationsDropdown = new Dropdown('admin-dropdown-notifications');
 
+        let action = new Action('[data-action-request]', alert, loading);
+
         // EVENTS
 
         $('[data-menu-toggle]').click(toggleMenu);

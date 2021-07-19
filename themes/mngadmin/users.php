@@ -47,7 +47,10 @@
                         </div>
                         <div class="d-flex flex-column jc-around admin-users-card-buttons">
                             <button class="admin-users-card-button admin-users-card-edit"><i class="fas fa-pencil-alt"></i></button>
-                            <button class="admin-users-card-button admin-users-card-remove"><i class="fas fa-trash-alt"></i></button>
+                            <button class="admin-users-card-button admin-users-card-remove"
+                                    data-action-request="<?= url("/adm/user/{$user->id}") ?>"
+                                    data-action-name="remove"
+                                    ><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </article>
