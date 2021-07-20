@@ -35,6 +35,9 @@ $(document).ready(function () {
         let notificationsDropdown = new Dropdown('admin-dropdown-notifications');
 
         let action = new Action('[data-action-request]', alert, loading);
+        let form = new Form('form', loading, {
+            message: alert
+        });
 
         // EVENTS
 

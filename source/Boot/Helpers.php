@@ -54,14 +54,23 @@ function array_keys_is(array $keys, array $array): bool
  * @param string $string
  * @return string
  */
-function str_slug(string $string): string
+function str_slug(string $string, string $concatenation = '-', array $exceptions = []): string
 {
     $string = filter_var(mb_strtolower($string), FILTER_SANITIZE_STRIPPED);
     $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
-    $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                 ';
+    $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                               ';
 
-    $slug = str_replace(['-----', '----', '---', '--'], '-',
-        str_replace(' ', '-',
+    foreach ($exceptions as $e) {
+        if (str_include($e, $formats)) {
+            $pos = strpos($formats, $e);
+            $mbPos = mb_strpos($formats, $e);
+            $formats = substr($formats, 0, $pos) . substr($formats, $pos + strlen($e));
+            $replace = substr($replace, 0, $mbPos) . substr($replace, $mbPos + mb_strlen($e));
+        }
+    }
+
+    $slug = str_replace(['-----', '----', '---', '--'], $concatenation,
+        str_replace(' ', $concatenation,
             trim(strtr(utf8_decode($string), utf8_decode($formats), $replace))
         )
     );
