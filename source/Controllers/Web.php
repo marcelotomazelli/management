@@ -2,25 +2,13 @@
 
 namespace Source\Controllers;
 
-use Source\Core\Controller;
+use Source\Controllers\Web\Controller;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-
-use Source\Models\App\Auth;
+use Psr\Http\Message\ResponseInterface;
 
 class Web extends Controller
 {
-    /**
-     * Web constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct(__DIR__ . '/../../themes/' . CONF_VIEW_WEB . '/');
-
-        $this->view->engine()->addData(['user' => Auth::user()]);
-    }
-
     /**
      * @param ServerRequestInterface $request
      * @return ResponseInterface
@@ -29,29 +17,6 @@ class Web extends Controller
     {
         $this->head();
         return $this->viewResponse('home');
-    }
-
-    /**
-     * @param ServerRequestInterface $request
-     * @return ResponseInterface
-     */
-    public function confirm(ServerRequestInterface $request): ResponseInterface
-    {
-        $flash = flash_message();
-
-        if (empty($flash['message']) || empty($flash['message']->text)) {
-            redirect('/');
-        }
-
-        $optin = new \stdClass();
-        $optin->title = "Enviamos um e-mail para \"{$flash['message']->text}\" para confirmar seu cadastro!";
-        $optin->image = theme('/assets/img/optin-confirm.png', CONF_VIEW_WEB);
-        $optin->description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora debitis fugiat hic, ipsa eaque amet facilis nam blanditiis doloribus saepe pariatur odit dolor eum minima, eligendi est nemo voluptate tenetur?';
-
-        $this->head('Confirme seu cadastro');
-        return $this->viewResponse('optin', [
-            'optin' => $optin
-        ]);
     }
 
     /**

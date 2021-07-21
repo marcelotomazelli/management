@@ -17,7 +17,7 @@
     <header class="admin-header">
         <div class="container">
             <nav class="admin-navbar-container">
-                <a class="admin-navbar-brand" href="<?= url() ?>">
+                <a class="admin-navbar-brand" href="<?= url('/adm') ?>">
                     <img src="<?= shared('/imgs/brand-dark.png') ?>"
                          alt="Management" title="Management"
                          class="admin-navbar-brand-img">
@@ -36,14 +36,11 @@
                                 <i class="fas fa-bell"></i>
                             </span>
                         </button>
-                        <div id="admin-dropdown-notifications-menu"
-                             class="app-dd-menu
+                        <div id="admin-dropdown-notifications-menu" class="app-dd-menu
                                     app-dd-pbe app-dd-lg-pbs
                                     app-dd-rb app-dd-rt">
-                            <div class="text-light">
-                                <div class="admin-navbar-dropdown-content">
-                                    <?php require __DIR__ . '/views/notifications.php'; ?>
-                                </div>
+                            <div class="admin-navbar-dropdown-content">
+                                <?= $this->insert('views/notifications') ?>
                             </div>
                         </div>
                     </div>

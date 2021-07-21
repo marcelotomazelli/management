@@ -4,8 +4,8 @@ namespace Source\Controllers\Adm;
 
 use Source\Core\Controller;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 use Source\Models\Admin\Auth;
 
@@ -21,7 +21,6 @@ class Account extends Controller
         if (Auth::admin()) {
             redirect('/adm');
         }
-
     }
 
     /**

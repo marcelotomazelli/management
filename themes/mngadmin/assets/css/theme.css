@@ -603,7 +603,6 @@
 }
 
 .admin-users-card-button {
-    cursor: pointer;
     display: block;
     padding: 0.375rem 0.375rem;
     width: 100%;
@@ -618,14 +617,18 @@
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.admin-users-card-remove:hover {
+.admin-users-card-button:not(:disabled):hover {
+    cursor: pointer;
+}
+
+.admin-users-card-remove:not(:disabled):hover {
     color: var(--bs-danger);
 }
 
-.admin-users-card-edit:hover {
+.admin-users-card-edit:not(:disabled):hover {
     color: var(--bs-primary);
 }
+
 .admin-users-card-caution:hover {
     color: var(--bs-warning);
 }
-

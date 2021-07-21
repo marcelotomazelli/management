@@ -18,7 +18,7 @@ $router = new League\Route\Router;
 
 // WEB
 $router->get('/', 'Source\Controllers\Web::home');
-$router->get('/confirme', 'Source\Controllers\Web::confirm');
+$router->get('/confirme', 'Source\Controllers\Web\Optin::confirm');
 
 // AUTH
 $router->get('/entrar', 'Source\Controllers\App\Account::signin');
@@ -45,12 +45,12 @@ $router->group('/adm', function (\League\Route\RouteGroup $route) {
 
     $route->post('/signin', 'Source\Controllers\Adm\Account::signin');
 
-    $route->get('/', 'Source\Controllers\Adm::users');
-    $route->get('/usuarios', 'Source\Controllers\Adm::users');
-    $route->get('/usuarios/{search}', 'Source\Controllers\Adm::users');
+    $route->get('/', 'Source\Controllers\Adm\Users::users');
+    $route->get('/usuarios', 'Source\Controllers\Adm\Users::users');
+    $route->get('/usuarios/{search}', 'Source\Controllers\Adm\Users::users');
 
-    $route->post('/users/search', 'Source\Controllers\Adm::users');
-    $route->post('/user/{id}', 'Source\Controllers\Adm::user');
+    $route->post('/users/search', 'Source\Controllers\Adm\Users::users');
+    $route->post('/user/{id}', 'Source\Controllers\Adm\Users::user');
 
     $route->get('/sair', 'Source\Controllers\Adm::signout');
 });

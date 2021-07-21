@@ -79,7 +79,7 @@
                                     <div id="app-dropdown-notifications-menu" class="app-dd-menu
                                                 app-dd-pts app-dd-lg-pbe app-dd-lg-rb">
                                         <div class="app-navbar-dropdown-content">
-                                            <?php require __DIR__ . '/views/notifications.php'; ?>
+                                            <?= $this->insert('views/notifications') ?>
                                         </div>
                                     </div>
                                 </div>

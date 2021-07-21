@@ -133,10 +133,10 @@
                             <h2 class="h4">Informações para contato</h2>
                         </header>
                         <ul class="web-home-contact-info">
-                            <li><a href="#" target="_blank"><i class="fas fa-envelope"></i>management@email.com</a></li>
-                            <li><a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i>Rua Lorem ipsum dolor sit amet, 99</a></li>
-                            <li><a href="#" target="_blank"><i class="fas fa-phone-alt"></i>+55 99902-2930</a></li>
-                            <li><a href="#" target="_blank"><i class="fas fa-phone-alt"></i>+55 99239-9837</a></li>
+                            <li><a href="#" target="_blank"><i class="fas fa-envelope"></i>contato@management.com</a></li>
+                            <li><a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i>Rua Lorem Ipsum Dolor Sit Amet, 99</a></li>
+                            <li><a href="#" target="_blank"><i class="fas fa-phone-alt"></i>+55 23 99902-2930</a></li>
+                            <li><a href="#" target="_blank"><i class="fas fa-phone-alt"></i>+55 90 99239-9837</a></li>
                         </ul>
                     </article>
                 </div>

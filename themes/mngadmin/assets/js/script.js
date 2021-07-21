@@ -32,7 +32,9 @@ $(document).ready(function () {
 
         // RESOURCES
 
-        let notificationsDropdown = new Dropdown('admin-dropdown-notifications');
+        let notificationsDropdown = new Dropdown('admin-dropdown-notifications', {
+            buttonDataName: 'app-dropdown'
+        });
 
         let action = new Action('[data-action-request]', alert, loading);
         let form = new Form('form', loading, {
