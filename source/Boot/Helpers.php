@@ -7,6 +7,7 @@
  * ####################
  */
 
+
 /**
  * @param string $password
  * @return bool
@@ -41,14 +42,16 @@ function array_keys_exists(array $keys, array $array): bool
  */
 function array_keys_is(array $keys, array $array): bool
 {
-    return array_keys($array) == $keys;
+    return array_keys_exists($keys, $array) && count(array_keys($array)) == count($keys);
 }
+
 
 /**
  * ##################
  * ###   STRING   ###
  * ##################
  */
+
 
 /**
  * @param string $string
@@ -113,11 +116,13 @@ function str_include($include, string $string): bool
     return false;
 }
 
+
 /**
  * ####################
  * ###   PASSWORD   ###
  * ####################
  */
+
 
 /**
  * @param string $password
@@ -151,11 +156,13 @@ function passwd_rehash(string $hash): bool
     return password_needs_rehash($hash, CONF_PASSWD_ALGO, CONF_PASSWD_OPTION);
 }
 
+
 /**
  * ###############
  * ###   URL   ###
  * ###############
  */
+
 
 /**
  * @param string|null $path
@@ -205,11 +212,13 @@ function redirect(string $url): void
     }
 }
 
+
 /**
  * ################
  * ###   DATE   ###
  * ################
  */
+
 
 /**
  * @param string $date
@@ -225,11 +234,13 @@ function date_fmt(
     return (new DateTime($date))->format($toFormat);
 }
 
+
 /**
  * ##################
  * ###   ASSETS   ###
  * ##################
  */
+
 
 /**
  * @param string $pathFile
@@ -265,6 +276,7 @@ function shared(string $pathFile): string
  * ###################
  */
 
+
 /**
  * @return string
  */
@@ -293,6 +305,14 @@ function csrf_verify(string $token): bool
 
     return true;
 }
+
+
+/**
+ * ##################
+ * ###   OTHERS   ###
+ * ##################
+ */
+
 
 /**
  * @return array

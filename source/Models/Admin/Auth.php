@@ -73,6 +73,12 @@ class Auth extends Model
      */
     public static function signout(): void
     {
-        (new Session())->destroy();
+        $session = new Session();
+
+        foreach ($session->all() as $key => $value) {
+            if (str_include('admin', strtolower($key))) {
+                $session ->unset($key);
+            }
+        }
     }
 }

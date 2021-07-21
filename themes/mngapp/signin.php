@@ -5,6 +5,8 @@
         <h2 class="app-auth-main-title text-center text-lg-start">Acesse nossa plataforma</h2>
     </header>
     <form action="<?= url('/signin') ?>" method="POST" class="row gy-2">
+        <?= csrf_input() ?>
+
         <div class="col-12">
             <label for="email" class="form-label w-100">E-mail:</label>
             <input type="email" name="email" class="form-control" id="email" placeholder="Informe seu e-mail" required value="<?= (!empty($data['email']) ? $data['email'] : '') ?>">

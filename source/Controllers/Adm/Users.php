@@ -102,7 +102,7 @@ class Users extends Controller
                 ->find('id = :id AND user_id = :user_id', "id={$args['id']}&user_id={$this->admin->id}")->findFetch();
 
             if (!$user) {
-                return $this->errorResponse('Usuário não encontrado. ', 'O usuário que tentou acessar não está dispónivel ou não existe');
+                return $this->errorResponse('O usuário que tentou acessar não está dispónivel ou não existe', 'Usuário não encontrado. ');
             }
 
             $action = $data['actionName'];

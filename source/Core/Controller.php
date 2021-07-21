@@ -76,24 +76,68 @@ abstract class Controller
     }
 
     /**
-     * @param string $before
+     * @param string $type
      * @param string $text
-     * @param string $after
+     * @param string|null $before
+     * @param string|null $after
      * @return ResponseInterface
      */
-    protected function errorResponse(string $before = null, string $text = null, string $after = null): ResponseInterface
+    protected function messageResponse(
+        string $type,
+        string $text,
+        ?string $before = null,
+        ?string $after = null
+    ): ResponseInterface
     {
-        $before = empty($before) ? 'Erro inesperado ocorreu. ' : $before;
-        $text = empty($text) ? 'Verifiques os dados ou tente novamente mais tarde' : $text;
+        $types = [];
 
-        $this->message
-            ->before($before)
-            ->error($text);
+        foreach ((new \ReflectionClass(Message::class))->getConstants() as $i => $const) {
+            if (str_include('MESSAGE_TYPE', $i)) {
+                array_push($types, $const);
+            }
+        }
+
+        if (!in_array($type, $types)) {
+            $type = 'info';
+        }
+
+        $this->message->$type($text);
+
+        if (!empty($before)) {
+            $this->message->before($before);
+        }
 
         if (!empty($after)) {
             $this->message->after($after);
         }
 
         return $this->jsonResponse($this->message->response());
+    }
+
+    /**
+     * @param string $text
+     * @param string $before
+     * @param string $after
+     * @return ResponseInterface
+     */
+    protected function errorResponse(string $text = null, string $before = null, string $after = null): ResponseInterface
+    {
+        return $this->messageResponse(
+            'error',
+            (empty($text) ? 'Verifiques os dados ou tente novamente mais tarde' : $text),
+            (empty($before) ? 'Erro inesperado ocorreu. ' : $before),
+            $after
+        );
+    }
+
+    /**
+     * @param string $text
+     * @param string $before
+     * @param string $after
+     * @return ResponseInterface
+     */
+    protected function warningResponse(string $text, string $before = null, string $after = null): ResponseInterface
+    {
+        return $this->messageResponse('warning', $text, $before, $after);
     }
 }

@@ -108,6 +108,12 @@ class Auth extends Model
      */
     public static function signout(): void
     {
-        (new Session())->destroy();
+        $session = new Session();
+
+        foreach ($session->all() as $key => $value) {
+            if (str_include('user', strtolower($key)) || str_include('app', strtolower($key))) {
+                $session ->unset($key);
+            }
+        }
     }
 }
