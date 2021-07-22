@@ -179,7 +179,7 @@ class User extends Model
             $this->document = preg_replace('/\D/', '', $this->document);
 
             if (strlen($this->document) != $rules->document_len) {
-                $this->message->before('Documento inválido. ')->warning('O documento informado não é válido');
+                $this->message->before('Documento inválido. ')->warning('O número de documento informado não é válido');
                 $this->invalid('document');
                 return false;
             }

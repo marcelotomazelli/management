@@ -10,6 +10,8 @@
             <div class="col-12">
                 <div class="p-3">
                     <form action="<?= url('/app/profile') ?>" method="POST" class="row g-3 app-form">
+                        <?= csrf_input() ?>
+
                         <div class="col-12 d-flex jc-center">
                             <input class="form-control d-none" type="file" id="profileImage" data-img-demo="demoProfileImg">
                             <div class="app-profile-image">

@@ -19,7 +19,7 @@
             <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required>
         </div>
         <div class="col-12 m-0">
-            <div class="message form-message"></div>
+            <?= $this->insert('widgets::message', ['containerClass' => 'form-message']) ?>
         </div>
         <div class="col-12 mt-3 d-flex ai-center jc-between">
             <button type="submit" class="btn btn-outline-primary">Entrar</button>

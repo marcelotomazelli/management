@@ -35,7 +35,7 @@ class Account extends Controller
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
             $fields = ['email', 'password'];
-            $validateResponse = $this->validateRequest($data, $fields);
+            $validateResponse = $this->validateFormRequest($data, $fields);
 
             if (!empty($validateResponse)) {
                 return $validateResponse;
@@ -47,40 +47,11 @@ class Account extends Controller
                 return $this->jsonResponse($auth->response());
             }
 
-            $this->message->success("Bem vindo(a) de volta ")->flash();
+            $this->message->success("Bem vindo(a) de volta ")->after(Auth::admin()->cutFirstName())->flash();
             return $this->jsonResponse(['redirect' => url('/adm')]);
         }
 
         $this->head(' Admin | Entrar', 'Autenticação administrativa na plataforma Management');
         return $this->viewResponse('signin', []);
-    }
-
-    /**
-     * @param array $data
-     * @param array $fields
-     * @param boolean $keyIs
-     * @return ResponseInterface|null
-     */
-    protected function validateRequest(array $data, array $fields, bool $keyIs = true): ?ResponseInterface
-    {
-        if (!csrf_verify($data['csrf'])) {
-            return $this->errorResponse('Verificamos que não está utilizando corretamente o formulário para está requisação', 'Use o formulário. ');
-        }
-
-        $fields = array_merge($fields, ['csrf']);
-
-        $invalidKeys = false;
-
-        if ($keyIs && !array_keys_is($fields, $data)) {
-            $invalidKeys = true;
-        } elseif (!array_keys_exists($fields, $data)) {
-            $invalidKeys = true;
-        }
-
-        if ($invalidKeys) {
-            return $this->warningResponse('Alguns campos estão incorretos para prosseguir com a requisição', 'Há campos incorretos. ');
-        }
-
-        return null;
     }
 }

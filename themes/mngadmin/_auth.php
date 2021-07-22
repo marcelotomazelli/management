@@ -22,9 +22,7 @@
         </a>
     </header>
     <main class="admin-auth-main">
-        <div class="message flash-message">
-            <?= $this->insert('widgets::alert', flash_message()) ?>
-        </div>
+        <?= $this->insert('widgets::message', array_merge(flash_message(), ['containerClass' => 'flash-message'])) ?>
 
         <span class="admin-auth-main-icon">
             <i class="fas fa-user-tie"></i>

@@ -108,9 +108,7 @@
         <?= $this->section('content'); ?>
     </main>
 
-    <div class="message">
-        <?= $this->insert('widgets::alert', flash_message()) ?>
-    </div>
+    <?= $this->insert('widgets::message', flash_message()) ?>
 
     <?= $this->insert('widgets::loading') ?>
 

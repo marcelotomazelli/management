@@ -17,8 +17,10 @@ class Adm extends Controller
      */
     public function signout(ServerRequestInterface $request): ResponseInterface
     {
+        $admin = clone $this->admin;
         Auth::signout();
-        redirect('/');
+        $this->message->success('Deslogado com sucesso ')->after($admin->cutFirstName())->flash();
+        redirect('/adm/entrar');
         return $this->htmlResponse('');
     }
 }

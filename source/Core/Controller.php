@@ -46,6 +46,35 @@ abstract class Controller
     }
 
     /**
+     * @param array $data
+     * @param array $fields
+     * @param boolean $keyIs
+     * @return ResponseInterface|null
+     */
+    protected function validateFormRequest(array $data, array $fields, bool $keyIs = true): ?ResponseInterface
+    {
+        $fields = array_merge($fields, ['csrf']);
+
+        $invalidKeys = false;
+
+        if ($keyIs && !array_keys_is($fields, $data)) {
+            $invalidKeys = true;
+        } elseif (!array_keys_exists($fields, $data)) {
+            $invalidKeys = true;
+        }
+
+        if ($invalidKeys) {
+            return $this->warningResponse('Alguns campos estão incorretos para prosseguir com a requisição', 'Há campos incorretos. ');
+        }
+
+        if (!csrf_verify($data['csrf'])) {
+            return $this->errorResponse('Verificamos que não está utilizando corretamente o formulário para está requisação', 'Use o formulário. ');
+        }
+
+        return null;
+    }
+
+    /**
      * Request response
      *
      * @param string $template

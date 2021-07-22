@@ -58,11 +58,17 @@ class TestUser extends Model
                 return false;
             }
 
+            $emailDomains = [
+                'email.com',
+                'aomail.com',
+                'mngmail.com'
+            ];
+
             $testUser = new TestUser();
             $testUser->user_id = $admin->id;
             $testUser->first_name = $names[$i];
             $testUser->last_name = $names[$inserts + $i];
-            $testUser->email = str_slug($testUser->first_name) . str_slug($testUser->last_name) . '@email.com';
+            $testUser->email = str_slug($testUser->first_name) . str_slug($testUser->last_name) . "@{$emailDomains[rand(0,2)]}";
 
             $testUser->save($failMessage);
         }

@@ -19,7 +19,6 @@
     grid-template-rows: auto 1fr;
 }
 
-
 .admin-body .message {
     z-index: var(--app-zi-message);
     position: fixed;

@@ -22,6 +22,13 @@ class App extends Controller
 
         if (!empty($data)) {
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+            $fields = ['first_name', 'last_name'];
+            $validateResponse = $this->validateFormRequest($data, $fields, false);
+
+            if (!empty($validateResponse )) {
+                return $validateResponse;
+            }
+
             $user = Auth::user();
 
             if (!$user->edit($data)) {
