@@ -31,7 +31,7 @@
 }
 
 .admin-auth-body .form-message {
-    max-width: calc(var(--form-width) * 0.7);
+    width: calc(var(--form-width) * 0.7);
 }
 
 .admin-auth-body .flash-message {
@@ -43,7 +43,7 @@
 }
 
 .admin-auth-body .flash-message .alert {
-    max-width: calc(var(--form-width) * 0.7);
+    width: calc(var(--form-width) * 0.7);
 }
 
 .admin-auth-body .message.show {

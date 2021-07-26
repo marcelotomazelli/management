@@ -85,6 +85,7 @@
             </nav>
         </div>
     </header>
+
     <main class="<?= "web-main web-{$content}-main" ?>">
         <?= $this->section('content'); ?>
     </main>
@@ -136,6 +137,8 @@
             <p class="m-0 text-secondary fw-light text-center">Todos os direitos reservados à Management. Dev to <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
         </div>
     </footer>
+
+    <?= $this->insert('widgets::modal') ?>
 
     <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'script']) ?>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_WEB) ?>"></script>

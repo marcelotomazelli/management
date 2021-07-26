@@ -21,7 +21,7 @@
                     col-xl-5
                     ms-col-xxl-4 col-xxl-4
                  ">
-                <form action="<?= url('/adm/users/search') ?>" method="POST" class="w-100">
+                <form action="<?= url('/adm/users/search') ?>" method="POST" class="w-100 admin-form-search">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Nome, e-mail, registro em..." value="<?= $search ?>">
                         <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
@@ -49,8 +49,8 @@
                             <div class="d-flex flex-column jc-around admin-users-card-buttons">
                                 <button class="admin-users-card-button admin-users-card-edit" disabled><i class="fas fa-pencil-alt"></i></button>
                                 <button class="admin-users-card-button admin-users-card-remove"
-                                        data-action-request="<?= url("/adm/user/{$user->id}") ?>"
-                                        data-action-name="remove"
+                                        data-request-action="<?= url("/adm/user/{$user->id}") ?>"
+                                        data-request-data="action=remove"
                                         ><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>

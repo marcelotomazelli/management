@@ -26,7 +26,7 @@ class Users extends Controller
                 $date = \DateTime::createFromFormat('m/Y', $search);
 
                 if (empty($date)) {
-                    $this->message->info('O formato correto da data é mm/AAAA');
+                    $this->message->info('O formato correto para data de registro é mm/aaaa');
                     return $this->jsonResponse(array_merge(
                         $this->message->response(),
                         ['invalid' => ['search']]
@@ -105,7 +105,7 @@ class Users extends Controller
                 return $this->errorResponse('O usuário que tentou acessar não está dispónivel ou não existe', 'Usuário não encontrado. ');
             }
 
-            $action = $data['actionName'];
+            $action = $data['action'];
 
             if ($this->admin->level > 2) {
                 $this->message->before('Não está autorizado. ')->info('Você não possui autorização para executar essa ação');

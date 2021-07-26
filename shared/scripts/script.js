@@ -9,145 +9,188 @@ const bsMediaXxl = 1400;
 
 // CLASSES
 
-function AjaxRequest(elements) {
+function Request(triggerSelector, resources = {}, options = {}) {
 
     // CONSTRUCTOR
 
     let that = this;
-    let loading = elements.loading;
-    let alert = elements.alert;
-    let parent = elements.parent;
+    let trigger = $(triggerSelector);
+
+    let message, loading, modal;
+
+    resources = resourcesCorrect(resources);
+    options = optionsCorrect(options);
+
+    let modalBuild;
 
     // FUNCTIONS
 
-    function beforeSend() {
-        loading.show();
-        alert.close(0);
-        parent.find('.is-invalid').removeClass('is-invalid');
+    function resourcesCorrect(gross) {
+        if (typeof gross != 'object') {
+            return {};
+        }
+
+        let correct = {};
+
+        // message
+
+        if (typeof gross.message == 'string') {
+            let messageParent = (typeof gross.messageParent == 'object' ? gross.messageParent : (trigger.is('form') ? trigger : undefined));
+
+            correct.message = new Message(gross.message, messageParent, gross.messageOptions);
+        } else if (typeof gross.message == 'object') {
+            correct.message = gross.message;
+        }
+
+        if (typeof correct.message == 'object') {
+            message = correct.message;
+        }
+
+        // loading
+
+        if (typeof gross.loading == 'object') {
+            loading = correct.loading = gross.loading;
+        }
+
+        // modal
+
+        if (typeof gross.modal == 'string') {
+            let modalParent = (typeof gross.modalParent == 'object' ? gross.modalParent : undefined);
+
+            correct.modal = new Modal(gross.modal, modalParent, gross.modalOptions);
+        } else if (typeof gross.modal == 'object') {
+            correct.modal = gross.modal;
+        }
+
+        if (typeof correct.modal == 'object') {
+            modal = correct.modal;
+        }
+
+        return correct;
     }
 
-    function success(response) {
-        if (response.reload) {
-            location.reload();
-            return;
+    function optionsCorrect(gross) {
+        if (typeof gross != 'object') {
+            return {};
         }
 
-        if (response.redirect) {
-            window.location.href = response.redirect;
-            return;
-        }
+        let correct = {}
 
-        loading.hide();
+        correct.triggerEvent = (typeof gross.triggerEvent == 'string' ? gross.triggerEvent : (trigger.is('form') ? 'submit' : 'click'))
 
-        if (response.message) {
-            alert.open(response.message);
-        }
-
-        if (response.invalid) {
-            response.invalid.forEach(function (inputName) {
-                let input = parent.find(`[name="${inputName}"]`);
-                input.addClass('is-invalid');
-                input.focus(() => { input.removeClass('is-invalid') });
-            });
-        }
+        return correct;
     }
 
-    function error() {
-        loading.hide();
-        alert.open({
-            type: 'error',
-            before: 'Erro inesperado ocorreu. ',
-            text: 'Verifique os dados ou tente novamente mais tarde'
+    function submit(current, params) {
+        $.ajax({
+            url: params.url,
+            type: params.type,
+            data: params.data,
+            beforeSend: function () {
+                if (loading) {
+                    loading.show();
+                }
+
+                if (message) {
+                    message.close(0);
+                }
+
+                if (current.is('form')) {
+                    current.find('.is-invalid').removeClass('is-invalid');
+                }
+            },
+            success: function (response) {
+                if (response.reload) {
+                    location.reload();
+                    return;
+                }
+
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                    return;
+                }
+
+                if (loading) {
+                    loading.hide();
+                }
+
+                if (message && response.message) {
+                    message.open(response.message);
+                }
+
+                if (response.invalid) {
+                    if (current.is('form')) {
+                        response.invalid.forEach(function (inputName) {
+                            current.find(`[name="${inputName}"]`)
+                                .addClass('is-invalid')
+                                .focus(() => { input.removeClass('is-invalid') });
+                        });
+                    }
+                }
+            },
+            error: function () {
+                if (loading) {
+                    loading.hide();
+                }
+
+                if (message) {
+                    message.open({
+                        type: 'error',
+                        before: 'Erro inesperado ocorreu. ',
+                        text: 'Verifique os dados ou tente novamente mais tarde'
+                    });
+                }
+            },
+            dataType: 'json'
         });
     }
 
     // METHODS
 
-    this.submit = function (params) {
-        $.ajax({
-            url: params.url,
-            type: params.type,
-            data: params.data,
-            beforeSend,
-            success,
-            error,
-            dataType: 'json'
-        });
+    this.onModalBuild = (execute) => {
+        modalBuild = (typeof execute == 'function' ? execute : undefined);
+        return that;
     }
-}
-
-function Form(formSelector, loading, options = {}) {
-
-    // CONSTRUCTOR
-
-    let form = $(formSelector);
-    let alert;
-
-    if (typeof options.message == 'object') {
-        alert = options.message;
-    } else {
-        alert = new Alert('.form-message', form, options.alert);
-    }
-
-    let request = new AjaxRequest({
-        parent: form,
-        alert,
-        loading
-    });
 
     // EVENTS
 
-    form.submit(function (e) {
-        e.preventDefault();
-        request.submit({
-            url: form.attr('action'),
-            type: form.attr('method'),
-            data: form.serialize()
-        });
-    });
-}
-
-function Action(actionSelector, alert, loading, options = {}) {
-
-    // CONSTRUCTOR
-
-    let that = this;
-    let action = $(actionSelector);
-    let request = new AjaxRequest({
-        parent: action,
-        alert,
-        loading
-    });
-
-    options.actionEvent = (options.actionEvent != undefined ? options.actionEvent : 'click');
-
-    // EVENTS
-
-    action.on(options.actionEvent, function (e) {
+    trigger.on(options.triggerEvent, function (e) {
         e.preventDefault();
         let current = $(e.currentTarget);
+        let params = {};
 
-        request.submit({
-            url: current.data('actionRequest'),
-            type: current.data('actionMethod') != undefined ? current.data('actionMethod') : 'POST',
-            data: current.data()
-        });
+        if (current.is('form')) {
+            params.url = current.attr('action');
+            params.type = current.attr('method');
+            params.data = current.serialize();
+        } else {
+            params.url = current.data('requestAction');
+            params.type = (current.data('requestMethod') ? current.data('requestMethod') : 'POST');
+            params.data = current.data('requestData');
+        }
+
+        if (modal) {
+            modalBuild(modal, current, () => {
+                submit(current, params);
+                modal.hide();
+            });
+            modal.show();
+        } else {
+            submit(current, params);
+        }
     });
+
+    // INIT
 }
 
-function Loading(selector) {
-    let loading = $(selector);
+function Message(messageSelector = '.message', parent = undefined, options = {}) {
 
-    this.show = () => loading.addClass('show');
-    this.hide = () => loading.removeClass('show');
-}
+    // CONSTRUCTOR
 
-function Alert(containerSelector, parent = undefined, options = {}) {
     let that = this;
-    let container = (parent ? parent.find(containerSelector) : $(containerSelector));
-    let openDelayTimeout, closeClearTimeout, closeDelayTimeout;
+    let message = (typeof parent == 'object' ? parent.find(messageSelector) : $(messageSelector));
 
-    options = config(options);
+    options = optionsCorrect(options);
 
     let types = Array();
     types['success'] = 'alert-success';
@@ -155,41 +198,45 @@ function Alert(containerSelector, parent = undefined, options = {}) {
     types['warning'] = 'alert-warning';
     types['error'] = 'alert-danger';
 
+    let openDelayTimeout, closeClearTimeout, closeDelayTimeout;
+
+    // FUNCTIONS
+
     function alert() {
-        return container.find('.alert');
+        return message.find('.alert');
     }
 
-    function config(conf) {
-        if (typeof conf != 'object') {
-            conf = {};
+    function optionsCorrect(gross) {
+        if (typeof gross != 'object') {
+            gross = {};
         }
 
         return {
-            openEffect: typeof conf.openEffect == 'boolean' ? conf.openEffect : true,
-            closeAuto: typeof conf.closeAuto == 'boolean' ? conf.closeAuto : false,
-            closeDelay: typeof conf.closeDelay == 'number' ? conf.closeDelay : 0,
+            openEffect: typeof gross.openEffect == 'boolean' ? gross.openEffect : true,
+            closeAuto: typeof gross.closeAuto == 'boolean' ? gross.closeAuto : false,
+            closeDelay: typeof gross.closeDelay == 'number' ? gross.closeDelay : 6,
         };
     }
 
-    function build(message) {
-        type = (types[message.type] ? types[message.type] : types['info']);
+    function build(params) {
+        type = (types[params.type] ? types[params.type] : types['info']);
 
-        let before = (message.before ? `<strong>${message.before}</strong>` : '');
-        let after = (message.after ? `<strong>${message.after}</strong>` : '');
+        let before = (params.before ? `<strong>${params.before}</strong>` : '');
+        let after = (params.after ? `<strong>${params.after}</strong>` : '');
 
-        container.html(`
+        message.html(`
             <div class="alert ${type}" role="alert">
-                ${before + message.text + after}
+                ${before + params.text + after}
             </div>
         `);
     }
 
-    function open(message = undefined) {
-        if (typeof message == 'object') {
-            build(message);
+    function open(params = undefined) {
+        if (typeof params == 'object') {
+            build(params);
         }
 
-        container.addClass('show');
+        message.addClass('show');
 
         if (options.openEffect) {
             alert().effect('bounce', {
@@ -201,23 +248,25 @@ function Alert(containerSelector, parent = undefined, options = {}) {
     }
 
     function close() {
-        if (container.hasClass('show')) {
-            container.removeClass('show');
+        if (message.hasClass('show')) {
+            message.removeClass('show');
 
             clearTimeout(closeClearTimeout);
             closeClearTimeout = setTimeout(() => {
-                container.html('');
+                message.html('');
             }, 300);
         }
     }
 
-    this.open = function (message) {
+    // METHODS
+
+    this.open = function (params) {
         if (alert().length <= 0) {
-            open(message);
+            open(params);
         } else {
             clearTimeout(openDelayTimeout);
             openDelayTimeout = setTimeout(() => {
-                open(message);
+                open(params);
             }, 400);
         }
 
@@ -244,9 +293,110 @@ function Alert(containerSelector, parent = undefined, options = {}) {
         return that;
     };
 
-    if (alert().length != 0) {
+    // INIT
+
+    if (alert().length > 0) {
         this.open();
     }
+}
+
+function Modal(modalSelector = '.modal', parent = undefined, options = {}) {
+
+    // CONSTRUCTOR
+
+    let that = this;
+    let modal = (typeof parent == 'object' ? parent.find(modalSelector) : $(modalSelector));
+    let hideExecTimeout;
+
+    let header = {
+        el: modal.find('.modal-title'),
+        title: html => {
+            header.el.html(html);
+        },
+        clear: () => {
+            header.el.html('');
+        }
+    };
+
+    let body = {
+        el: modal.find('.modal-body'),
+        content: html => {
+            body.el.html(html);
+        },
+        clear: () => {
+            body.el.html('');
+        }
+    };
+
+    let footer = {
+        el: modal.find('.modal-footer'),
+        button: params => {
+            let button = document.createElement('button');
+            button.className = `btn btn-${params.class}`;
+            button.innerText = params.text;
+            footer.el.append(button);
+            button.onclick = () => params.make();
+        },
+        clear: () => {
+            footer.el.html('');
+        }
+    };
+
+    // FUNCTIONS
+
+    // METHODS
+
+    this.build = function (build) {
+        if (typeof build == 'function') {
+            header.clear();
+            body.clear();
+            footer.clear();
+
+            build(header, body, footer, that);
+        }
+
+        return that;
+    };
+
+    this.show = function () {
+        modal.addClass('show');
+        return that;
+    };
+
+    this.hide = function (execute = undefined) {
+        modal.removeClass('show');
+
+        if (typeof execute == 'function') {
+            clearTimeout(hideExecTimeout);
+            hideExecTimeout = setTimeout(() => {
+                execute();
+            }, 1000 * 0.3);
+        }
+
+        return that;
+    };
+
+    // EVENTS
+
+    $('[data-modal-click="close"]').click(function () {
+        that.hide();
+    });
+
+    // INIT
+
+}
+
+function Loading(loadingSelector = '.app-loading', parent = undefined, options = {}) {
+
+    // CONSTRUCTOR
+
+    let that = this;
+    let loading = (typeof parent == 'object' ? parent.find(loadingSelector) : $(loadingSelector));
+
+    // METHODS
+
+    this.show = () => loading.addClass('show');
+    this.hide = () => loading.removeClass('show');
 }
 
 // FUNCTIONS

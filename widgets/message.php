@@ -1,6 +1,4 @@
 <div class="message<?= (!empty($containerClass) ? " {$containerClass}" : '') ?>">
-    <?php // var_dump($message) ?>
-
     <?php if (!empty($message->type) && (!empty($message->text) || !empty($message->before) || !empty($message->after))): ?>
         <?php
             $alertType = [

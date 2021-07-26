@@ -112,6 +112,8 @@
 
     <?= $this->insert('widgets::loading') ?>
 
+    <?= $this->insert('widgets::modal') ?>
+
     <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'dropdown', 'script']); ?>
     <script src="<?= theme('/assets/js/script.js', CONF_VIEW_ADMIN) ?>"></script>
 </body>

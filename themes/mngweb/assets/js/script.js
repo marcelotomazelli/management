@@ -1,12 +1,13 @@
 $(document).ready(function () {
 
-    // INIT
-
-    // FUNCTIONS
+    // DEFINE
 
     let minScroll = 200;
     let anmDuration = 300;
     let sections = [];
+    let timeoutResize;
+
+    // FUNCTIONS
 
     function setSections() {
         sections = [];
@@ -66,11 +67,6 @@ $(document).ready(function () {
 
     // EVENTS
 
-    setSections();
-    scrollSection();
-    scrollMenuStyle();
-
-    let timeoutResize;
     $(window).resize(function () {
         clearTimeout(timeoutResize);
         timeoutResize = setTimeout(() => {
@@ -96,4 +92,10 @@ $(document).ready(function () {
             sectionControl(e, this);
         }, anmDuration);
     });
+
+    // INIT
+
+    setSections();
+    scrollSection();
+    scrollMenuStyle();
 });

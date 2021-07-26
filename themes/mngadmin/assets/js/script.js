@@ -1,15 +1,18 @@
 $(document).ready(function () {
-    let loading = new Loading('.app-loading');
+    let loading = new Loading();
 
     if ($('.admin-auth-body').length > 0) {
 
         // INIT
 
-        (new Alert('.flash-message', undefined, { closeAuto: true, closeDelay: 6 }));
+        (new Message('.flash-message', undefined, {
+            closeAuto: true,
+            closeDelay: 6
+        }));
 
         // RESOURCES
 
-        let form = new Form('form', loading);
+        let authForm = new Request('form', { message: '.form-message', loading });
 
         // EVENTS
 
@@ -20,30 +23,45 @@ $(document).ready(function () {
 
         // INIT
 
-        let alert = new Alert('.message', undefined, {
-            openEffect: false,
-            closeAuto: true,
-            closeDelay: 6
-        });
-
         if (window.innerWidth > bsMediaLg) {
             $('body').addClass('menu-show');
         }
 
         // RESOURCES
 
+        let modal = new Modal();
+        let message = new Message('.message', undefined, {
+            openEffect: false,
+            closeAuto: true
+        });
+
         let notificationsDropdown = new Dropdown('admin-dropdown-notifications', {
             buttonDataName: 'app-dropdown'
         });
 
-        let action = new Action('[data-action-request]', alert, loading);
-        let form = new Form('form', loading, {
-            message: alert
-        });
+        let searchForm = new Request('form.admin-form-search', { message, loading });
 
-        // EVENTS
+        // ADMIN USERS
 
-        $('[data-menu-toggle]').click(toggleMenu);
+        if ($('.admin-users').length > 0) {
+            let userRemove = new Request('[data-request-action]', { loading, message, modal });
+
+            userRemove.onModalBuild(function (modal, current, confirmAction) {
+                modal.build(function (header, body, footer, modal) {
+                    header.title(`Confirmar remoção`);
+
+                    body.content(`
+                    <p>Essa ação <strong>removerá</strong> o usuário <strong>${current.parents('.admin-users-card').find('.admin-users-card-name').html()}</strong> e tudo o que está vinculado à ele de nossos registros.</p><br><p>Por favor confirme está ação para prosseguir:</p>
+                `);
+
+                    footer.button({
+                        text: 'Confirmar',
+                        class: 'primary',
+                        make: () => confirmAction()
+                    });
+                });
+            });
+        }
 
         return;
     }

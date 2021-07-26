@@ -1,16 +1,22 @@
 $(document).ready(function () {
-    let loading = new Loading('.app-loading');
+    let loading = new Loading();
 
     // AUTH
 
     if ($('.app-auth').length > 0) {
+
         // INIT
 
-        (new Alert('.app-auth .flash-message', undefined, { closeAuto: true, closeDelay: 6 }));
+        (new Message('.flash-message', undefined, {
+            closeAuto: true,
+            closeDelay: 6
+        }));
+
+        // RESOURCES
+
+        let authForm = new Request('.app-auth form', loading);
 
         // EVENTS
-
-        let authForm = new Form('form', loading);
 
         return;
     }
@@ -18,15 +24,16 @@ $(document).ready(function () {
     // APP
 
     if ($('.app-body').length > 0) {
+
         // INIT
 
-        let message = (new Alert('.app-body .message', undefined, {
+        // RESOURCES
+
+        let message = new Message('.message', undefined, {
             openEffect: false,
             closeAuto: true,
             closeDelay: 6
-        }));
-
-        // RESOURCES
+        });
 
         let profileDropdown = new Dropdown('app-dropdown-profile', {
             buttonDataName: 'app-dropdown'
@@ -35,13 +42,15 @@ $(document).ready(function () {
             buttonDataName: 'app-dropdown'
         });
 
+        if ($('.app-profile') > 0) {
+            let profileForm = new Request('.app-profile form', { message, loading });
+        }
+
         // EVENTS
 
         $('[data-menu-toggle]').click(toggleMenu);
 
         $('input[type="file"]').change(imageChange);
-
-        let appForm = new Form('form', loading, { message });
 
         return;
     }
