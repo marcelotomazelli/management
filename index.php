@@ -20,6 +20,8 @@ $router = new League\Route\Router;
 $router->get('/', 'Source\Controllers\Web::home');
 $router->get('/confirme', 'Source\Controllers\Web\Optin::confirm');
 
+$router->post('/home', 'Source\Controllers\Web::home');
+
 // AUTH
 $router->get('/entrar', 'Source\Controllers\App\Account::signin');
 $router->get('/cadastrar', 'Source\Controllers\App\Account::register');

@@ -47,17 +47,17 @@ $(document).ready(function () {
             let userRemove = new Request('[data-request-action]', { loading, message, modal });
 
             userRemove.onModalBuild(function (modal, current, confirmAction) {
-                modal.build(function (header, body, footer, modal) {
-                    header.title(`Confirmar remoção`);
+                modal.build(function (title, body, footer, modal) {
+                    title.content(`Confirmar remoção`);
 
-                    body.content(`
-                    <p>Essa ação <strong>removerá</strong> o usuário <strong>${current.parents('.admin-users-card').find('.admin-users-card-name').html()}</strong> e tudo o que está vinculado à ele de nossos registros.</p><br><p>Por favor confirme está ação para prosseguir:</p>
-                `);
+                    body.p(`Essa ação <strong>removerá</strong> o usuário <strong>${current.parents('.admin-users-card').find('.admin-users-card-name').html()}</strong> e tudo o que está vinculado à ele de nossos registros.`);
+                    body.br();
+                    body.p('Por favor confirme está ação para prosseguir:');
 
                     footer.button({
                         text: 'Confirmar',
                         class: 'primary',
-                        make: () => confirmAction()
+                        action: () => confirmAction()
                     });
                 });
             });

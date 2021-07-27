@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal<?= (!empty($containerClass) ? " {$containerClass}" : '') ?>">
     <div class="modal-backdrop" data-modal-click="close"></div>
     <div class="modal-dialog">
         <div class="modal-content">

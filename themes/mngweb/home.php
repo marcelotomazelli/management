@@ -153,6 +153,51 @@
             duration: 800,
             once: true
         });
+
+        <?php if ($modalBoot): ?>
+            $(document).ready(function () {
+                (new Modal()).build(function (title, body, footer, modal) {
+                    title.content(`Apresentando Management`);
+
+                    body.p(`Conteúdo do modal de inicialização`);
+
+                    let footerForm = footer.form({
+                        action: '<?= url('/home') ?>',
+                        method: 'POST',
+                        class: 'w-100 d-flex ai-center jc-start'
+                    });
+
+                    let checked = footer.checked({
+                        id: 'bootModal',
+                        name: 'modal_boot',
+                        divClass: 'me-auto',
+                        text: 'Não mostrar novamente?'
+                    }, footerForm);
+
+                    let button = $(footer.button({
+                        text: 'Fechar',
+                        class: 'secondary',
+                        action: () => { modal.hide() }
+                    }, footerForm));
+
+                    let modalForm = new Request(footerForm);
+
+                    modalForm.disable();
+
+                    $(checked).change(function () {
+                        if (this.checked) {
+                            button.removeClass('btn-secondary').addClass('btn-primary');
+                            modalForm.enable();
+                        } else {
+                            button.removeClass('btn-primary').addClass('btn-secondary');
+                            modalForm.disable();
+                        }
+                    });
+
+
+                }).show();
+            });
+        <?php endif ?>
     </script>
 <?php $this->end(); ?>
 

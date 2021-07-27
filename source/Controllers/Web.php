@@ -6,6 +6,7 @@ use Source\Controllers\Web\Controller;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Source\Support\Modal;
 
 class Web extends Controller
 {
@@ -15,8 +16,26 @@ class Web extends Controller
      */
     public function home(ServerRequestInterface $request): ResponseInterface
     {
+        $data = $request->getParsedBody();
+
+        $modal = new Modal($request);
+
+        if (!empty($data)) {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
+            if (!array_keys_is(['modal_boot'], $data)) {
+                return $this->jsonResponse('');
+            }
+
+            $modal->disable('webHome');
+
+            return $this->jsonResponse('');
+        }
+
         $this->head();
-        return $this->viewResponse('home');
+        return $this->viewResponse('home', [
+            'modalBoot' => $modal->boot('webHome')
+        ]);
     }
 
     /**

@@ -141,8 +141,7 @@
     <?= $this->insert('widgets::modal') ?>
 
     <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'script']) ?>
-    <script src="<?= theme('/assets/js/script.js', CONF_VIEW_WEB) ?>"></script>
-
     <?= $this->section('scripts'); ?>
+    <script src="<?= theme('/assets/js/script.js', CONF_VIEW_WEB) ?>"></script>
 </body>
 </html>

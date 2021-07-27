@@ -15,6 +15,7 @@ function Request(triggerSelector, resources = {}, options = {}) {
 
     let that = this;
     let trigger = $(triggerSelector);
+    let enabled = true;
 
     let message, loading, modal;
 
@@ -147,6 +148,12 @@ function Request(triggerSelector, resources = {}, options = {}) {
 
     // METHODS
 
+    this.enable = () => { enabled = true };
+
+    this.disable = () => { enabled = false };
+
+    this.enabled = () => { return enabled };
+
     this.onModalBuild = (execute) => {
         modalBuild = (typeof execute == 'function' ? execute : undefined);
         return that;
@@ -156,6 +163,11 @@ function Request(triggerSelector, resources = {}, options = {}) {
 
     trigger.on(options.triggerEvent, function (e) {
         e.preventDefault();
+
+        if (!enabled) {
+            return;
+        }
+
         let current = $(e.currentTarget);
         let params = {};
 
@@ -308,20 +320,38 @@ function Modal(modalSelector = '.modal', parent = undefined, options = {}) {
     let modal = (typeof parent == 'object' ? parent.find(modalSelector) : $(modalSelector));
     let hideExecTimeout;
 
-    let header = {
+    let title = {
         el: modal.find('.modal-title'),
-        title: html => {
-            header.el.html(html);
+        content: html => {
+            title.el.html(title.el.html() + html);
         },
         clear: () => {
-            header.el.html('');
+            title.el.html('');
         }
     };
 
     let body = {
         el: modal.find('.modal-body'),
         content: html => {
-            body.el.html(html);
+            body.el.html(body.el.html() + html);
+        },
+        p: params => {
+            let p = document.createElement('p');
+
+            if (typeof params == 'string') {
+                p.innerHTML = params;
+            } else {
+                p.innerHTML = (params.html ? params.html : '');
+                p.className = (params.class ? params.class : '');
+            }
+
+            body.el.append(p);
+            return p;
+        },
+        br: () => {
+            let br = document.createElement('br');
+            body.el.append(br);
+            return br;
         },
         clear: () => {
             body.el.html('');
@@ -330,12 +360,52 @@ function Modal(modalSelector = '.modal', parent = undefined, options = {}) {
 
     let footer = {
         el: modal.find('.modal-footer'),
-        button: params => {
+        button: (params, form = undefined) => {
             let button = document.createElement('button');
-            button.className = `btn btn-${params.class}`;
+            button.className = `btn btn-${(params.class ? params.class : 'secondary')}`;
             button.innerText = params.text;
-            footer.el.append(button);
-            button.onclick = () => params.make();
+
+            if (!form) {
+                footer.el.append(button);
+            } else {
+                button.type = 'submit';
+                form.appendChild(button);
+            }
+
+            if (typeof params.action == 'function') {
+                $(button).click(() => params.action());
+            }
+
+            return button;
+        },
+        form: params => {
+            let form = document.createElement('form');
+            form.action = params.action;
+            form.method = (params.method ? params.method : 'POST');
+            form.className = (params.class ? params.class : '');
+            footer.el.append(form);
+            return form;
+        },
+        checked: (params, form) => {
+            let div = document.createElement('div');
+            div.className = 'form-check' + (params.divClass ? ` ${params.divClass}` : '');
+
+            let input = document.createElement('input');
+            input.id = params.id;
+            input.type = 'checkbox';
+            input.name = params.name;
+            input.className = 'form-check-input' + (params.inputClass ? ` ${params.inputClass}` : '');
+            div.appendChild(input);
+
+            let label = document.createElement('label');
+            label.htmlFor = params.id;
+            label.innerText = (params.text ? params.text : '');
+            label.className = 'form-check-label' + (params.labelClass ? ` ${params.labelClass}` : '');
+            div.appendChild(label);
+
+            form.appendChild(div);
+
+            return input;
         },
         clear: () => {
             footer.el.html('');
@@ -348,11 +418,11 @@ function Modal(modalSelector = '.modal', parent = undefined, options = {}) {
 
     this.build = function (build) {
         if (typeof build == 'function') {
-            header.clear();
+            title.clear();
             body.clear();
             footer.clear();
 
-            build(header, body, footer, that);
+            build(title, body, footer, that);
         }
 
         return that;
