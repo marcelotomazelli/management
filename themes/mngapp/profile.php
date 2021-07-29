@@ -20,7 +20,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-6 menushow-col-lg-12 menushow-col-xl-6 col-xl-6">
+                        <div class="col-12 col-lg-6 col-xl-6">
                             <label for="firstName" class="form-label w-100">Primeiro nome:</label>
                             <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Informe seu primeiro nome" required
                                 value="<?= $user->first_name ?>"
@@ -28,7 +28,7 @@
                                 maxlength="<?= $userRules->first_name_max_len ?>"
                             >
                         </div>
-                        <div class="col-12 col-lg-6 menushow-col-lg-12 menushow-col-xl-6 col-xl-6">
+                        <div class="col-12 col-lg-6 col-xl-6">
                             <label for="lastName" class="form-label w-100">Último nome:</label>
                             <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Informe seu último nome" required
                                 value="<?= $user->last_name ?>"
@@ -36,11 +36,11 @@
                                 maxlength="<?= $userRules->last_name_max_len ?>"
                             >
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-4 menushow-col-lg-6 menushow-col-xl-4">
+                        <div class="col-12 col-sm-6 col-lg-4">
                             <label for="birthdate" class="form-label w-100">Data de nascimento:</label>
                             <input type="text" name="birthdate" class="form-control mask-day" id="birthdate" placeholder="00/00/0000" value="<?= (!empty($user->birthdate) ? date_fmt($user->birthdate) : '') ?>">
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-4 menushow-col-lg-6 menushow-col-xl-4">
+                        <div class="col-12 col-sm-6 col-lg-4">
                             <label for="document" class="form-label w-100">CPF:</label>
                             <input type="text" name="document" class="form-control mask-cpf" id="document" placeholder="000.000.000-00" value="<?= (!empty($user->document) ? $user->document : '') ?>">
                         </div>

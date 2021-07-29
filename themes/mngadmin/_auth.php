@@ -31,7 +31,7 @@
         <?= $this->section('content'); ?>
     </main>
     <footer class="admin-auth-footer">
-        <p class="text-secondary fw-light m-0">Dev to <a href="https://linkedin.com/in/marcelotomazelli">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
+        <p class="text-secondary fw-light m-0">Dev to <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
     </footer>
 
     <?= $this->insert('widgets::loading') ?>

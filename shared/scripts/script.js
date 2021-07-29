@@ -7,6 +7,66 @@ const bsMediaLg = 992;
 const bsMediaXl = 1200;
 const bsMediaXxl = 1400;
 
+let bodyScroll = function () {
+
+    // CONSTRUCTOR
+
+    let that = this;
+    let showTimeout, hideTimeout;
+    let body = $('body');
+
+    // FUNCTIONS
+
+    let showMethod = () => {
+        body.removeAttr('style');
+    };
+
+    let hideMethod = () => {
+        if (body[0].style.overflow != '' && body[0].style.paddingRight != '') {
+            return;
+        }
+
+        let scrollWidth = window.innerWidth - body[0].scrollWidth;
+        scrollWidth = (scrollWidth > 0 ? scrollWidth : 0);
+
+        body.css({
+            overflow: 'hidden',
+            paddingRight: `${scrollWidth}px`
+        });
+    };
+
+    // INIT
+
+    return {
+        show: (delay = 0) => {
+            clearTimeout(hideTimeout);
+
+            if (delay <= 0) {
+                showMethod();
+                return;
+            }
+
+            clearTimeout(showTimeout);
+            showTimeout = setTimeout(() => {
+                showMethod();
+            }, 1000 * delay);
+        },
+        hide: (delay = 0) => {
+            clearTimeout(showTimeout);
+
+            if (delay <= 0) {
+                hideMethod();
+                return;
+            }
+
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                hideMethod();
+            }, 1000 * delay);
+        }
+    };
+}();
+
 // CLASSES
 
 function Request(triggerSelector, resources = {}, options = {}) {
@@ -184,7 +244,7 @@ function Request(triggerSelector, resources = {}, options = {}) {
         if (modal) {
             modalBuild(modal, current, () => {
                 submit(current, params);
-                modal.hide();
+                modal.hide(false);
             });
             modal.show();
         } else {
@@ -318,7 +378,6 @@ function Modal(modalSelector = '.modal', parent = undefined, options = {}) {
 
     let that = this;
     let modal = (typeof parent == 'object' ? parent.find(modalSelector) : $(modalSelector));
-    let hideExecTimeout;
 
     let title = {
         el: modal.find('.modal-title'),
@@ -428,21 +487,19 @@ function Modal(modalSelector = '.modal', parent = undefined, options = {}) {
         return that;
     };
 
-    this.show = function () {
+    this.show = function (hideBodyScroll = true) {
         modal.addClass('show');
+        if (hideBodyScroll) {
+            bodyScroll.hide();
+        }
         return that;
     };
 
-    this.hide = function (execute = undefined) {
+    this.hide = function (showBodyScroll = true) {
         modal.removeClass('show');
-
-        if (typeof execute == 'function') {
-            clearTimeout(hideExecTimeout);
-            hideExecTimeout = setTimeout(() => {
-                execute();
-            }, 1000 * 0.3);
+        if (showBodyScroll) {
+            bodyScroll.show(0.3);
         }
-
         return that;
     };
 
@@ -465,32 +522,45 @@ function Loading(loadingSelector = '.app-loading', parent = undefined, options =
 
     // METHODS
 
-    this.show = () => loading.addClass('show');
-    this.hide = () => loading.removeClass('show');
+    this.show = (hideBodyScroll = true) => {
+        loading.addClass('show');
+        if (hideBodyScroll) {
+            bodyScroll.hide();
+        }
+    };
+    this.hide = (showBodyScroll = true) => {
+        loading.removeClass('show');
+        if (showBodyScroll) {
+            bodyScroll.show(0.3);
+        }
+    };
 }
 
 // FUNCTIONS
 
 function toggleMenu(e, el = undefined) {
-    let type = $((el ? el : this)).data('menuToggle');
+    el = $((el ? el : this));
+    let type = el.data('menuToggle');
     let body = $('body');
     let show = 'menu-show';
 
-    if (type === 'show' && !body.hasClass(show)) {
+    let windowWidth = window.innerWidth;
+
+    if ((type === 'show' || type === 'toggle') && !body.hasClass(show)) {
+        if (windowWidth < bsMediaLg) {
+            bodyScroll.hide();
+        }
+
         body.addClass(show);
         return;
     }
-    if (type === 'hide' && body.hasClass(show)) {
-        body.removeClass(show);
-        return;
-    }
 
-    if (type === 'toggle') {
-        if (!body.hasClass(show)) {
-            body.addClass(show);
-        } else {
-            body.removeClass(show);
+    if ((type === 'hide' || type === 'toggle') && body.hasClass(show)) {
+        if (windowWidth < bsMediaLg) {
+            bodyScroll.show(0.3);
         }
+
+        body.removeClass(show);
         return;
     }
 }

@@ -24,7 +24,7 @@
                 </a>
                 <div class="admin-navbar-buttons">
                     <div class="admin-navbar-buttons-item admin-navbar-toggle-toggle">
-                        <button class="app-menu-toggle app-menu-toggle-dark" data-menu-toggle="toggle">
+                        <button class="app-menu-toggle app-menu-toggle-dark" data-menu-toggle="show">
                             <i class="app-menu-toggle-ico up"></i>
                             <i class="app-menu-toggle-ico"></i>
                             <i class="app-menu-toggle-ico down"></i>

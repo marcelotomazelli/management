@@ -3,16 +3,16 @@
 }
 
 .web-body {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
     overflow-x: hidden;
 }
 
 .modal input[type="checkbox"]:hover,
 .modal label:hover {
     cursor: pointer;
+}
+
+.web-home .web-main {
+    margin-top: calc(-1 * var(--header-height));
 }
 
 /* =============================================================================
@@ -26,7 +26,7 @@ body:not(.web-home) .web-header,
 
 .web-header {
     z-index: var(--app-zi-header);
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     transition-property: background-color, box-shadow;
@@ -288,10 +288,6 @@ body:not(.web-home) .web-header,
 ============================================================================= */
 
 @media (max-width: 992px) {
-    body.menu-show {
-        overflow: hidden;
-    }
-
     .web-navbar-menu-container {
         right: -100%;
         transition-delay: var(--app-ts-fast);
@@ -380,6 +376,12 @@ body:not(.web-home) .web-header,
 /* =============================================================================
     WEB HOME
 ============================================================================= */
+
+.web-home-cta {
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-attachment: fixed;
+}
 
 @media (max-width: 992px) {
     .web-home-cta-container {

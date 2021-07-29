@@ -1,6 +1,6 @@
 <div class="modal<?= (!empty($containerClass) ? " {$containerClass}" : '') ?>">
     <div class="modal-backdrop" data-modal-click="close"></div>
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header h5">
                 <p class="modal-title"></p>

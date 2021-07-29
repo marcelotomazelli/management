@@ -14,7 +14,7 @@ $(document).ready(function () {
 
         // RESOURCES
 
-        let authForm = new Request('.app-auth form', loading);
+        let authForm = new Request('.app-auth form', { loading, message: '.form-message' });
 
         // EVENTS
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
             buttonDataName: 'app-dropdown'
         });
 
-        if ($('.app-profile') > 0) {
+        if ($('.app-profile').length > 0) {
             let profileForm = new Request('.app-profile form', { message, loading });
         }
 

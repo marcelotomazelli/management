@@ -3,12 +3,7 @@
 <section>
     <div class="container">
         <div class="row d-flex ai-center mt-4">
-            <div class="
-                    col-12
-                    col-lg-6
-                    col-xl-7
-                    ms-col-xxl-8 col-xxl-8
-                 ">
+            <div class="col-12 col-lg-6 col-xl-7 col-xxl-8">
                 <header>
                     <h1 class="display-5">Usuários</h1>
                 </header>
@@ -19,7 +14,7 @@
                     offset-sm-1 col-sm-10
                     offset-lg-0 col-lg-6
                     col-xl-5
-                    ms-col-xxl-4 col-xxl-4
+                    col-xxl-4
                  ">
                 <form action="<?= url('/adm/users/search') ?>" method="POST" class="w-100 admin-form-search">
                     <div class="input-group">
@@ -32,7 +27,7 @@
         <div class="row g-3 mt-2">
             <?php if (!empty($users)): ?>
                 <?php foreach ($users as $user): ?>
-                    <article class="col-12 col-md-6 ms-col-lg-6 col-lg-4 ms-col-xl-6 col-xl-6 ms-col-xxl-4 col-xxl-4">
+                    <article class="col-12 col-md-6 col-lg-4 col-xl-6 col-xxl-4">
                         <div class="bg-white rounded-2 p-2 d-flex flex-row admin-users-card">
                             <div class="d-flex ai-center me-2">
                                 <img src="<?= shared('/imgs/user.png'); ?>" alt="" title="" class="admin-users-card-img">

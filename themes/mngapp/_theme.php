@@ -141,6 +141,12 @@
         <?= $this->section('content') ?>
     </main>
 
+    <footer class="app-footer-rights">
+        <div class="container">
+            <p class="app-footer-rights-p">Todos os direitos reservados à Management. Dev to <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
+        </div>
+    </footer>
+
     <?= $this->insert('widgets::loading') ?>
 
     <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'dropdown', 'script']) ?>

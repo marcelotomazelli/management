@@ -23,10 +23,6 @@ $(document).ready(function () {
 
         // INIT
 
-        if (window.innerWidth > bsMediaLg) {
-            $('body').addClass('menu-show');
-        }
-
         // RESOURCES
 
         let modal = new Modal();
@@ -62,6 +58,10 @@ $(document).ready(function () {
                 });
             });
         }
+
+        // EVENTS
+
+        $('[data-menu-toggle]').click(toggleMenu);
 
         return;
     }

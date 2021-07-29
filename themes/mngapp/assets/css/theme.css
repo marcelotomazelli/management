@@ -6,6 +6,20 @@
     --buttons-height: 80px;
 }
 
+.app-html {
+    height: 100%;
+    min-height: 100%;
+}
+
+.app-body {
+    height: 100%;
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+
+}
+
 /* =============================================================================
     APP HEADER
 ============================================================================= */
@@ -60,17 +74,23 @@
     APP DROP MENUS
 ============================================================================= */
 
-.app-dd-menu {
+.app-dd:not(#app-dropdown-profile) .app-dd-menu {
     background-color: var(--app-gray);
-    /* padding: var(--bs-space-2); */
 }
 
 /* PROFILE */
+
+#app-dropdown-profile-menu .app-navbar-dropdown-content {
+    display: flex;
+    flex-direction: column;
+}
+
 
 .app-drop-profile-info {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    background-color: var(--app-gray);
     padding: var(--bs-space-3);
 }
 
@@ -113,14 +133,13 @@
 }
 
 .app-drop-profile-actions {
+    height: 50px;
     margin: 0;
-    background-color: rgba(0,0,0,0.1);
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 50px;
 }
 
 .app-drop-profile-actions-item {
@@ -133,6 +152,7 @@
     justify-content: center;
     height: 100%;
     color: var(--bs-light);
+    background-color: var(--app-gray);
     text-decoration: none;
     transition: background-color var(--app-ts-fast), color var(--app-ts-fast);
 }
@@ -143,7 +163,7 @@
 }
 
 .app-drop-profile-conf:hover {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgb(29, 29, 29);
 }
 
 .app-drop-profile-conf.active {
@@ -176,6 +196,14 @@
     .app-navbar-dropdown-content {
         height: 100%;
     }
+
+    .app-drop-profile-actions {
+        border-bottom: 1px solid rgb(29, 29, 29);
+    }
+
+    #app-dropdown-profile-menu .app-navbar-dropdown-content {
+        flex-direction: column-reverse;
+    }
 }
 
 @media (min-width: 992px) {
@@ -185,8 +213,14 @@
     }
 
     .app-drop-profile-actions {
-        overflow: hidden;
+        border-top: 1px solid rgb(29, 29, 29);
+    }
+
+    .app-drop-profile-actions .app-drop-profile-actions-item:first-child .app-drop-profile-action {
         border-bottom-left-radius: 0.5rem;
+    }
+
+    .app-drop-profile-actions .app-drop-profile-actions-item:last-child .app-drop-profile-action {
         border-bottom-right-radius: 0.5rem;
     }
 }
@@ -485,10 +519,6 @@
 ============================================================================= */
 
 @media (max-width: 992px) {
-    body.menu-show {
-        overflow: hidden;
-    }
-
     .app-navbar-menu-container {
         right: -100%;
         transition-delay: var(--app-ts-fast);
@@ -505,7 +535,7 @@
     }
 
     .menu-show .app-navbar-menu-back {
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgba(0,0,0,0.6);
     }
 
     .app-navbar-menu-field {
@@ -533,12 +563,10 @@
     .app-navbar-menu {
         transition-property: width;
         transition-duration: var(--app-ts-fast);
-        transition-delay: var(--app-ts-fast);
     }
 
     .menu-show .app-navbar-menu {
         width: var(--menu-show-width);
-        transition-delay: 0s;
     }
 
     body:not(.menu-show) .app-navbar-list-content::-webkit-scrollbar {
@@ -556,26 +584,15 @@
     }
 
     .app-header-content,
-    .app-main {
+    .app-main,
+    .app-footer-rights {
         margin-left: var(--menu-hide-width);
-        transition-property: margin-left;
-        transition-duration: var(--app-ts-fast);
-    }
-
-    .menu-show .app-header-content,
-    .menu-show .app-main {
-        margin-left: var(--menu-show-width);
-        transition-delay: var(--app-ts-fast);
     }
 }
 
 /* =============================================================================
     APP MAIN
 ============================================================================= */
-
-.app-main {
-    z-index: var(--app-zi-main);
-}
 
 .app-body .message {
     z-index: var(--app-zi-message);
@@ -604,6 +621,18 @@
     font-size: 0.9em;
 }
 
+/* =============================================================================
+    APP FOOTER
+============================================================================= */
+
+.app-footer-rights-p {
+    margin: 0;
+    padding: var(--bs-space-3);
+    color: #5a5a5a;
+    text-align: center;
+    font-weight: 300;
+    border-top: 1px solid #d4d4d4;
+}
 
 /* =============================================================================
     APP FORM

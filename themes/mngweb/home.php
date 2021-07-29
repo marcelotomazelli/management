@@ -3,7 +3,7 @@
 <?php $this->push('styles') ?>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style type="text/css">
-        .web-home {
+        .web-home-cta {
             background-image: url('<?= theme('/assets/img/home-cta.png', CONF_VIEW_WEB) ?>');
         }
     </style>
@@ -193,8 +193,6 @@
                             modalForm.disable();
                         }
                     });
-
-
                 }).show();
             });
         <?php endif ?>
