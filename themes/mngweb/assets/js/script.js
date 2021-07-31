@@ -7,6 +7,14 @@ $(document).ready(function () {
     let sections = [];
     let timeoutResize;
 
+    // RESOURCES
+
+    let loading = new Loading();
+
+    if ($('.web-home').length > 0) {
+        let contactForm = new Request('.web-home form', { loading, message: '.form-message' });
+    }
+
     // FUNCTIONS
 
     function setSections() {

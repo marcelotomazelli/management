@@ -133,6 +133,8 @@
         </div>
     </footer>
 
+    <?= $this->insert('widgets::loading') ?>
+
     <?= $this->insert('widgets::modal') ?>
 
     <script src="<?= theme('/assets/js/' . CONF_VIEW_WEB_VERSION_JS . '/scripts.min.js', CONF_VIEW_WEB) ?>"></script>

@@ -21,6 +21,7 @@ $router->get('/', 'Source\Controllers\Web::home');
 $router->get('/confirme', 'Source\Controllers\Web\Optin::confirm');
 
 $router->post('/home', 'Source\Controllers\Web::home');
+$router->post('/contact', 'Source\Controllers\Web::contact');
 
 // AUTH
 $router->get('/entrar', 'Source\Controllers\App\Account::signin');

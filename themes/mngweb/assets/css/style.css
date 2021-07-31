@@ -332,6 +332,24 @@ body:not(.web-home) .web-header,
     padding-top: var(--header-height);
 }
 
+.message {
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition-property: visibility, opacity;
+    transition-duration: .3s;
+}
+
+.message.show {
+    visibility: visible;
+    opacity: 1;
+    transition-duration: 0s;
+}
+
+.form-message .alert {
+    margin-top: var(--bs-space-3);
+}
+
 /* =============================================================================
     WEB FOOTER
 ============================================================================= */

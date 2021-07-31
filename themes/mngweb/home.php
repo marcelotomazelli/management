@@ -109,7 +109,7 @@
             <div class="row">
                 <div class="col-12 col-md-8 offset-xl-1 col-lg-7 col-xl-6 mb-3 mb-md-0"
                 data-aos="fade-up">
-                    <form action="#" class="row g-3">
+                    <form action="<?= url('/contact') ?>" method="POST" class="row g-3">
                         <div class="col-12 col-md-6">
                             <label for="contactName" class="small">Seu nome:</label>
                             <input type="text" name="name" id="contactName" class="form-control" placeholder="Informe seu nome">
@@ -121,6 +121,9 @@
                         <div class="col-12">
                             <label for="contactMessage" class="small">Mensagem:</label>
                             <textarea name="name" id="contactMessage" class="form-control" cols="30" rows="9"></textarea>
+                        </div>
+                        <div class="col-12 m-0">
+                            <?= $this->insert('widgets::message', ['containerClass' => 'form-message']) ?>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-outline-primary">Enviar</button>

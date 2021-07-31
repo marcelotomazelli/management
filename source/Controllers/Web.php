@@ -7,7 +7,6 @@ use Source\Controllers\Web\Controller;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Source\Support\Modal;
-use MatthiasMullie\Minify;
 
 class Web extends Controller
 {
@@ -37,6 +36,15 @@ class Web extends Controller
         return $this->viewResponse('home', [
             'modalBoot' => $modal->boot('webHome')
         ]);
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
+    public function contact(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->errorResponse();
     }
 
     /**
