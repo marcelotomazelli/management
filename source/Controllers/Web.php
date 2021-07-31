@@ -7,6 +7,7 @@ use Source\Controllers\Web\Controller;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Source\Support\Modal;
+use MatthiasMullie\Minify;
 
 class Web extends Controller
 {

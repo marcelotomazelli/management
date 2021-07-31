@@ -6,12 +6,11 @@
     <meta name="description" content="<?= $head->desc ?>">
     <title><?= $head->title ?></title>
     <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">
-    <!-- SHARED Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="<?= shared('/styles/bootstrap.css') ?>">
-
     <!-- APP Styles -->
-    <link rel="stylesheet" href="<?= theme('/assets/css/theme.css', CONF_VIEW_APP) ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= theme('/assets/css/' . CONF_VIEW_APP_VERSION_CSS . '/styles.min.css', CONF_VIEW_APP) ?>">
+    <?= $this->section('styles') ?>
+
 </head>
 <body class="app-body <?= "app-{$content}" ?>" data-bs-no-jquery="">
     <header class="app-header">
@@ -149,7 +148,7 @@
 
     <?= $this->insert('widgets::loading') ?>
 
-    <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'dropdown', 'script']) ?>
-    <script src="<?= theme('/assets/js/script.js', CONF_VIEW_APP) ?>"></script>
+    <script src="<?= theme('/assets/js/' . CONF_VIEW_APP_VERSION_JS . '/scripts.min.js', CONF_VIEW_APP) ?>"></script>
+    <?= $this->section('scripts') ?>
 </body>
 </html>

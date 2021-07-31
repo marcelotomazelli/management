@@ -19,7 +19,8 @@
         },
         "files": [
             "source/Boot/Config.php",
-            "source/Boot/Helpers.php"
+            "source/Boot/Helpers.php",
+            "source/Boot/Minify.php"
         ]
     },
     "require": {
@@ -28,6 +29,7 @@
         "league/route": "5.0.*",
         "laminas/laminas-diactoros": "2.6.*",
         "laminas/laminas-httphandlerrunner": "1.4.*",
-        "league/plates": "3.*"
+        "league/plates": "3.*",
+        "matthiasmullie/minify": "1.3.*"
     }
 }

@@ -6,11 +6,10 @@
     <meta name="description" content="<?= $head->desc ?>">
     <title><?= $head->title ?></title>
     <link rel="shortcut icon" href="<?= shared('/imgs/favicon.ico') ?>">
-    <!-- SHARED Styles -->
+    <!-- ADMIN Auth Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="<?= shared('/styles/bootstrap.css') ?>">
-    <!-- APP Auth Styles -->
-    <link rel="stylesheet" href="<?= theme('/assets/css/auth.css', CONF_VIEW_ADMIN) ?>">
+    <link rel="stylesheet" href="<?= theme('/assets/css/' . CONF_VIEW_ADMIN_VERSION_CSS . '/styles.min.css', CONF_VIEW_ADMIN) ?>">
+    <?= $this->section('styles') ?>
 </head>
 <body class="admin-auth-body <?= "admin-auth-{$content}" ?>">
     <header class="admin-auth-header">
@@ -36,7 +35,7 @@
 
     <?= $this->insert('widgets::loading') ?>
 
-    <?= $this->sharedScripts(['jquery', 'jquery-ui', 'jquery-mask', 'script']); ?>
-    <script src="<?= theme('/assets/js/script.js', CONF_VIEW_ADMIN) ?>"></script>
+    <script src="<?= theme('/assets/js/' . CONF_VIEW_ADMIN_VERSION_JS . '/scripts.min.js', CONF_VIEW_ADMIN) ?>"></script>
+    <?= $this->section('scripts') ?>
 </body>
 </html>

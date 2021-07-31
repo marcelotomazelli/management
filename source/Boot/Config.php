@@ -37,6 +37,16 @@ define('CONF_VIEW_APP', 'mngapp');
 define('CONF_VIEW_ADMIN', 'mngadmin');
 
 /**
+ * MINIFY VERSIONS
+ */
+define('CONF_VIEW_WEB_VERSION_CSS', 'v1');
+define('CONF_VIEW_WEB_VERSION_JS', 'v1');
+define('CONF_VIEW_APP_VERSION_CSS', 'v1');
+define('CONF_VIEW_APP_VERSION_JS', 'v1');
+define('CONF_VIEW_ADMIN_VERSION_CSS', 'v1');
+define('CONF_VIEW_ADMIN_VERSION_JS', 'v1');
+
+/**
  * SOCIAL
  */
 define('CONF_SOCIAL_INSTAGRAM', 'https://instagram.com');

@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `test_users` (
   FULLTEXT KEY `email FULLTEXT` (`email`),
   FULLTEXT KEY `name FULLTEXT` (`first_name`,`last_name`),
   CONSTRAINT `users FOREIGN KEY` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Exportação de dados foi desmarcado.
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQUE KEY` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Exportação de dados foi desmarcado.
 

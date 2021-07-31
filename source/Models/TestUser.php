@@ -16,6 +16,43 @@ class TestUser extends Model
     }
 
     /**
+     * @param array $failMessage ['insert' => '', 'update' => '']
+     * @return boolean
+     */
+    protected function save(): bool
+    {
+        $args = func_get_args();
+        $failMessage = $args[0];
+
+        /** INSERT */
+        if (empty($this->id)) {
+            $data = $this->safe();
+            $data['created_at'] = date("Y-m-d H:i:s", strtotime('-' . rand(0,12) . 'months'));
+            $id = $this->insert($data);
+
+            if (!$id || $this->fail()) {
+                $this->message->error($failMessage['insert']);
+                return false;
+            }
+        }
+
+        /** UPDATE */
+        if (!empty($this->id)) {
+            $id = $this->id;
+
+            $this->update($this->safe(), "id = :id", "id={$id}");
+
+            if ($this->fail()) {
+                $this->message->error($failMessage['update']);
+                return false;
+            }
+        }
+
+        $this->data = $this->findById($id)->data();
+        return true;
+    }
+
+    /**
      * @param Admin $admin
      * @return boolean
      */

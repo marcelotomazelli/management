@@ -68,7 +68,7 @@ abstract class Controller
         }
 
         if (!csrf_verify($data['csrf'])) {
-            return $this->errorResponse('Verificamos que não está utilizando corretamente o formulário para está requisação', 'Use o formulário. ');
+            return $this->errorResponse('Verificamos que não está utilizando corretamente o formulário para está requisição', 'Use o formulário. ');
         }
 
         return null;
