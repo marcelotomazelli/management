@@ -4,7 +4,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style type="text/css">
         .web-home-cta {
-            background-image: url('<?= theme('/assets/img/home-cta.png', CONF_VIEW_WEB) ?>');
+            background-image: url('<?= theme('/assets/img/home-cta.jpg', CONF_VIEW_WEB) ?>');
         }
     </style>
 <?php $this->end() ?>

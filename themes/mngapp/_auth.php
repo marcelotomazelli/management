@@ -12,7 +12,7 @@
     <style type="text/css">
         @media (min-width: 992px) {
             .app-auth {
-                background-image: url('<?= theme("/assets/img/auth-{$content}.png", CONF_VIEW_APP) ?>');
+                background-image: url('<?= theme("/assets/img/auth-{$content}.jpg", CONF_VIEW_APP) ?>');
             }
         }
     </style>

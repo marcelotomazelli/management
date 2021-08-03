@@ -147,6 +147,14 @@ class User extends Model
                 $this->invalid('email');
                 return false;
             }
+
+            $emailExists = (new User())->find('email = :email AND id != :id', "email={$this->email}&id={$this->id}")->findFetch();
+
+            if ($emailExists) {
+                $this->message->before('E-mail indisponível. ')->error('O e-mail informado já está em uso');
+                $this->invalid('email');
+                return false;
+            }
         }
 
         if (!empty($this->birthdate)) {
