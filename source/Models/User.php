@@ -196,7 +196,7 @@ class User extends Model
             }
 
             if ($this->password != $this->password_re) {
-                $this->message->before('Senhas não correspondentes. ')->warning('As senhas informados são diferentes');
+                $this->message->before('Senhas não correspondentes. ')->warning('As senhas informadas são diferentes');
                 $this->invalid('password')->invalid('password_re');
                 return false;
             }

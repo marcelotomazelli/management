@@ -33,7 +33,7 @@
                     <h2 class="app-auth-footer-title">
                         <span class="sr-only">Plataforma Management</span>
                         <a class="d-flex ai-center" href="<?= url() ?>">
-                            <img class="app-auth-footer-brand img-fluid" src="<?= shared('/imgs/brand.png') ?>" alt="Management" title="Management">
+                            <img src="<?= shared('/imgs/brand.png') ?>" alt="Management" title="Management" class="app-auth-footer-brand img-fluid">
                         </a>
                     </h2>
                     <p class="app-auth-footer-desc">Lorem ipsum dolor sit amet consectetur adipisicing, elit. Molestias repudiandae voluptate iste velit autem, magnam laborum quod a natus ipsa eius, nam, minima rerum aut quam neque veritatis. Veritatis, consequuntur!</p>
@@ -54,15 +54,15 @@
 
                 <article class="app-auth-footer-social">
                     <ul>
-                        <li><a class="app-auth-footer-social-ico" href="<?= CONF_SOCIAL_FACEBOOK ?>" target="_blank" title="Facebook Management"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a class="app-auth-footer-social-ico" href="<?= CONF_SOCIAL_INSTAGRAM ?>" target="_blank" title="Instagram Management"><i class="fab fa-instagram"></i></a></li>
-                        <li><a class="app-auth-footer-social-ico" href="<?= CONF_SOCIAL_LINKEDIN ?>" target="_blank" title="LinkedIn Management"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a class="app-auth-footer-social-ico" href="<?= CONF_SOCIAL_FACEBOOK ?>" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a class="app-auth-footer-social-ico" href="<?= CONF_SOCIAL_INSTAGRAM ?>" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        <li><a class="app-auth-footer-social-ico" href="<?= CONF_SOCIAL_LINKEDIN ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                     </ul>
                 </article>
             </section>
 
             <footer class="app-auth-footer-rights">
-                <p>Todos os diretos reservados à Management. Dev to <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
+                <p>Todos os diretos reservados à Management. Por <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
             </footer>
         </div>
     </div>

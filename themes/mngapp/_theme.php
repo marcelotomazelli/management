@@ -34,7 +34,7 @@
                             <div class="app-navbar-buttons">
                                 <div id="app-dropdown-profile" class="app-navbar-buttons-item app-dd">
                                     <button class="app-navbar-buttons-item-button" data-app-dropdown="app-dropdown-profile">
-                                        <img class="app-navbar-buttons-profile-img" src="<?= shared('/imgs/user.png') ?>" alt="<?= 'User' ?>" title="<?= 'User' ?>">
+                                        <img src="<?= shared('/imgs/user.png') ?>" alt="<?= $user->cutFirstName() ?>" title="<?= $user->cutFirstName() ?>" class="app-navbar-buttons-profile-img">
                                     </button>
                                     <div id="app-dropdown-profile-menu" class="app-dd-menu
                                                 app-dd-pts app-dd-lg-pbe
@@ -142,7 +142,7 @@
 
     <footer class="app-footer-rights">
         <div class="container">
-            <p class="app-footer-rights-p">Todos os direitos reservados à Management. Dev to <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
+            <p class="app-footer-rights-p">Todos os direitos reservados à Management. Por <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
         </div>
     </footer>
 

@@ -16,7 +16,7 @@
                             <input class="form-control d-none" type="file" id="profileImage" data-img-demo="demoProfileImg">
                             <div class="app-profile-image">
                                 <label for="profileImage" class="app-profile-image-label">
-                                    <img src="<?= shared('/imgs/user.png') ?>" alt="" class="app-profile-image-img" id="demoProfileImg">
+                                    <img src="<?= shared('/imgs/user.png') ?>" id="demoProfileImg" class="app-profile-image-img">
                                 </label>
                             </div>
                         </div>

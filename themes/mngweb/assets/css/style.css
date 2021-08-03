@@ -332,15 +332,14 @@ body:not(.web-home) .web-header,
     padding-top: var(--header-height);
 }
 
-.message {
-    width: 100%;
+.message:not(.message-static) {
     visibility: hidden;
     opacity: 0;
     transition-property: visibility, opacity;
     transition-duration: .3s;
 }
 
-.message.show {
+.message:not(.message-static).show {
     visibility: visible;
     opacity: 1;
     transition-duration: 0s;
@@ -399,6 +398,7 @@ body:not(.web-home) .web-header,
     background-repeat: no-repeat;
     background-position: left center;
     background-attachment: fixed;
+    background-size: cover;
 }
 
 @media (max-width: 992px) {

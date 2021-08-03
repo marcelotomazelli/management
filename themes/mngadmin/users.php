@@ -30,7 +30,7 @@
                     <article class="col-12 col-md-6 col-lg-4 col-xl-6 col-xxl-4">
                         <div class="bg-white rounded-2 p-2 d-flex flex-row admin-users-card">
                             <div class="d-flex ai-center me-2">
-                                <img src="<?= shared('/imgs/user.png'); ?>" alt="" title="" class="admin-users-card-img">
+                                <img src="<?= shared('/imgs/user.png'); ?>" alt="Usuário <?= "{$user->cutFirstName()} {$user->cutLastName()}" ?>" title="Usuário <?= "{$user->cutFirstName()} {$user->cutLastName()}" ?>" class="admin-users-card-img">
                             </div>
                             <div class="flex-grow-1">
                                 <header>

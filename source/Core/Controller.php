@@ -153,7 +153,7 @@ abstract class Controller
     {
         return $this->messageResponse(
             'error',
-            (empty($text) ? 'Verifiques os dados ou tente novamente mais tarde' : $text),
+            (empty($text) ? 'Verifique os dados ou tente novamente mais tarde' : $text),
             (empty($before) ? 'Erro inesperado ocorreu. ' : $before),
             $after
         );

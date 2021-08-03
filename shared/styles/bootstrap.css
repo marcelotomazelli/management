@@ -9241,7 +9241,7 @@ textarea.form-control-lg {
   width: 100%;
 }
 
-.message .alert {
+.message:not(.message-static) .alert {
   cursor: pointer;
 }
 

@@ -105,9 +105,9 @@
                             <h2 class="h3 text-light fw-normal">Links Úteis</h2>
                         </header>
                         <ul class="web-footer-list">
-                            <li class="web-footer-item"><a href="#">Política de Privacidade</a></li>
-                            <li class="web-footer-item"><a href="#">Aviso Legal</a></li>
-                            <li class="web-footer-item"><a href="#">Termos de Uso</a></li>
+                            <li class="web-footer-item"><a href="<?= url() ?>">Política de Privacidade</a></li>
+                            <li class="web-footer-item"><a href="<?= url() ?>">Aviso Legal</a></li>
+                            <li class="web-footer-item"><a href="<?= url() ?>">Termos de Uso</a></li>
                         </ul>
                     </article>
 
@@ -129,7 +129,7 @@
 
     <footer class="web-footer-rights">
         <div class="container">
-            <p class="m-0 text-secondary fw-light text-center">Todos os direitos reservados à Management. Dev to <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
+            <p class="m-0 text-secondary fw-light text-center">Todos os direitos reservados à Management. Por <a href="https://linkedin.com/in/marcelotomazelli" target="_blank">Marcelo Tomazelli</a> <i class="fas fa-heart text-primary"></i></p>
         </div>
     </footer>
 

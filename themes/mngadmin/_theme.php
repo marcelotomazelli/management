@@ -54,7 +54,7 @@
                         </div>
                         <div class="admin-navbar-user">
                             <div class="admin-navbar-user-img">
-                                <img src="<?= shared('/imgs/user.png') ?>">
+                                <img src="<?= shared('/imgs/user.png') ?>" alt="<?= $admin->cutFirstName() ?>" title="<?= $admin->cutFirstName() ?>">
                             </div>
                             <div class="admin-navbar-user-desc">
                                 <p class="admin-navbar-user-name"><?= $admin->cutFirstName() ?></p>

@@ -48,7 +48,7 @@
 
             <div class="row">
                 <div class="col-5 col-xl-6 d-none d-lg-flex ai-center">
-                    <img src="<?= theme('/assets/img/home-platform.png', CONF_VIEW_WEB) ?>" alt="" class="img-fluid">
+                    <img src="<?= theme('/assets/img/home-platform.png', CONF_VIEW_WEB) ?>" alt="Voluptatibus culpa minus" title="Voluptatibus culpa minus" class="img-fluid">
                 </div>
                 <div class="col-12 col-lg-7 col-xl-6 d-flex ai-center">
                     <div class="container">
@@ -56,7 +56,7 @@
                             <article class="col-12 web-home-platform-card-container">
                                 <div class="web-home-platform-card" data-aos="fade-down">
                                     <div class="web-home-platform-card-img">
-                                        <img src="<?= theme('/assets/img/easy.png', CONF_VIEW_WEB) ?>" alt="" class="">
+                                        <img src="<?= theme('/assets/img/easy.png', CONF_VIEW_WEB) ?>" alt="Hulla soluta omnis rem" title="Hulla soluta omnis rem">
                                     </div>
                                     <div>
                                         <header>
@@ -69,7 +69,7 @@
                             <article class="col-12 col-sm-6 web-home-platform-card-container">
                                 <div class="web-home-platform-card" data-aos="fade-up" data-aos-delay="200">
                                     <div class="web-home-platform-card-img">
-                                        <img src="<?= theme('/assets/img/fast.png', CONF_VIEW_WEB) ?>" alt="" class="">
+                                        <img src="<?= theme('/assets/img/fast.png', CONF_VIEW_WEB) ?>" alt="Ratione commodi porro numquam" title="Ratione commodi porro numquam">
                                     </div>
                                     <div>
                                         <header>
@@ -82,7 +82,7 @@
                             <article class="col-12 col-sm-6 web-home-platform-card-container">
                                 <div class="web-home-platform-card" data-aos="fade-up" data-aos-delay="400">
                                     <div class="web-home-platform-card-img">
-                                        <img src="<?= theme('/assets/img/genius.png', CONF_VIEW_WEB) ?>" alt="" class="">
+                                        <img src="<?= theme('/assets/img/genius.png', CONF_VIEW_WEB) ?>" alt="Rem accusamus earum nam ab quis" title="Rem accusamus earum nam ab quis">
                                     </div>
                                     <div>
                                         <header>
@@ -136,10 +136,10 @@
                             <h2 class="h4">Informações para contato</h2>
                         </header>
                         <ul class="web-home-contact-info">
-                            <li><a href="#" target="_blank"><i class="fas fa-envelope"></i>contato@management.com</a></li>
-                            <li><a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i>Rua Lorem Ipsum Dolor Sit Amet, 99</a></li>
-                            <li><a href="#" target="_blank"><i class="fas fa-phone-alt"></i>+55 23 99902-2930</a></li>
-                            <li><a href="#" target="_blank"><i class="fas fa-phone-alt"></i>+55 90 99239-9837</a></li>
+                            <li><a href="<?= url() ?>" target="_blank"><i class="fas fa-envelope"></i>contato@management.com</a></li>
+                            <li><a href="<?= url() ?>" target="_blank"><i class="fas fa-map-marker-alt"></i>Rua Lorem Ipsum Dolor Sit Amet, 99</a></li>
+                            <li><a href="<?= url() ?>" target="_blank"><i class="fas fa-phone-alt"></i>+55 23 99902-2930</a></li>
+                            <li><a href="<?= url() ?>" target="_blank"><i class="fas fa-phone-alt"></i>+55 90 99239-9837</a></li>
                         </ul>
                     </article>
                 </div>
@@ -162,7 +162,7 @@
                 (new Modal()).build(function (title, body, footer, modal) {
                     title.content(`Apresentando Management`);
 
-                    body.p(`Conteúdo do modal de inicialização`);
+                    body.p(`<?= $this->insert('views/boot-home') ?>`);
 
                     let footerForm = footer.form({
                         action: '<?= url('/home') ?>',
@@ -174,7 +174,7 @@
                         id: 'bootModal',
                         name: 'modal_boot',
                         divClass: 'me-auto',
-                        text: 'Não mostrar novamente?'
+                        text: 'Não mostrar novamente'
                     }, footerForm);
 
                     let button = $(footer.button({
