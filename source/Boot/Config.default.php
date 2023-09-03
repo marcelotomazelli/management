@@ -1,5 +1,9 @@
 <?php
 /**
+ * Use this file to create Config.php in this same directory
+ */
+
+/**
  * DATABASE
  */
 define('CONF_DB_HOST', 'localhost');
@@ -11,7 +15,7 @@ define('CONF_DB_NAME', 'management');
  * PROJECT URLs
  */
 define('CONF_URL_BASE', 'http://localhost/management');
-define('CONF_URL_IP', 'http://' . file_get_contents(__DIR__ . '/../../../ipv4.txt') . '/management');
+define('CONF_URL_IP', 'http://IPV4/management');
 
 /**
  * SITE

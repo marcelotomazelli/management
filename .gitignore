@@ -3,3 +3,4 @@ node_modules/
 shared/styles/bootstrap.css
 **/css/v1/
 **/js/v1/
+source/Boot/Config.php
