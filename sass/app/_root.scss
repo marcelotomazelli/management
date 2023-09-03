@@ -1,0 +1,15 @@
+:root {
+    --app-zi-loading: 820;
+    --app-zi-modal: 810;
+    --app-zi-menu: 800;
+    --app-zi-header: 790;
+    --app-zi-message: 780;
+    --app-zi-main: 0;
+
+    --app-dark: rgba(26,26,26,1);
+    --app-gray: rgb(41, 41, 41);
+    --app-sky: #{$blue-600};
+
+    --app-ts-fast: 0.3s;
+    --app-ts-slow: 0.5s;
+}

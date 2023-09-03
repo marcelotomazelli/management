@@ -1,3 +1,0 @@
-~ extract the files from "sass.rar" in this folder
-
-sass --no-source-map --watch ./sass:./shared/styles

@@ -71,7 +71,7 @@ class TestUser extends Model
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://gerador-nomes.herokuapp.com/nomes/' . ($inserts * 2),
+            CURLOPT_URL => 'https://gerador-nomes.wolan.net/nomes/' . ($inserts * 2),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

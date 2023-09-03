@@ -1,0 +1,51 @@
+.alert::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+$spacerIco: 20px;
+
+.alert-success,
+.alert-primary,
+.alert-warning,
+.alert-danger {
+    padding-left: calc(#{$spacer3 * 1.6} + #{$spacerIco});
+}
+
+.alert-success::before,
+.alert-primary::before,
+.alert-warning::before,
+.alert-danger::before {
+    position: absolute;
+    top: 0;
+    left: $spacer3;
+    height: 100%;
+    width: $spacerIco;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert-success::before {
+    content: '\f058';
+}
+
+.alert-primary::before {
+    content: '\f05a';
+}
+
+.alert-warning::before {
+    content: '\f071';
+}
+
+.alert-danger::before {
+    content: '\f057';
+}
+
+.message {
+    width: 100%;
+}
+
+.message:not(.message-static) .alert {
+    cursor: pointer;
+}

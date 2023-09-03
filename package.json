@@ -1,0 +1,29 @@
+{
+  "name": "management",
+  "version": "1.0.0",
+  "description": "Management - Projeto com CRUD completo com PHP.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelotomazelli/management.git"
+  },
+  "keywords": [
+    "php",
+    "javascript",
+    "mysql",
+    "bootstrap",
+    "sass"
+  ],
+  "author": "Marcelo Tomazelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcelotomazelli/management/issues"
+  },
+  "homepage": "https://github.com/marcelotomazelli/management#readme",
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta2"
+  }
+}
