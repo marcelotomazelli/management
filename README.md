@@ -56,7 +56,7 @@ O bando de dados utilizado é o MySQL.<br/><br/>
 
 ## Deployment
 
-O deploy do projeto está hospedado no InfinityFree no link: <a href="http://management.infinityfreeapp.com/" target="_blank">http\://management.infinityfreeapp.com/</a>.<br/><br/>
+O deploy do projeto está hospedado no InfinityFree no link: <a href="https://mtdeployments.epizy.com/management/" target="_blank">Management</a>.<br/><br/>
 
 ## :v: Direitos
 
