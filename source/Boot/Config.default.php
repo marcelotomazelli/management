@@ -14,8 +14,9 @@ define('CONF_DB_NAME', 'management');
 /**
  * PROJECT URLs
  */
-define('CONF_URL_BASE', 'http://localhost/management');
-define('CONF_URL_IP', 'http://IPV4/management');
+define('CONF_URL_SHEME', 'http' . (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 's' : ''));
+define('CONF_URL_BASE', CONF_URL_SHEME . '://management.local');
+define('CONF_URL_IP', CONF_URL_SHEME . '://192.168.3.18');
 
 /**
  * SITE

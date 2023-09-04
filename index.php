@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-
 $uri = '/management';
-$_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], (strlen($uri)));
+
+if (strpos($_SERVER['REQUEST_URI'], $uri) === 0) {
+    $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($uri));
+}
 
 $request = \Laminas\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
 );
 
-$router = new League\Route\Router;
+$router = new League\Route\Router();
 
 // WEB
 $router->get('/', 'Source\Controllers\Web::home');
